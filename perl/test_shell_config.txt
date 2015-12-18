@@ -1,0 +1,20 @@
+➜  ~  sudo cpan
+cpan[1]> install Term::ReadLine::Perl
+
+cpan[1]> install PadWalker
+
+默认的perl5db 如果没有安装Term::ReadLine模块，不支持历史命令、行编辑等类似bash命令行的功能。
+解决办法是通过安装相应的ReadLine模块:
+# on Linux
+cpanm Term::ReadLine::Gnu
+# on other platform
+cpanm Term::ReadLine::Perl # 纯perl实现
+
+
+  New CPAN.pm version (v2.10) available.
+  [Currently running version is v2.05]
+  You might want to try
+   > install CPAN
+   > reload cpan
+  to both upgrade CPAN.pm and run the new version without leaving
+  the current session.

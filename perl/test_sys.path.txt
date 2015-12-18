@@ -1,0 +1,46 @@
+Perl interpreter (which runs your perl program) will use a special array called @INC to search for a file containing the module.
+
+
+perl -de1
+
+  DB<2> x \%INC
+0  HASH(0x7fab39005be0)
+   'Carp.pm' => '/Library/Perl/5.18/Carp.pm'
+   'Exporter.pm' => '/Library/Perl/5.18/Exporter.pm'
+   'IO.pm' => '/System/Library/Perl/5.18/darwin-thread-multi-2level/IO.pm'
+   'IO/Handle.pm' => '/System/Library/Perl/5.18/darwin-thread-multi-2level/IO/Handle.pm'
+   'SelectSaver.pm' => '/System/Library/Perl/5.18/SelectSaver.pm'
+   'Symbol.pm' => '/System/Library/Perl/5.18/Symbol.pm'
+   'Term/Cap.pm' => '/Library/Perl/Updates/5.18.2/Term/Cap.pm'
+   'Term/ReadLine.pm' => '/Library/Perl/5.18/Term/ReadLine.pm'
+   'XSLoader.pm' => '/System/Library/Perl/5.18/XSLoader.pm'
+   'dumpvar.pl' => '/System/Library/Perl/5.18/dumpvar.pl'
+   'feature.pm' => '/System/Library/Perl/5.18/feature.pm'
+   'perl5db.pl' => '/System/Library/Perl/5.18/perl5db.pl'
+   'strict.pm' => '/System/Library/Perl/5.18/strict.pm'
+   'vars.pm' => '/System/Library/Perl/5.18/vars.pm'
+   'warnings.pm' => '/System/Library/Perl/5.18/warnings.pm'
+   'warnings/register.pm' => '/System/Library/Perl/5.18/warnings/register.pm'
+  DB<3> q
+
+
+➜  ~  perl -e 'use Data::Dumper; print Dumper(\%INC);'
+$VAR1 = {
+          'bytes.pm' => '/System/Library/Perl/5.18/bytes.pm',
+          'overload.pm' => '/System/Library/Perl/5.18/overload.pm',
+          'XSLoader.pm' => '/System/Library/Perl/5.18/XSLoader.pm',
+          'constant.pm' => '/Library/Perl/5.18/constant.pm',
+          'overloading.pm' => '/System/Library/Perl/5.18/overloading.pm',
+          'strict.pm' => '/System/Library/Perl/5.18/strict.pm',
+          'Data/Dumper.pm' => '/Library/Perl/Updates/5.18.2/darwin-thread-multi-2level/Data/Dumper.pm',
+          'warnings.pm' => '/System/Library/Perl/5.18/warnings.pm',
+          'warnings/register.pm' => '/System/Library/Perl/5.18/warnings/register.pm',
+          'Exporter.pm' => '/Library/Perl/5.18/Exporter.pm',
+          'Carp.pm' => '/Library/Perl/5.18/Carp.pm'
+        };
+
+
+
+To add an external module to INC:
+use lib '/home/foobar/code';
+use My::Module;

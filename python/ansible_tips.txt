@@ -1,0 +1,21 @@
+[debug]
+import epdb; epdb.serve() # PYTHON BREAKPOINT
+
+vagrant@precise32:~/ansible/test/integration$ ansible-playbook non_destructive.yml -i inventory -e @integration_config.yml -v --tags test_ping --forks 1
+Serving on port 8080
+
+vagrant@precise32:~/ansible$ python -c "import epdb; epdb.connect()"
+
+(epdb) l.
+(epdb) l
+(epdb) l-
+
+[fun]
+ref: https://www.digitalocean.com/community/tutorials/top-10-linux-easter-eggs
+sudo apt-get install fortune cowsay
+
+To disable:
+echo export ANSIBLE_NOCOWS=1 >> ~/.bashrc
+
+[news]
+2.0 new features: https://groups.google.com/forum/#!msg/ansible-project/_hTjEIpbA_Y/GtllImCkCQAJ

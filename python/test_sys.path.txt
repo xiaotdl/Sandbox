@@ -1,0 +1,4 @@
+python -c "import sys, pprint; pprint.pprint(sys.path)"
+
+>>> import sys, pprint
+>>> pprint.pprint(sys.path)

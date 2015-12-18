@@ -1,0 +1,4 @@
+ref: https://docs.python.org/2/glossary.html
+
+- global interpreter lock(GIL):
+The CPython interpreter assures that only one thread executes Python bytecode at a time. This simplifies the CPython implementation by making the object model (including critical built-in type such as dict) implicitly safe against concurrent access. Locking the entire interpreter makes it easier for the interpreter to be multi-threaded, at the expense of much of the parallelism afforded by multi-processor machines.

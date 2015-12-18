@@ -1,0 +1,10 @@
+<header>Hello World</header>
+<body>
+[% name %]
+[% email %]
+[% FOREACH item=invoice.items %]
+[% item.desc %]
+[% item.price %]
+[% END %]
+</body>
+
