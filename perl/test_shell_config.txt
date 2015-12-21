@@ -1,7 +1,14 @@
 ➜  ~  sudo cpan
+cpan[1]> install Term::ReadKey
 cpan[1]> install Term::ReadLine::Perl
-
 cpan[1]> install PadWalker
+
+To verify:
+(ite)vagrant@vagrant:~$ perl -de1
+DB<1> p 1
+1
+DB<2> p 1  ( use 'up' to repeat the same cmd)
+1
 
 默认的perl5db 如果没有安装Term::ReadLine模块，不支持历史命令、行编辑等类似bash命令行的功能。
 解决办法是通过安装相应的ReadLine模块:
