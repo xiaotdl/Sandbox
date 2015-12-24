@@ -9,7 +9,9 @@ import pymongo
 
 from scrapy.conf import settings
 from scrapy.exceptions import DropItem
-from scrapy import log
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class MongoDBPipeline(object):
@@ -23,11 +25,11 @@ class MongoDBPipeline(object):
         self.collection = db[settings['MONGODB_COLLECTION']]
 
     def process_item(self, item, spider):
+        # validate data
         for data in item:
-            if data:
-                self.collection.insert(dict(item))
-                log.msg("Question added to MongoDB database!",
-                        level=log.DEBUG, spider=spider)
-            else:
-                raise DropItem("Missing {}!".format(data))
+            if not data:
+                raise DropItem("Missing {0}!".format(data))
+        else:
+            self.collection.insert(dict(item))
+            logging.debug("Question added to MongoDB database!")
         return item

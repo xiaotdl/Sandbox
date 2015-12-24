@@ -1,2 +1,10 @@
 ref: https://realpython.com/blog/python/web-scraping-with-scrapy-and-mongodb/
-                
+
+`mongod`
+
+`mongo`
+> db.questions.find()
+{ "_id" : ObjectId("567c506d1748c00fe3efc003"), "url" : "/questions/34457465/tomcat-global-connection-pooling-getting-error", "title" : "Tomcat global connection pooling getting error"  }
+...
+> db.questions.find().count()
+50

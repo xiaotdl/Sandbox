@@ -61,11 +61,11 @@ NEWSPIDER_MODULE = 'stack.spiders'
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
+# ITEM_PIPELINES = {
 #    'stack.pipelines.SomePipeline': 300,
-#}
-ITEMPIPLINES = {
-    'stack.pipelines.MongoDBPipeline': 0,
+# }
+ITEM_PIPELINES = {
+    'stack.pipelines.MongoDBPipeline': 300,
 }
 
 MONGODB_SERVER = "localhost"
