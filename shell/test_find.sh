@@ -31,3 +31,6 @@
 # -f tmp//test.py
 # -f tmp//utils/__init__.py
 # -f tmp//utils/a.py
+
+# rm all '.pyc' files
+`find . -iname '*.pyc' -exec rm {} \;`
