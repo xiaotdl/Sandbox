@@ -1,0 +1,12 @@
+To see the clients owned by you.
+p4 clients –u username
+ 
+
+To delete any clients that you no longer use.
+On the Options: line of the client to be deleted, change locked to unlocked before delete.
+ 
+Example:
+1)      Set client options to unlocked
+p4 client -o xli-greenflash | sed 's/ locked/ unlocked/' | p4 client –i
+2)      Delete client
+p4 client –d xli-greenflash
