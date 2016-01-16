@@ -10,6 +10,9 @@ vagrant@precise32:~/ansible$ python -c "import epdb; epdb.connect()"
 (epdb) l
 (epdb) l-
 
+http://ansible-project.narkive.com/5IIrUqQ6/keeping-the-ansible-tmp-files-after-failed-run-for-debugging
+ANSIBLE_KEEP_REMOTE_FILES
+
 [fun]
 ref: https://www.digitalocean.com/community/tutorials/top-10-linux-easter-eggs
 sudo apt-get install fortune cowsay
