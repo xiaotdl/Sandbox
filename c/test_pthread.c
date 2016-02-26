@@ -6,6 +6,7 @@
 void* tprocess1(void* args){
          while(1){
                  printf( "tprocess1...\n");
+                 fflush(stdout);
                  sleep(1);
          }
          return NULL;
@@ -14,6 +15,7 @@ void* tprocess1(void* args){
 void* tprocess2(void* args){
          while(1){
                  printf("tprocess2...\n");
+                 fflush(stdout);
                  sleep(1);
          }
          return NULL;

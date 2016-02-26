@@ -10,6 +10,8 @@ int main ()
 
    memset(str,'$',7);
    puts(str);
+
+   printf("Hello, World! \n");
    
    return(0);
 }
