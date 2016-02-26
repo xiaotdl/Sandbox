@@ -6,3 +6,6 @@
 *.class
 
 *.pyc
+
+*test.py
+*test.c
