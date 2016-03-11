@@ -61,6 +61,47 @@ for i in mygenerator:
 # 1
 # 4
 
+# When a generator function is called, it returns a generator object WITHOUT EVEN BEGINNING EXECUTION of the function.
+# When next method is called for the first time, the function starts executing until it reaches yield statement.
+# The yielded value is returned by the next call.
+def foo():
+    print "begin"
+    for i in range(3):
+        print "before yield", i
+        yield i
+        print "after yield", i
+    print "end"
+
+f = foo()
+print type(f)
+# >>>
+# <type 'generator'>
+print f
+# >>>
+# <generator object foo at 0x107c4dc30>
+f.next()
+# >>>
+# begin
+# before yield 0
+# 0
+f.next()
+# >>>
+# after yield 0
+# before yield 1
+# 1
+f.next()
+# >>>
+# after yield 1
+# before yield 2
+# 2
+f.next()
+# >>>
+# after yield 2
+# end
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+# StopIteration
+
 
 # extend takes generators
 # 'duck typing': Python does not care if the argument of a method is a list or not. Python expects iterables so it will work with strings, lists, tuples and generators!
