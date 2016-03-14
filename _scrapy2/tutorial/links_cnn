@@ -1,0 +1,296 @@
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/election
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/2016/03/13/politics/democratic-town-hall-analysis-takeaways/index.html
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/privacy
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/about
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/opinions/cnnireport
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/services/advertise/main.html
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/more
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/cnn-longform
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/photos
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/more/cnn-leadership
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/tv/all-shows
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/tv/schedule/cnn
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/terms
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/digital-studios
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/help
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/living/relationships
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/living/eatocracy
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/belief
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/cnn-investigations
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/travel/business-traveller
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/living
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/videos/digital-shorts
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/travel/aviation-more
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/style/autos
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/travel/sleep-eats
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/style/design
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://transcripts.cnn.com/TRANSCRIPTS/
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/travel/best-of-travel
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/style/luxury
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/tech/cybersecurity
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/style/architecture
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/tech/consumer-tech
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/tech
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/showbiz/movies-music
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/style/fashion
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/profiles
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/living/cnn-parents
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://money.cnn.com/technology/innovationnation/
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/showbiz/celebrity-watch
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/health/living-well
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/health/diet-fitness
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/opinion/opinion-social-issues
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/politics/world-politics
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/opinion/opinion-politics
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/politics/washington-politics
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/politics/national-politics
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/politics/2016-election
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/middle-east
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/asia
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://money.cnn.com/pf/
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/europe
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/americas
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://money.cnn.com/technology/
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/showbiz/tv-web
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://money.cnn.com/data/markets/
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/space-science
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/us/extreme-weather
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://money.cnn.com/luxury/
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/us/crime-and-justice
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/specials/us/energy-and-environment
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/videos
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/travel
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://money.cnn.com/media/
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/entertainment
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://money.cnn.com/
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/opinions
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/health
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/politics
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/world
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/style
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/africa
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://www.cnn.com/us
+depth       : 1
+--------------------------------------------------
+referer.url : http://www.cnn.com
+response.url: http://collection.cnn.com/content/home.do
+depth       : 1
+--------------------------------------------------
