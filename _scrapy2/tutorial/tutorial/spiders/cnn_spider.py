@@ -7,7 +7,7 @@ class CnnSpider(CrawlSpider):
     allowed_domains = ['cnn.com']
     start_urls = ['http://www.cnn.com']
 
-    filename = 'links_%(name)s' % ({'name': name})
+    filename = 'links_%(name)s' % {'name': name}
     open(filename, 'wb').close()
 
     rules = (
