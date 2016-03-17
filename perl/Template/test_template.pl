@@ -7,6 +7,18 @@ use warnings;
 
 use Template;
 
+my $urls;
+push @$urls, 'google.com';
+push @$urls, 'facebook.com';
+my $pages = [
+      { url   => 'http://foo.org',
+        title => 'The Foo Organisation',
+      },
+      { url   => 'http://bar.org',
+        title => 'The Bar Organisation',
+      },
+    ];
+
 my $vars = {
     name  => 'Xiaotian',
     email => 'xiaotdl@gmail.com',
@@ -22,7 +34,9 @@ my $vars = {
                 price => 200
             }
         ]
-    }
+    },
+    pages => $pages,
+    urls => $urls,
 };
 
 my $tt = Template->new;

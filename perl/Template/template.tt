@@ -2,9 +2,19 @@
 <body>
 [% name %]
 [% email %]
+
 [% FOREACH item=invoice.items %]
 [% item.desc %]
 [% item.price %]
 [% END %]
+
+[% FOREACH url IN urls %]
+[% url %]
+[% END %]
+
+[% FOREACH page IN pages %]
+     <li><a href="[% page.url %]">[% page.title %]</a>
+[% END %]
+
 </body>
 
