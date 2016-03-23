@@ -1,0 +1,27 @@
+#!/usr/bin/python
+
+# -*- coding: utf-8 -*-
+import os
+import re
+import sys
+from tld import get_tld
+from scrapy.cmdline import execute
+from src.spiders.depth_spider import DepthSpider
+
+def usage():
+    print "Usage:"
+    print "  ./crawl <start_url> <depth>"
+    print "Example:"
+    print "  ./crawl http://google.com 3"
+
+if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        usage()
+        exit(1)
+    start_url = sys.argv[1]
+    depth = sys.argv[2]
+
+    DepthSpider.start_urls = [start_url]
+    DepthSpider.domain_name = get_tld(start_url, fail_silently=True)
+    sys.argv = ['scrapy', 'crawl', DepthSpider.name, '-s', 'DEPTH_LIMIT=%s'%(int(depth)-1), '--nolog']
+    sys.exit(execute())
