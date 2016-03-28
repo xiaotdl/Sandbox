@@ -1,0 +1,150 @@
+MySQL Tutorial
+Ref:
+video - https://www.youtube.com/watch?v=yPu6qV5byu4
+cheatsheet - http://www.newthinktank.com/2014/08/mysql-video-tutorial/
+
+
+== Login/Logout ==
+$ mysql -u root -p
+> quit
+
+
+== Miscellaneous ==
+mysql> \#                                # enable rehash/auto-complete
+
+
+== Database operation ==
+> show databases;                        # display all databases
+> CREATE DATABASE test_db;               # create a db
+> USE test_db;                           # select a db as active db
+> SELECT DATABASE();                     # show the currently selected db
+> DROP DATABASE IF EXISTS test_db;       # drop/delete a db
+
+
+== Table operation ==
+> CREATE TABLE student(                  # create a table
+    -> first_name VARCHAR(30) NOT NULL,
+    -> last_name VARCHAR(30) NOT NULL,
+    -> email VARCHAR(60) NULL,
+    -> street VARCHAR(50) NOT NULL,
+    -> city VARCHAR(40) NULL,
+    -> state VARCHAR(2) NOT NULL DEFAULT "CA",
+    -> zip MEDIUMINT UNSIGNED NOT NULL,
+    -> phone VARCHAR(20) NOT NULL,
+    -> birth_date DATE NOT NULL,
+    -> sex ENUM('M', 'F') NOT NULL,
+    -> date_entered TIMESTAMP,
+    -> lunch_cost FLOAT NULL,
+    -> student_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY);
+    Query OK, 0 rows affected (0.03 sec)
+> SHOW TABLES;                           # show all the tables
+> DESCRIBE student;                      # show the table set up, details about each field
+> INSERT INTO student VALUES             # insert a data entry into the table
+    -> ('Dale', 'Cooper', 'dcooper@aol.com',
+    -> '123 Main St',
+    -> 'Yakima’,
+    -> 'WA',
+    -> 98901,
+    -> '792-223-8901',
+    -> '1959-2-22',
+    -> 'M',
+    -> NOW(),
+    -> 3.50,
+    -> NULL);
+    Query OK, 1 row affected (0.01 sec)
+> SELECT * FROM student;                 # show all table entries
+
+
+> CREATE TABLE class(                    # create a table
+    -> name VARCHAR(30) NOT NULL,
+    -> class_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY);
+    Query OK, 0 rows affected (0.05 sec)
+
+> INSERT INTO class VALUES               # insert multiple data entries into the table
+    -> ('English', NULL), ('Speech', NULL), ('Literature', NULL),
+    -> ('Algebra', NULL), ('Geometry', NULL), ('Trigonometry', NULL),
+    -> ('Calculas', NULL), ('Earth Science', NULL), ('Biology', NULL),
+    -> ('Art', NULL), ('Gym', NULL);
+    Query OK, 8 rows affected (0.01 sec)
+    Records: 11  Duplicates: 0  Warnings: 0
+
+
+
+> CREATE TABLE test (                    # create a table
+    -> date DATE NOT NULL,
+    -> type ENUM('T', 'Q') NOT NULL,
+    -> class_id INT UNSIGNED NOT NULL,
+    -> test_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY);
+    Query OK, 0 rows affected (0.02 sec)
+> ALTER TABLE test                       # add a column to the table
+    -> ADD maxscore INT NOT NULL AFTER type;
+    Query OK, 0 rows affected (0.04 sec)
+    Records: 0  Duplicates: 0  Warnings: 0
+> INSERT INTO test VALUES                # insert multiple data entries into the table
+    -> ('2014-8-25', 'Q', 15, 1, NULL),
+    -> ('2014-8-27', 'Q', 15, 1, NULL),
+    -> ('2014-8-29', 'T', 30, 1, NULL),
+    -> ('2014-8-29', 'T', 30, 2, NULL),
+    -> ('2014-8-27', 'Q', 15, 4, NULL),
+    -> ('2014-8-29', 'T', 30, 4, NULL);
+    Query OK, 6 rows affected (0.01 sec)
+    Records: 6  Duplicates: 0  Warnings: 0
+
+
+> CREATE TABLE score(                    # create a table
+    -> student_id INT UNSIGNED NOT NULL,
+    -> event_id INT UNSIGNED NOT NULL,
+    -> score INT NOT NULL,
+    -> PRIMARY KEY(event_id, student_id));
+    Query OK, 0 rows affected (0.04 sec)
+> ALTER TABLE score CHANGE event_id test_id
+    -> INT UNSIGNED NOT NULL;
+    Query OK, 0 rows affected (0.02 sec)
+    Records: 0  Duplicates: 0  Warnings: 0
+> INSERT INTO score VALUES (1, 1, 15), (1, 2, 14), (1, 3, 28), (1, 4, 29), (1, 5, 10), (2, 1, 11), (2, 2, 12), (2, 3, 20), (2, 4, 25), (2, 5, 30),  (3, 2, 30),  (3, 4, 30), (3, 5, 30);
+    Query OK, 13 rows affected (0.01 sec)
+    Records: 13  Duplicates: 0  Warnings: 0
+                                                                                                                            
+
+> CREATE TABLE absence(                  # create a table
+    -> student_id INT UNSIGNED NOT NULL,
+    -> date DATE NOT NULL,
+    -> PRIMARY KEY(student_id, date));
+    Query OK, 0 rows affected (0.02 sec)
+> INSERT INTO absence VALUES
+    -> (1, '2014-08-29'),
+    -> (2, '2014-08-29'),
+    -> (3, '2014-08-27');
+    Query OK, 3 rows affected (0.01 sec)
+    Records: 3  Duplicates: 0  Warnings: 0
+
+
+== Data Types ==
+Numeric Types:
+  TINYINT:   2^7 ~ -2^7
+  SMALLINT   2^15 ~ -2^15
+  MEDIUMINT: 2^23 ~ -2^23
+  INT:       2^31 ~ -2^31
+  BIGINT:    2^63 ~ -2^63
+  FLOAT:     1.1E38 ~ -1.1E38
+  DOUBLE:    1.7E308 ~ -1.7E308
+
+String Types:
+  CHAR:    a char string with a fixed length
+  VARCHAR: a char string with a variable length
+  BLOB:    can contain 2^16 bytes of data
+  ENUM:    a char string that has a limited number of total values, which you must define
+  SET:     a list of legal possible char strings. unlike ENUM, SET can contain multiple values (mostly not used)
+
+Date&Time Types:
+  DATE: YYYY-MM-DD
+  TIME: HH:MM:SS
+  DATETIME: YYYY-MM-DD HH:MM:SS
+  TIMESTAMP: YYYYMMDDHHMMSS
+  YEAR: YYYY
+
+
+
+
+
+
