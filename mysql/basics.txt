@@ -13,7 +13,7 @@ $ mysql -u root -p
 $ mysql dump -u <username> -p <database> > <database>.sql
 == Import ==
 > CREATE DATABASE <database>;
-$ mysql -u <username> -p <database> < <database>.sql>
+$ mysql -u <username> -p <database> < <database>.sql
 
 
 == Miscellaneous ==
