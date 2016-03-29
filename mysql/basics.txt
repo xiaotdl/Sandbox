@@ -9,11 +9,23 @@ $ mysql -u root -p
 > quit
 
 
+== Export ==
+$ mysql dump -u <username> -p <database> > <database>.sql
+== Import ==
+> CREATE DATABASE <database>;
+$ mysql -u <username> -p <database> < <database>.sql>
+
+
 == Miscellaneous ==
 mysql> \#                                # enable rehash/auto-complete
+mysql> asfdsfa\c                         # clear current line
 
 
 == Database operation ==
+CREATE
+USE
+SELECT
+DROP
 > show databases;                        # display all databases
 > CREATE DATABASE test_db;               # create a db
 > USE test_db;                           # select a db as active db
@@ -21,7 +33,39 @@ mysql> \#                                # enable rehash/auto-complete
 > DROP DATABASE IF EXISTS test_db;       # drop/delete a db
 
 
+== Data Types ==
+Numeric Types:
+  TINYINT:   2^7 ~ -2^7
+  SMALLINT   2^15 ~ -2^15
+  MEDIUMINT: 2^23 ~ -2^23
+  INT:       2^31 ~ -2^31
+  BIGINT:    2^63 ~ -2^63
+  FLOAT:     1.1E38 ~ -1.1E38
+  DOUBLE:    1.7E308 ~ -1.7E308
+
+String Types:
+  CHAR:    a char string with a fixed length
+  VARCHAR: a char string with a variable length
+  BLOB:    can contain 2^16 bytes of data
+  ENUM:    a char string that has a limited number of total values, which you must define
+  SET:     a list of legal possible char strings. unlike ENUM, SET can contain multiple values (mostly not used)
+
+Date&Time Types:
+  DATE: YYYY-MM-DD
+  TIME: HH:MM:SS
+  DATETIME: YYYY-MM-DD HH:MM:SS
+  TIMESTAMP: YYYYMMDDHHMMSS
+  YEAR: YYYY
+
+
 == Table operation ==
+CREATE
+SHOW
+DESCRIBE
+INSERT
+ALTER (ADD, MODIFY, CHANGE, DROP)
+UPDATE (SET)
+RENAME
 > CREATE TABLE student(                  # create a table
     -> first_name VARCHAR(30) NOT NULL,
     -> last_name VARCHAR(30) NOT NULL,
@@ -53,6 +97,8 @@ mysql> \#                                # enable rehash/auto-complete
     -> NULL);
     Query OK, 1 row affected (0.01 sec)
 > SELECT * FROM student;                 # show all table entries
+> SELECT first_name, last_name           # show selected fields from all table entries (Case Insensitive)
+    -> FROM student;
 
 
 > CREATE TABLE class(                    # create a table
@@ -77,7 +123,8 @@ mysql> \#                                # enable rehash/auto-complete
     -> test_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY);
     Query OK, 0 rows affected (0.02 sec)
 > ALTER TABLE test                       # add a column to the table
-    -> ADD maxscore INT NOT NULL AFTER type;
+    -> ADD maxscore INT NOT NULL
+    -> AFTER type;
     Query OK, 0 rows affected (0.04 sec)
     Records: 0  Duplicates: 0  Warnings: 0
 > INSERT INTO test VALUES                # insert multiple data entries into the table
@@ -97,13 +144,15 @@ mysql> \#                                # enable rehash/auto-complete
     -> score INT NOT NULL,
     -> PRIMARY KEY(event_id, student_id));
     Query OK, 0 rows affected (0.04 sec)
-> ALTER TABLE score CHANGE event_id test_id
-    -> INT UNSIGNED NOT NULL;
+> ALTER TABLE score
+    -> CHANGE event_id test_id INT UNSIGNED NOT NULL;
     Query OK, 0 rows affected (0.02 sec)
     Records: 0  Duplicates: 0  Warnings: 0
 > INSERT INTO score VALUES (1, 1, 15), (1, 2, 14), (1, 3, 28), (1, 4, 29), (1, 5, 10), (2, 1, 11), (2, 2, 12), (2, 3, 20), (2, 4, 25), (2, 5, 30),  (3, 2, 30),  (3, 4, 30), (3, 5, 30);
     Query OK, 13 rows affected (0.01 sec)
     Records: 13  Duplicates: 0  Warnings: 0
+> UPDATE scores SET score=25             # update a value
+    -> WHERE student_id=3 && test_id=2;
                                                                                                                             
 
 > CREATE TABLE absence(                  # create a table
@@ -117,34 +166,161 @@ mysql> \#                                # enable rehash/auto-complete
     -> (3, '2014-08-27');
     Query OK, 3 rows affected (0.01 sec)
     Records: 3  Duplicates: 0  Warnings: 0
+> DELETE FROM absence                   # delete an entry from the table
+    -> WHERE studnet_id = 1;
+> ALTER TABLE absences
+    -> ADD COLUMN test_taken CHAR(1) NOT NULL DEFAULT 'F'
+    -> AFTER student_id;
+> ALTER TABLE absences
+    -> MODIFY COLUMN test_taken ENUM('T', 'F') NOT NULL DEFAULT 'F';
+> ALTER TABLE absences
+    -> DROP COLUMN test_taken;
 
 
-== Data Types ==
-Numeric Types:
-  TINYINT:   2^7 ~ -2^7
-  SMALLINT   2^15 ~ -2^15
-  MEDIUMINT: 2^23 ~ -2^23
-  INT:       2^31 ~ -2^31
-  BIGINT:    2^63 ~ -2^63
-  FLOAT:     1.1E38 ~ -1.1E38
-  DOUBLE:    1.7E308 ~ -1.7E308
-
-String Types:
-  CHAR:    a char string with a fixed length
-  VARCHAR: a char string with a variable length
-  BLOB:    can contain 2^16 bytes of data
-  ENUM:    a char string that has a limited number of total values, which you must define
-  SET:     a list of legal possible char strings. unlike ENUM, SET can contain multiple values (mostly not used)
-
-Date&Time Types:
-  DATE: YYYY-MM-DD
-  TIME: HH:MM:SS
-  DATETIME: YYYY-MM-DD HH:MM:SS
-  TIMESTAMP: YYYYMMDDHHMMSS
-  YEAR: YYYY
+> RENAME TABLE                           # change table names in SHOW TALBES
+    -> absence to absences,
+    -> class to classes,
+    -> score to scores,
+    -> student to students,
+    -> test to tests;
+    Query OK, 0 rows affected (0.02 sec)
 
 
+== WHERE ==
+= > < >= <= !=
+|| OR, AND &&, NOT !
+> SELECT first_name, last_name, state    # show selected fields with filter
+    -> FROM students
+    -> WHERE state='CA';
+> SELECT first_name, last_name, birth_date 
+    -> FROM students
+    -> WHERE YEAR(birth_date) >= 1965;
+> SELECT first_name, last_name, birth_date
+    -> FROM students
+    -> WHERE MONTH(birth_date) = 5 OR state='CA';
+> SELECT last_name, state, birth_date
+    -> FROM students
+    -> WHERE DAY(birth_date) >= 12 && (state='CA' || state = 'NV');
+> SELECT last_name
+    -> FROM students
+    -> WHERE last_name IS NOT NULL;
 
+== ORDER BY ==
+> SELECT first_name, last_name
+    -> FROM students
+    -> ORDER BY last_name;
+> SELECT first_name, last_name           # DESC: descending order 
+    -> FROM students
+    -> ORDER BY last_name DESC;
+> SELECT first_name, last_name, state
+    -> FROM students
+    -> ORDER BY state DESC, last_name ASC;  # ASC: alphabetically 
 
+== LIMIT ==
+> SELECT first_name, last_name
+    -> FROM students
+    -> LIMIT 3;
+> SELECT first_name, last_name            # limit entries from 3 to 6
+    -> FROM students
+    -> LIMIT 3, 6;
 
+== CONCAT ==
+> SELECT CONCAT(first_name, ' ', last_name) AS 'Name',
+    -> CONCAT(city, ' ', state) AS 'Hometown'
+    -> FROM students;
 
+== LIKE ==
+> SELECT last_name, first_name            # % matches any sequence of chars
+    -> FROM students
+    -> WHERE first_name LIKE 'D%' || last_name LIKE '%n';
+mysql> SELECT last_name, first_name       # _ matches any single char
+    -> FROM students
+    -> WHERE first_name LIKE ‘___e’;
+
+== DISTINCT ==
+> SELECT DISTINCT state
+    -> FROM students
+    -> ORDER BY state;
+
+== COUNT ==
+> SELECT COUNT(DISTINCT state)
+    -> FROM students;
+> SELECT COUNT(*)
+    -> FROM students;
+> SELECT COUNT(*)
+    -> FROM students
+    -> WHERE sex='M';
+
+== GROUP BY ==
+> SELECT sex, COUNT(*)
+    -> FROM students
+    -> GROUP BY sex;
+> SELECT Month (birth_date) AS 'Month', COUNT(*)
+    -> FROM students
+    -> GROUP BY Month
+    -> ORDER BY Month;
+
+== HAVING ==
+> SELECT state, COUNT(state) AS 'Amount'
+    -> FROM students
+    -> GROUP BY state
+    -> HAVING Amount > 1;
+
+== Built-in Numeric Functions ==
+> SELECT
+    -> test_id AS 'Test',
+    -> MIN(score) AS min,
+    -> MAX(score) AS max,
+    -> MAX(score)-MIN(score) AS 'range',
+    -> SUM(score) AS total,
+    -> AVG(score) AS average
+    -> FROM scores
+    -> GROUP BY test_id;
+
+== BETWEEN ==
+> SELECT first_name, last_name, birth_date
+    -> FROM students
+    -> WHERE birth_date
+    -> BETWEEN '1960-1-1' AND '1970-1-1';
+
+== IN ==
+> SELECT first_name, last_name
+    -> FROM students
+    -> WHERE first_name IN ('Bobby', 'Lucy', 'Andy');
+
+== join tables ==
+> SELECT student_id, date, score, maxscore
+    -> FROM tests, scores
+    -> WHERE date='2014-08-25' && tests.test_id = scores.test_id;
+> SELECT
+    -> CONCAT(students.first_name, " ", students.last_name) AS Name,
+    -> tests.date, scores.score, tests.maxscore
+    -> FROM tests, scores, students
+    -> WHERE date='2014-08-25'
+    -> && tests.test_id = scores.test_id
+    -> && scores.student_id = students.student_id;
+> SELECT
+    -> students.student_id,
+    -> CONCAT(students.first_name, " ", students.last_name) AS Name,
+    -> COUNT(absences.date) AS Absences
+    -> FROM students, absences
+    -> WHERE students.student_id = absences.student_id
+    -> GROUP BY students.student_id;
+> SELECT
+    -> students.student_id,
+    -> CONCAT(students.first_name, " ", students.last_name) AS Name,
+    -> COUNT(absences.date) AS Absences
+    -> FROM students
+    -> LEFT JOIN absences
+    -> ON students.student_id = absences.student_id
+    -> GROUP BY students.student_id;
+> SELECT
+    -> students.first_name,
+    -> students.last_name,
+    -> scores.test_id,
+    -> scores.score
+    -> FROM students
+    -> INNER JOIN scores
+    -> ON students.student_id = scores.student_id
+    -> WHERE scores.score <= 15
+    -> ORDER BY scores.test_id;
