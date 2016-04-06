@@ -100,7 +100,7 @@ sub validate {
 
 package Exp::And;
 
-use base Exp::Binary;
+use base 'Exp::Binary';
 
 sub eval {
     my ($self, $context) = @_;
@@ -112,7 +112,7 @@ sub eval {
 
 package Exp::Or;
 
-use base Exp::Binary;
+use base 'Exp::Binary';
 
 sub eval {
     my ($self, $context) = @_;
@@ -146,7 +146,7 @@ sub validate {
 
 package Exp::Eq;
 
-use base Exp::Binary;
+use base 'Exp::Binary';
 
 use Scalar::Util qw(looks_like_number);
 
@@ -185,7 +185,7 @@ sub validate {
 
     my $name = $self->{name};
     my $variables = $context->{variables};
-    return exists $variables->{$name} ? undef
+    return exists $variables->{$name} ? ''
         : "Unknown variable: $name";
 }
 
@@ -207,5 +207,5 @@ sub eval {
 }
 
 sub validate {
-    return undef;
+    return '';
 }
