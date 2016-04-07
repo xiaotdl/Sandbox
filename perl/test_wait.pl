@@ -68,7 +68,6 @@ sub wait {
             }
             return;
         }
-        return if $_succeed;
 
         sleep $interval;
     }
@@ -99,7 +98,7 @@ sub get_random_num {
 # This problem can usually be solved by making the inner subroutine anonymous, using the "sub {}" syntax.
 # Ref: http://www.perlmonks.org/bare/index.pl/?node_id=137292
 my $num_is_bigger_than_5 = sub {
-    return &get_random_num() > 0;
+    return &get_random_num() > 5;
 };
 
 sub num_is_bigger_than_x {
