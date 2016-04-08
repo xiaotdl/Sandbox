@@ -40,11 +40,11 @@ sub wait {
     my $interval     = $args{interval} || 1;
     my $progress_msg = $args{progress_msg} || '';
     my $timeout_msg  = $args{timeout_msg} || "Condition not meet after %s seconds.\n";
-    my $succeed_msg  = $args{succeed_msg};
+    my $success_msg  = $args{success_msg};
 
     my $startTime = [gettimeofday()];
     my $_result;
-    my $_succeed;
+    my $success;
 
     while (tv_interval($startTime) < $timeout) {
         $_result = $condition->($condition_args);
@@ -54,17 +54,17 @@ sub wait {
                                    : $progress_msg;
         print $progress_msg;
 
-        $_succeed =
+        $success =
             defined $condition_met_criteria && defined &$condition_met_criteria
             ? $condition_met_criteria->($_result)
             : $_result;
-        if ($_succeed) {
-            if (defined $succeed_msg) {
-                $succeed_msg =
-                    defined &$succeed_msg
-                    ? $succeed_msg->(tv_interval($startTime))
-                    : $succeed_msg;
-                printf($succeed_msg, tv_interval($startTime));
+        if ($success) {
+            if (defined $success_msg) {
+                $success_msg =
+                    defined &$success_msg
+                    ? $success_msg->(tv_interval($startTime))
+                    : $success_msg;
+                printf($success_msg, tv_interval($startTime));
             }
             return;
         }
@@ -108,18 +108,18 @@ sub num_is_bigger_than_x {
 }
 
 
-print "Example: wait until num_is_bigger_than_5 with timeout: 5s, interval: 2s.\n";
+print "== Example: wait until num_is_bigger_than_5 with timeout: 5s, interval: 2s. ==\n";
 &wait( condition => $num_is_bigger_than_5,
        timeout => 5,
        interval => 2,
        timeout_msg => "Wow, you didn't get a number bigger than 5 in %s seconds.\n",
-       succeed_msg => " done in %s seconds.\n");
+       success_msg => "done in %s seconds.\n");
 
-print "Example: wait until num_is_bigger_than_x with args: [50], kwargs: {msg => 'hello wolrd'}, timeout: 10s.\n";
+print "== Example: wait until num_is_bigger_than_x with args: [50], kwargs: {msg => 'hello wolrd'}, timeout: 10s. ==\n";
 &wait( condition => \&num_is_bigger_than_x,
        timeout => 10,
        condition_args => [50],
-       succeed_msg => " done in %s seconds.\n");
+       success_msg => "done in %s seconds.\n");
 
 # output >>>
 # Example: wait until num_is_bigger_than_5 with timeout: 5s, interval: 2s.
