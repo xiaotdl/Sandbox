@@ -1,3 +1,4 @@
+## Mac OS X ##
 brew install mysql
 mysql.server start
 mysql -u root
