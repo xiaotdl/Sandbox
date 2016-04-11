@@ -4,6 +4,7 @@ $array_ref = [1,two,3];
 print ref($array_ref);
 print Dumper($array_ref);
 print $$array_ref[0] . "\n";
+print $array_ref->[0] . "\n";
 print "@$array_ref\n";
 # >>>
 # ARRAY$VAR1 = [
