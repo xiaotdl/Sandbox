@@ -75,9 +75,11 @@ my $context = {
 
 $tree = $parser->expression("sum(999 + 1 * 1 * 1 + 888 + age) + 1");
 print DumpTree($tree);
+
 my $validationError = $tree->validate($context);
 die "validationError: " . $validationError . "\n"
     if $validationError;
+
 print $tree->eval($context);
 
 #>>>
