@@ -111,9 +111,9 @@ functioncall:   m/(?: sum | max | min)/ix '(' expression ')'
                          }
 
 value:          /\d+/    { $return = Mysql::Value->new($item[1]) }
-              | "'" /[a-zA-Z0-9_-]+/ "'"
+              | "'" /[a-zA-Z0-9_\-]+/ "'"
                          { $return = Mysql::Value->new($item[2]) }
-              | '"' /[a-zA-Z0-9_-]+/ '"'
+              | '"' /[a-zA-Z0-9_\-]+/ '"'
                          { $return = Mysql::Value->new($item[2]) }
 
 variable:       /[a-zA-Z_][a-zA-Z0-9_]*/
