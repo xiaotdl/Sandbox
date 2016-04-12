@@ -1,4 +1,13 @@
-# Ref: http://www.adp-gmbh.ch/perl/rec_descent.html
+# metacpan Parse::RecDescent document
+#   Ref: https://metacpan.org/pod/Parse::RecDescent
+# Parse::RecDescent calculator
+#   Ref: http://www.adp-gmbh.ch/perl/rec_descent.html
+# An Introduction To Parse::RecDescent (complete grammer)
+#   Ref: http://victoria.pm.org/files/recdescentparserabram.pdf
+# Operator Associativity and Eliminating Left-Recursion in Parse::RecDescent
+#   Ref: http://www.perlmonks.org/?node_id=553889
+# MySQL Operator Precedence
+#   Ref: http://dev.mysql.com/doc/refman/5.7/en/operator-precedence.html
 
 use strict;
 use warnings;
