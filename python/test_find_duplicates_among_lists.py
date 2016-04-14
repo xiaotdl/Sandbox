@@ -1,6 +1,3 @@
-l1 = [1,3,4,4,4,4,5,5,6,7]
-l2 = [0,2,3,4,4,5,8]
-
 def find_duplicates(l1, l2):
     result = []
     i = 0
@@ -19,7 +16,13 @@ def find_duplicates(l1, l2):
 
     return result
 
-actual = find_duplicates(l1, l2)
-expect = set(l1) & set(l2)
-assert set(actual) == set(expect) and len(actual) == len(expect)
-print 'Cool!'
+
+if __name__ == '__main__':
+    l1 = [1,3,4,4,4,4,5,5,6,7]
+    l2 = [0,2,3,4,4,5,8]
+
+    actual = find_duplicates(l1, l2)
+    expect = set(l1) & set(l2)
+
+    assert set(actual) == set(expect) and len(actual) == len(expect)
+    print 'Cool!'
