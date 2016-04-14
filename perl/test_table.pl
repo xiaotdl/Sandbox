@@ -3,6 +3,7 @@ use warnings;
 
 use Data::Dumper;
 use List::Util qw(max);
+use Scalar::Util qw(looks_like_number);
 
 our $DEBUG = 0;
 
@@ -33,8 +34,10 @@ sub table_view {
     my $new_table = [];
     for my $i (0..$col_length - 1) {
         for my $j (0..$row_length - 1) {
-            my $tail_spaces = " " x ($max_length_per_col[$i] - length($table->[$j]->[$i]));
-            $new_table->[$j]->[$i] =  $table->[$j]->[$i] . $tail_spaces;
+            my $extra_spaces = " " x ($max_length_per_col[$i] - length($table->[$j]->[$i]));
+            $new_table->[$j]->[$i] = looks_like_number($table->[$j]->[$i])
+                                        ? $extra_spaces . $table->[$j]->[$i]
+                                        : $table->[$j]->[$i] . $extra_spaces;
         }
     }
 
@@ -63,7 +66,7 @@ sub table_view {
 
 my $table = [
     ['col1', 'col2', 'col3'],
-    [1, 2, 3],
+    ['1ab', 2, 3],
     ['4-sfdsfs', 5, 6],
     [7, 8, 9],
     [10, 11, 12],
