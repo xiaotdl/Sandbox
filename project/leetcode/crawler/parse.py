@@ -2,8 +2,27 @@
 import re
 import sys
 
+class Problem:
+    def __init__(self):
+        self.id = -1
+        self.title = ''
+        self.tags = []
+        self.ac_rate = ''
+        self.difficulty = ''
 
-def parse(line):
+    def parse_complete(self):
+        return (self.id != -1 and self.title and self.tags and self.ac_rate and self.difficulty)
+
+    def __str__(self):
+        delimiter = ', '
+        return (self.id + delimiter +
+                self.title + delimiter +
+                delimiter.join(self.tags) + delimiter +
+                self.ac_rate + delimiter +
+                self.difficulty)
+
+
+def parse(line, problem):
     #
     # raw data looks like this:
     #
@@ -24,25 +43,25 @@ def parse(line):
     #   "difficulty" : "<span value=2>Medium</span>"
     # },
     m = re.match(r""".*"id" : "([0-9]+)".*""", line)
-    if m:
-        id = m.group(1); print id.replace(',', '')+',',
+    if m and problem.id == -1:
+        problem.id = m.group(1).replace(',', '');
+        return
 
     m = re.match(r""".*"title" : "<a href='/problems/[a-z0-9-]+/'>([^<]+)</a>.*""", line)
-    """"title" : "<a href='/problems/container-with-most-water/'>Container With Most Water</a>"""
-    if m:
-        title = m.group(1); print title.replace(',', '')+',',
+    if m and not problem.title:
+        problem.title = m.group(1).replace(',', '');
 
     m = re.match(r""".*"<a class='btn btn-xs btn-default' href='/tag/[a-z0-9-]+/'>([^<]+)</a> "+.*""", line)
     if m:
-        tag = m.group(1); print "'%s'" % tag.replace(',', ''),
+        problem.tags.append(m.group(1).replace(',', ''));
 
     m = re.match(r""".*"ac_rate" : "([0-9.]+%)".*""", line)
-    if m:
-        ac_rate = m.group(1); print ', '+ac_rate.replace(',', '')+',',
+    if m and not problem.ac_rate:
+        problem.ac_rate = m.group(1).replace(',', '');
 
     m = re.match(r""".*"difficulty" : "<span value=\d+>([^<]+)</span>".*""", line)
-    if m:
-        difficulty = m.group(1); print difficulty.replace(',', '')
+    if m and not problem.difficulty:
+        problem.difficulty = m.group(1).replace(',', '');
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -51,6 +70,15 @@ if __name__ == '__main__':
 
     FILENAME = sys.argv[1]
 
+    problem = None
+    problems = []
+
     with open(FILENAME, 'r') as f:
         for line in f.readlines():
-            parse(line)
+            if not problem:
+                problem = Problem()
+            parse(line, problem)
+            if problem.parse_complete():
+                problems.append(problem)
+                print str(problem)
+                problem = None
