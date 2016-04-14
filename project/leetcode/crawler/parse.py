@@ -50,18 +50,22 @@ def parse(line, problem):
     m = re.match(r""".*"title" : "<a href='/problems/[a-z0-9-]+/'>([^<]+)</a>.*""", line)
     if m and not problem.title:
         problem.title = m.group(1).replace(',', '');
+        return
 
     m = re.match(r""".*"<a class='btn btn-xs btn-default' href='/tag/[a-z0-9-]+/'>([^<]+)</a> "+.*""", line)
     if m:
         problem.tags.append(m.group(1).replace(',', ''));
+        return
 
     m = re.match(r""".*"ac_rate" : "([0-9.]+%)".*""", line)
     if m and not problem.ac_rate:
         problem.ac_rate = m.group(1).replace(',', '');
+        return
 
     m = re.match(r""".*"difficulty" : "<span value=\d+>([^<]+)</span>".*""", line)
     if m and not problem.difficulty:
         problem.difficulty = m.group(1).replace(',', '');
+        return
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
