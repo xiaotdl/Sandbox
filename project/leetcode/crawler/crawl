@@ -1,0 +1,22 @@
+#!/usr/local/bin/python
+
+# -*- coding: utf-8 -*-
+import os
+import re
+import sys
+import subprocess
+from scrapy.cmdline import execute
+
+def usage():
+    print "Usage:"
+    print "  python crawl"
+
+if __name__ == '__main__':
+    if len(sys.argv) != 1:
+        usage()
+        exit(1)
+
+    print 'id, title, tag, ac_rate, difficulty'
+
+    sys.argv = ['scrapy', 'crawl', 'leetcodeTag', '--nolog']
+    sys.exit(execute())

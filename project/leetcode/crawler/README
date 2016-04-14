@@ -1,0 +1,10 @@
+This package captures LeetCode problems (id, title, tag, ac_rate, difficulty).
+
+Usage example:
+    ➜  crawler git:(master) $ ./crawl | sort --reverse --unique > leetcode.csv
+    ➜  crawler git:(master) $ mv leetcode.csv ~
+
+Convert .csv to .xls:
+    1. sort leetcode.csv file by ascending order
+    2. select all cells and choose 'Home'->'Format'->'AutoFit Column Width'
+    3. save as .xls file

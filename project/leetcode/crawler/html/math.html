@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <meta charset="utf-8"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(e,t){return function(){o(e,[(new Date).getTime()].concat(a(arguments)),null,t)}}var o=e("handle"),i=e(2),a=e(3);"undefined"==typeof window.newrelic&&(newrelic=NREUM);var u=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit"],c=["addPageAction"],f="api-";i(u,function(e,t){newrelic[t]=r(f+t,"api")}),i(c,function(e,t){newrelic[t]=r(f+t)}),t.exports=newrelic,newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),o("err",[e,(new Date).getTime()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(0>o?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?u(e,a,i):i()}function n(n,r,o){e&&e(n,r,o);for(var i=t(o),a=l(n),u=a.length,c=0;u>c;c++)a[c].apply(i,r);var s=f[g[n]];return s&&s.push([m,n,r,i]),i}function p(e,t){w[e]=l(e).concat(t)}function l(e){return w[e]||[]}function d(e){return s[e]=s[e]||o(n)}function v(e,t){c(e,function(e,n){t=t||"feature",g[n]=t,t in f||(f[t]=[])})}var w={},g={},m={on:p,emit:n,get:d,listeners:l,context:t,buffer:v};return m}function i(){return new r}var a="nr@context",u=e("gos"),c=e(2),f={},s={},p=t.exports=o();p.backlog=f},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!w++){var e=v.info=NREUM.info,t=s.getElementsByTagName("script")[0];if(e&&e.licenseKey&&e.applicationID&&t){c(l,function(t,n){e[t]||(e[t]=n)});var n="https"===p.split(":")[0]||e.sslForHttp;v.proto=n?"https://":"http://",u("mark",["onload",a()],null,"api");var r=s.createElement("script");r.src=v.proto+e.agent,t.parentNode.insertBefore(r,t)}}}function o(){"complete"===s.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=e("handle"),c=e(2),f=window,s=f.document;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:f.XMLHttpRequest,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},e(1);var p=""+location,l={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-918.min.js"},d=window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent),v=t.exports={offset:a(),origin:p,features:{},xhrWrappable:d};s.addEventListener?(s.addEventListener("DOMContentLoaded",i,!1),f.addEventListener("load",r,!1)):(s.attachEvent("onreadystatechange",o),f.attachEvent("onload",r)),u("mark",["firstbyte",a()],null,"api");var w=0},{}]},{},["loader"]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"8d5fb92f6e","agent":"","transactionName":"ZwMAYEdSCktRWxZRXV5JJEFbUBBRX1ZNTFNXSBRdUEQXAkRZBWdWVRIDXVk=","applicationID":"2098939","errorBeacon":"bam.nr-data.net","applicationTime":586}</script>
+    <title>Math | LeetCode OJ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="LeetCode Online Judge is a platform for preparing technical coding interviews and assessing your knowledge of data structures and algorithms. Pick from our expanding library of more than 160 interview questions to solve. Use our automated tool to get real time feedback on your solution." />
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="https://leetcode.com/images/logolarge.jpg" />
+    <meta property="og:description" content="LeetCode Online Judge is a platform for preparing technical coding interviews and assessing your knowledge of data structures and algorithms. Pick from our expanding library of more than 160 interview questions to solve. Use our automated tool to get real time feedback on your solution." />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160" />
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192" />
+    <meta name="application-name" content="LeetCode Online Judge"/>
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/common/common.css" rel="stylesheet">
+    <link href="/static/common/base.css" rel="stylesheet">
+    
+    <style>
+      body {
+        overflow-y: scroll;
+      }
+      a {
+        color: #0088cc;
+      }
+      a:hover {
+        color: #005580;
+      }
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .block-center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .message {
+         border: 1px solid #e6db55;
+         background-color: #ffffe0;
+         padding: 15px 30px 15px 15px;
+         margin: 20px 0;
+       }
+      .navbar-extra {
+         border-radius: 0px;
+         margin-bottom: 30px;
+      }
+      #chat-link {
+        position: fixed;
+        right: 5px;
+        bottom: 10px;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        padding: 5px 15px 10px 15px;
+        -webkit-border-radius: 5px 0 0 5px;
+        -moz-border-radius: 5px 0 0 5px;
+        -ms-border-radius: 5px 0 0 5px;
+        -o-border-radius: 5px 0 0 5px;
+        border-radius: 5px 0 0 5px;
+        -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        color: #979faf;
+      }
+      .glyphicon-envelope {
+        text-align: center;
+        line-height: 26px;
+        margin-right: 5px;
+        position: relative;
+      }
+      [ng-cloak] { display: none; }
+      .editor {
+        font-size: 14px !important;
+        border: 1px solid #e0e0e0;
+        height: 475px;
+      }
+      .ac {
+        display: inline-block;
+        height: 16px;
+        width: 16px;
+        background-image: url('/static/images/correct.png');
+        background-repeat: no-repeat;
+      }
+      .notac {
+        display: inline-block;
+        height: 16px;
+        width: 16px;
+        background-image: url('/static/images/question.png');
+        background-repeat: no-repeat;
+      }
+      ul.nav li.dropdown:hover > ul.dropdown-menu {
+        display: block;
+      }
+      #subscribe {
+        background-color: #373737;
+      }
+
+      @media(min-width: 768px) {
+        .container .navbar-collapse.collapse {
+            position:relative;
+        }
+        .navbar-brand.narrow-display {
+          display: none;
+        }
+        #navBar-right {
+            position:absolute;
+            display:inline-block;
+            right: 0px;
+        }
+      @media(max-width: 767px) {
+        .navbar-brand.narrow-display {
+          display: block;
+        }
+      }
+      }
+
+      html, body {
+        height: 100%;
+      }
+
+      .content-wrapper {
+        box-sizing: border-box;
+        min-height: 100%;
+      }
+    </style>
+    
+    
+    
+    <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/static/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="//cdn.bootcss.com/angular.js/1.2.19/angular.min.js"></script>
+    <script>window.angular || document.write('<script src="/static/angular/angular.min.js"><\/script>')</script>
+    <script src="//cdn.bootcss.com/bootstrap-table/1.3.0/bootstrap-table.min.js"></script>
+    <script>customer_id = ''</script>
+    <link rel="stylesheet" src="//cdn.bootcss.com/bootstrap-table/1.3.0/bootstrap-table.min.css"/>
+  </head>
+
+  <body>
+    <script>
+      if ($('body').css('color') !== 'rgb(51, 51, 51)') {
+        $('head').prepend('<link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css">');
+      }
+    </script>
+    <script>$('body').bootstrapTable || document.write('<script src="/static/bootstrap-table/dist/bootstrap-table.min.js"><\/script>')</script>
+    <span id="fa-check" class="fa" style="display:none"></span>
+    <script>
+      if ($('#fa-check').css('fontFamily') !== 'FontAwesome') {
+        $('head').prepend('<link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">');
+      }
+    </script>
+
+    <div class="content-wrapper">
+      
+      <div class="navbar navbar-inverse navbar-extra">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand narrow-display" href="/">LeetCode OJ</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <a class="navbar-brand" href="/">LeetCode OJ</a>
+            <ul class="nav navbar-nav">
+              
+              <li id="subscribe">
+                <a href="/subscribe/"><font color="orange">LeetCode Premium Subscription</font></a>
+              </li>
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  Problems
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  
+                  <li><a href="/problemset/algorithms/">Algorithms</a></li>
+                  
+                  <li><a href="/problemset/database/">Database</a></li>
+                  
+                  <li><a href="/problemset/shell/">Shell</a></li>
+                  
+                </ul>
+              </li>
+              <li id="pickNav"><a onclick="ga('send', 'event', 'pick-one', 'click');" href="/problems/merge-sorted-array">Pick One</a></li>
+              
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                     role="button" aria-expanded="false">
+                    Mock
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="/mockinterview/">Mock Interview</a>
+                    </li>
+                    <li>
+                      <a href="/mockinterview/session/list/">Past Sessions</a>
+                    </li>
+                  </ul>
+                </li>
+
+              
+              <li id="articlesNav"><a href="/articles/">Articles</a></li>
+              <!-- TODO: not hard code -->
+              
+              <li id=""><a href="/discuss/">Discuss</a></li>
+              
+              
+              <li id="bookNav"><a onclick="ga('send', 'event', 'book', 'click', 'nav-bar');" href="/book/"><font color="#ed9c28">Book</font></a></li>
+              
+              
+              
+              
+            </ul>
+            
+            <div class="navbar-form navbar-right">
+              <a class="btn btn-primary" href="/accounts/signup">Sign up</a>
+              <a class="btn btn-default" href="/accounts/login/">Sign in</a>
+            </div>
+            
+            <!--
+            <form class="navbar-form pull-right">
+              <input class="col-md-2" type="text" placeholder="Email">
+              <input class="col-md-2" type="password" placeholder="Password">
+              <button type="submit" class="btn">Sign in</button>
+            </form>
+            -->
+          </div><!--/.navbar-collapse -->
+        </div>
+      </div>
+
+      
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <h3>
+      <span class="glyphicon glyphicon-tag"></span> Math
+      </h3>
+      
+        <p>
+          <a href='/subscribe/'>Subscribe</a> to see which companies asked this question
+        </p>
+      
+      <style>
+#question_list th .th-inner .caret{
+  margin: 0px 2px !important;
+}
+div.tag_margin {
+  margin-top: 0.2em;
+}
+
+</style>
+
+<script>
+function sortRate (a, b){
+  if (a == b) return 0;
+  if (a == 'N/A') return -1;
+  if (b == 'N/A') return 1;
+  var rate_a = parseFloat(a.trim('%'));
+  var rate_b = parseFloat(b.trim('%'));
+  return (rate_a < rate_b) ? -1 : 1;
+}
+
+$(function() {
+  $("#question_list").bootstrapTable({
+    striped: true,
+    data: [
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "335",
+          "title" : "<a href='/problems/self-crossing/'>Self Crossing</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "18.6%",
+          "difficulty" : "<span value=3>Hard</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "326",
+          "title" : "<a href='/problems/power-of-three/'>Power of Three</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "36.1%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "319",
+          "title" : "<a href='/problems/bulb-switcher/'>Bulb Switcher</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/brainteaser/'>Brainteaser</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "40.2%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "313",
+          "title" : "<a href='/problems/super-ugly-number/'>Super Ugly Number</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/heap/'>Heap</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "33.8%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "296",
+          "title" : "<a href='/problems/best-meeting-point/'>Best Meeting Point</a> "+
+              "<i class='fa fa-lock'></i> "+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/sort/'>Sort</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "46.7%",
+          "difficulty" : "<span value=3>Hard</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "279",
+          "title" : "<a href='/problems/perfect-squares/'>Perfect Squares</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/dynamic-programming/'>Dynamic Programming</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/breadth-first-search/'>Breadth-first Search</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "32.3%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "273",
+          "title" : "<a href='/problems/integer-to-english-words/'>Integer to English Words</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/string/'>String</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "18.6%",
+          "difficulty" : "<span value=3>Hard</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "268",
+          "title" : "<a href='/problems/missing-number/'>Missing Number</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/array/'>Array</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/bit-manipulation/'>Bit Manipulation</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "40.0%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "264",
+          "title" : "<a href='/problems/ugly-number-ii/'>Ugly Number II</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/dynamic-programming/'>Dynamic Programming</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/heap/'>Heap</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "27.7%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "263",
+          "title" : "<a href='/problems/ugly-number/'>Ugly Number</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "36.5%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "258",
+          "title" : "<a href='/problems/add-digits/'>Add Digits</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "48.4%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "248",
+          "title" : "<a href='/problems/strobogrammatic-number-iii/'>Strobogrammatic Number III</a> "+
+              "<i class='fa fa-lock'></i> "+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/recursion/'>Recursion</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "26.6%",
+          "difficulty" : "<span value=3>Hard</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "247",
+          "title" : "<a href='/problems/strobogrammatic-number-ii/'>Strobogrammatic Number II</a> "+
+              "<i class='fa fa-lock'></i> "+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/recursion/'>Recursion</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "34.0%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "246",
+          "title" : "<a href='/problems/strobogrammatic-number/'>Strobogrammatic Number</a> "+
+              "<i class='fa fa-lock'></i> "+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/hash-table/'>Hash Table</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "36.3%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "233",
+          "title" : "<a href='/problems/number-of-digit-one/'>Number of Digit One</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "24.4%",
+          "difficulty" : "<span value=3>Hard</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "231",
+          "title" : "<a href='/problems/power-of-two/'>Power of Two</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/bit-manipulation/'>Bit Manipulation</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "36.3%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "224",
+          "title" : "<a href='/problems/basic-calculator/'>Basic Calculator</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/stack/'>Stack</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "22.0%",
+          "difficulty" : "<span value=3>Hard</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "223",
+          "title" : "<a href='/problems/rectangle-area/'>Rectangle Area</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "29.7%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "204",
+          "title" : "<a href='/problems/count-primes/'>Count Primes</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/hash-table/'>Hash Table</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "24.1%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "202",
+          "title" : "<a href='/problems/happy-number/'>Happy Number</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/hash-table/'>Hash Table</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "36.4%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "172",
+          "title" : "<a href='/problems/factorial-trailing-zeroes/'>Factorial Trailing Zeroes</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "32.6%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "171",
+          "title" : "<a href='/problems/excel-sheet-column-number/'>Excel Sheet Column Number</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "41.4%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "168",
+          "title" : "<a href='/problems/excel-sheet-column-title/'>Excel Sheet Column Title</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "21.5%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "166",
+          "title" : "<a href='/problems/fraction-to-recurring-decimal/'>Fraction to Recurring Decimal</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/hash-table/'>Hash Table</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "15.0%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "149",
+          "title" : "<a href='/problems/max-points-on-a-line/'>Max Points on a Line</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/hash-table/'>Hash Table</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "14.2%",
+          "difficulty" : "<span value=3>Hard</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "69",
+          "title" : "<a href='/problems/sqrtx/'>Sqrt(x)</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/binary-search/'>Binary Search</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "25.2%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "66",
+          "title" : "<a href='/problems/plus-one/'>Plus One</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/array/'>Array</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "33.4%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "65",
+          "title" : "<a href='/problems/valid-number/'>Valid Number</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/string/'>String</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "12.0%",
+          "difficulty" : "<span value=3>Hard</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "67",
+          "title" : "<a href='/problems/add-binary/'>Add Binary</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/string/'>String</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "27.3%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "60",
+          "title" : "<a href='/problems/permutation-sequence/'>Permutation Sequence</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/backtracking/'>Backtracking</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "25.0%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "50",
+          "title" : "<a href='/problems/powx-n/'>Pow(x, n)</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/binary-search/'>Binary Search</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "27.9%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "43",
+          "title" : "<a href='/problems/multiply-strings/'>Multiply Strings</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/string/'>String</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "23.4%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "29",
+          "title" : "<a href='/problems/divide-two-integers/'>Divide Two Integers</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/binary-search/'>Binary Search</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "15.6%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "13",
+          "title" : "<a href='/problems/roman-to-integer/'>Roman to Integer</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/string/'>String</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "39.1%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "12",
+          "title" : "<a href='/problems/integer-to-roman/'>Integer to Roman</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/string/'>String</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "38.6%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "9",
+          "title" : "<a href='/problems/palindrome-number/'>Palindrome Number</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "31.5%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "8",
+          "title" : "<a href='/problems/string-to-integer-atoi/'>String to Integer (atoi)</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/string/'>String</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "13.5%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "7",
+          "title" : "<a href='/problems/reverse-integer/'>Reverse Integer</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "23.6%",
+          "difficulty" : "<span value=1>Easy</span>"
+        },
+      
+        {
+          "ac_or_not": "<span class='None'/>",
+          "id" : "2",
+          "title" : "<a href='/problems/add-two-numbers/'>Add Two Numbers</a> "+
+              ""+
+              "<div class='tags tag_margin'>"+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/linked-list/'>Linked List</a> "+
+                ""+
+                  "<a class='btn btn-xs btn-default' href='/tag/math/'>Math</a> "+
+                ""+
+              "</div>"+
+              "",
+          "ac_rate" : "22.8%",
+          "difficulty" : "<span value=2>Medium</span>"
+        },
+      
+    ]
+  });
+
+  $("#question_list").bootstrapTable('hideLoading');
+
+  $('head').append('<style id="tags">.tags{ display: none; }</style>');
+  $('#tagCheck').click(function() {
+    $("#tags").remove();
+    if ($('#tagCheck:checked').length > 0) {
+      $('head').append('<style id="tags">.tags{ display: block; }</style>');
+      ga('send', 'event', 'show-problem-tags', 'click', 'problem-tags');
+    } else {
+      $('head').append('<style id="tags">.tags{ display: none; }</style>');
+    }
+  });
+});
+</script>
+<input type="checkbox" id="tagCheck"> <label for="tagCheck">Show problem tags</label><br>
+<table id="question_list" data-sort-name="title" data-sort-order="desc">
+  <thead>
+    <tr>
+      <th data-field="ac_or_not">
+      </th>
+      <th data-field="id" data-sortable="true" data-sorter="sortRate">
+        <a class="btn-link" onclick="ga('send', 'event', 'tag-id-sort', 'click');">
+          <strong>#</strong>
+        </a>
+      </th>
+      <th data-field="title" data-sortable="true"  class="col-md-7">
+        <a class="btn-link" onclick="ga('send', 'event', 'tag-title-sort', 'click');">
+          <strong>Title</strong>
+        </a>
+      </th>
+      <th data-field="ac_rate" data-sortable="true"  class="col-md-2" data-sorter="sortRate">
+        <a class="btn-link" onclick="ga('send', 'event', 'tag-ac-rate-sort', 'click');">
+          <strong>Acceptance</strong>
+        </a>
+      </th>
+      <th data-field="difficulty" data-sortable="true" class="col-md-2">
+        <a class="btn-link" onclick="ga('send', 'event', 'tag-difficulty-sort', 'click');">
+          <strong>Difficulty</strong>
+        </a>
+      </th>
+    </tr>
+  </thead>
+</table>
+
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    
+    <footer class="site-footer container">
+      <hr>
+      <p class="text-center">
+        <a href="/faq/">Frequently Asked Questions</a> |
+        <a href="/tos/">Terms of Service</a>
+      </p>
+      <p class="text-center">
+        <a href="//www.iubenda.com/privacy-policy/499831" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+      </p>
+      <p class="text-center">Copyright © 2016 LeetCode</p>
+    </footer>
+    
+
+    
+    <script>
+      (function($, w, d){
+        var loader = function () {
+          var s = d.createElement("script"),
+              tag = d.getElementsByTagName("script")[0];
+          s.src = "//cdn.iubenda.com/iubenda.js";
+          tag.parentNode.insertBefore(s,tag);
+          s.onload = setFooterStyles;
+        };
+        if (w.addEventListener) {
+          w.addEventListener("load", loader, false);
+        } else if (w.attachEvent) {
+          w.attachEvent("onload", loader);
+        } else { w.onload = loader; }
+
+        $(function() {
+          $('#navBar-right img').addClass('img-rounded');
+          setFooterStyles();
+        });
+
+        function setFooterStyles() {
+          var $footer = $('.site-footer'),
+              height = $footer.outerHeight();
+          $footer.css('margin-top', -height);
+          $('.content-wrapper').css('padding-bottom', height);
+        }
+      }(jQuery, window, document));
+    </script>
+    
+    <script src="//cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>$.fn.modal || document.write('<script src="/static/bootstrap/dist/js/bootstrap.min.js"><\/script>')</script>
+
+    <a href="mailto:admin@leetcode.com?subject=Feedback" id="chat-link" target="_blank">
+    <i class="glyphicon glyphicon-envelope"></i>Send Feedback</a>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)
+  ,m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a
+  ,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'
+  );
+  ga('create', 'UA-6849839-6', 'leetcode.com');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+</script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['ProfitWellObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
+  })(window,document,'script','https://dna8twue3dlxq.cloudfront.net/js/profitwell.js','profitwell');
+  profitwell('auth_token', '4fcb384ca643100b31c12d1b515fd13d');
+  profitwell('user_stripe_id', customer_id);
+</script>
+
+    
+    
+    <script>try { ace.config.set("basePath", "/static/ace/src-noconflict/") } catch(err) {}</script>
+    
+  </body>
+</html>
