@@ -1,5 +1,8 @@
 def find_duplicates(l1, l2):
     result = []
+    if not l1 or not l1:
+        return result
+
     i = 0
     j = 0
     while i < len(l1) and j < len(l2):
