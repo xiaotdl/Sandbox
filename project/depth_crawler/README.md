@@ -1,4 +1,4 @@
-### Example output:
+### Example Output
 ```sh
 $ ./crawl http://www.cnn.com 5
 http://www.cnn.com
