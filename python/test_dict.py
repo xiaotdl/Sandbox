@@ -1,5 +1,6 @@
 import re
-# can't remove an item during iteration
+# == Delete a key in dict ==
+# Note: can't remove an item during iteration
 # e.g. iteritems, iterkeys, itervalues
 
 def f1(d):
@@ -34,3 +35,11 @@ print d; f2(d); print d
 d = {1:'one', 2:'two', 3:'three', 'sigRef1':'xxx', 'sigRef2':'yyy'}
 print 'method 3:'
 print d; f3(d); print d
+
+
+
+# == build a dictionary ==
+given = ['John', 'Eric', 'Terry', 'Michael']
+family = ['Cleese', 'Idle', 'Gilliam', 'Palin']
+d = dict(zip(given, family))
+print d

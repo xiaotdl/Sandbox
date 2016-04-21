@@ -41,3 +41,28 @@ quoted = {'_priority': '10',
 url = "{0[proto]}://{0[username]}:{0[password]}@{0[address]}:{0[port]}".format(quoted)
 print url
 # >>> https://usr:pwd@1.2.3.4:443
+
+
+name = 'xiaotian'
+messages = 5
+values = {'name': name, 'messages': messages}
+print 'Hello %(name)s, you have %(messages)i messages' % values
+print 'Hello %(name)s, you have %(messages)i messages' % locals() # <== local namespace
+# locals()       <== local namespace
+# self.__dict__  <== namespace of an object's instance attributes
+
+from pprint import pprint
+pprint(locals())
+
+class Klass(object):
+    a = 'a'
+    b = ['b', 'b']
+    def __init__(self):
+        # print ("We found %(error_count)d errors"
+        #        % self.__dict__)
+        self.var1 = 1
+        self.var2 = 2
+        print self.__dict__
+        pprint(locals())
+Klass()
+
