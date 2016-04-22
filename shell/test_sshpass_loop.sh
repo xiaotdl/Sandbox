@@ -27,13 +27,15 @@ exec 3<&0
 while read name mgmtIP rest;
 do
     echo -n "host: $name, ip: $mgmtIP, output=> "
+    pwd='default'
     user='root'
     hostname=$mgmtIP
-    sshpass -p default ssh \
+    cmd="tmsh list sys global-settings hostname | grep hostname | sed 's/^[ \t ]*//;s/[ \t ]*$//'"
+    sshpass -p $pwd ssh \
         -o UserKnownHostsFile=/dev/null \
         -o StrictHostKeyChecking=no \
         -o LogLevel=quiet \
-        $user@$hostname "tmsh list sys global-settings hostname | grep hostname | sed 's/^[ \t ]*//;s/[ \t ]*$//'" \
+        $user@$hostname $cmd \
         <&3
 done < $FILE
 
