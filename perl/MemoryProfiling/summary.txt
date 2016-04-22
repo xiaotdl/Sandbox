@@ -1,0 +1,10 @@
+== Devel::Size ==
+    reporting memory usage of individual variables as well as more complex data structures.
+    It's good for when one suspects a certain variable is getting a little too large,
+    but does not provide a way to gain a snapshot into Perl's overall memory usage.
+
+
+== Devel::SizeMe ==
+
+
+== Memory::Usage ==
