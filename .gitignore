@@ -14,3 +14,5 @@ project/leetcode/crawler/html/*.html
 
 java/.idea
 *.iml
+
+java/multithreading/out
