@@ -16,3 +16,4 @@ java/.idea
 *.iml
 
 java/multithreading/out
+java/multithreading/.idea
