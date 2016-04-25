@@ -11,3 +11,6 @@
 *test.c
 
 project/leetcode/crawler/html/*.html
+
+java/.idea
+*.iml
