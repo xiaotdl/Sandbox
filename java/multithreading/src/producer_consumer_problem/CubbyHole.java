@@ -1,11 +1,15 @@
 package producer_consumer_problem;
 
+import java.util.Queue;
+import java.util.LinkedList;
+
 /**
  * Created by xili on 4/27/16.
  */
 class CubbyHole {
-    private int contents;
+    private Queue<Integer> contents = new LinkedList<Integer>();
     private boolean available = false;
+
     public synchronized int get() {
         while (available == false) {
             try {
@@ -16,8 +20,10 @@ class CubbyHole {
         }
         available = false;
         notifyAll();
-        return contents;
+        System.out.println(contents);
+        return contents.remove();
     }
+
     public synchronized void put(int value) {
         while (available == true) {
             try {
@@ -26,8 +32,13 @@ class CubbyHole {
             catch (InterruptedException e) {
             }
         }
-        contents = value;
+        contents.add(value);
         available = true;
+        System.out.println(contents);
         notifyAll();
+    }
+
+    public synchronized void showContents() {
+//        System.out.println(contents);
     }
 }
