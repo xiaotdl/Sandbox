@@ -1,0 +1,20 @@
+Ref:
+http://www.thegeekstuff.com/2010/08/allow-mysql-client-connection/
+http://www.cyberciti.biz/tips/how-do-i-enable-remote-access-to-mysql-database-server.html
+
+1. grant remote access to user xili from host % (anywhere)
+$ mysql -u<username> -p<pwd>
+mysql> use mysql;
+mysql> CREATE user ‘xili’@‘%’ IDENTIFIED by ‘my-pwd’;
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'xili’@‘%’ WITH GRANT OPTION;
+
+2. check current users
+mysql> SELECT user, host FROM mysql.user;
+
+3. comment/remove these lines
+$ sudo vim /etc/mysql/my.cnf
+# bind-address: IP address you want to connect to.
+# skip-networking: Don’t listen for TCP/IP connections at all. All interaction with mysqld must be made via Unix sockets. This option is highly recommended for systems where only local requests are allowed.
+
+sudo /etc/init.d/mysql restart
+
