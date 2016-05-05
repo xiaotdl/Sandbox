@@ -5,8 +5,8 @@ http://www.cyberciti.biz/tips/how-do-i-enable-remote-access-to-mysql-database-se
 1. grant remote access to user xili from host % (anywhere)
 $ mysql -u<username> -p<pwd>
 mysql> use mysql;
-mysql> CREATE user ‘xili’@‘%’ IDENTIFIED by ‘my-pwd’;
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'xili’@‘%’ WITH GRANT OPTION;
+mysql> CREATE user 'xili'@'%' IDENTIFIED by 'my-pwd';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'xili'@'%' WITH GRANT OPTION;
 
 2. check current users
 mysql> SELECT user, host FROM mysql.user;
