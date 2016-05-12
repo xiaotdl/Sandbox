@@ -21,5 +21,5 @@ DB_USER='root'
 DB_PASSWD='default'
 DB_NAME='mysql'
 
-echo mysql --host=$DB_HOST --user=$DB_USER --password=$DB_PASSWD $DB_NAME -e \""$QUERY"\"
-mysql --host=$DB_HOST --user=$DB_USER --password=$DB_PASSWD $DB_NAME -e "$QUERY"
+echo mysql --host=$DB_HOST --user=$DB_USER --password=$DB_PASSWD --execute=\""$QUERY"\" $DB_NAME
+mysql --host=$DB_HOST --user=$DB_USER --password=$DB_PASSWD --execute="$QUERY" $DB_NAME
