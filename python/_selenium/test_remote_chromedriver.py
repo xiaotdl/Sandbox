@@ -6,6 +6,7 @@
 #     - run selenium-server.jar on remote server side box
 #       $ java -jar selenium-server-standalone-2.x.x.jar
 #       15:43:07.541 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+#       15:43:07.554 INFO - Selenium Server is up and running
 
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
