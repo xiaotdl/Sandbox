@@ -3,8 +3,11 @@
 # http://selenium-python.readthedocs.io/getting-started.html#using-selenium-with-remote-webdriver
 # Prerequisites:
 #     - Download selenium-server.jar from http://www.seleniumhq.org/download/
-#     - run selenium-server.jar on remote server side box
-#       $ java -jar selenium-server-standalone-2.x.x.jar
+#     - Download chromedriver.exe from http://chromedriver.storage.googleapis.com/index.html
+#     - run remote selenium-server.jar on remote server side box
+#       $ ssh amw@10.192.10.149 java -jar /cygwin/home/amw/selenium.jar -Dwebdriver.chrome.driver='/cygwin/home/amw/chromedriver.exe'
+#       15:43:06.471 INFO - Launching a standalone Selenium Server
+#       ...
 #       15:43:07.541 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
 #       15:43:07.554 INFO - Selenium Server is up and running
 
