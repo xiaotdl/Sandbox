@@ -32,6 +32,7 @@ print ref($hash_ref);
 print Dumper($hash_ref);
 print $$hash_ref{one} . "\n";
 print $hash_ref->{one} . "\n";
+print Dumper(\%$hash_ref); # deref hash
 # >>>
 # HASH$VAR1 = {
 #           'one' => 1
