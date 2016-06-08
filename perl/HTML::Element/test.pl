@@ -34,18 +34,27 @@ use Data::Dumper;
 
 # == STRUCTURE-MODIFYING METHODS ==
 # push_content()
-$table = HTML::Element->new('table');
-$table->push_content(
-    ['thead',
-        ['tr',
-            map {['th', $_]} qw(Head1 Head2 Head3)],
+$body = HTML::Element->new('body');
+$body->push_content(
+    ['table',
+        {
+            width => '100%',
+            border => 1,
+            bordercolor => 'black',
+            cellpadding => 1,
+            cellspacing => 0,
+        },
+        ['thead',
+            ['tr',
+                map {['th', $_]} qw(Head1 Head2 Head3)],
+        ],
+        ['tbody',
+            ['tr',
+                map {['td', $_]} qw(Apple1 Apple2 Apple3)],
+            ['tr',
+                map {['td', $_]} qw(Pear1 Pear2 Pear3)],
+        ]
     ],
-    ['tbody',
-        ['tr',
-            map {['td', $_]} qw(Apple1 Apple2 Apple3)],
-        ['tr',
-            map {['td', $_]} qw(Pear1 Pear2 Pear3)],
-    ]
 );
 
 #print $table->as_HTML;
@@ -74,12 +83,12 @@ $table->push_content(
 
 # write into out.html
 open(my $fh, '>', 'out.html');
-print $fh $table->as_HTML;
+print $fh $body->as_HTML;
 close $fh;
 # >>> browser view
 # Head1  Head2  Head3
 # Apple1 Apple2 Apple3
 # Pear1  Pear2  Pear3
 
-$tbody = $table->look_down(_tag => 'tbody');
+$tbody = $body->look_down(_tag => 'tbody');
 print Dumper($tbody);
