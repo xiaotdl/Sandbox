@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Convert Fahrenheit to Celsius:</h3>
+<input id="in"></input>
+<button type="button"
+    onclick="document.getElementById('out').innerHTML = toCelsius()">
+    Calculate!
+</button>
+<p id="out"></p>
+
+<h3>toCelsius refers to the function object, and toCelsius() refers to the function result:</h3>
+<p id="demo"></p>
+
+<script>
+function toCelsius() {
+    var f = document.getElementById('in').value;
+    return (5/9) * (f-32);
+}
+document.getElementById("demo").innerHTML = toCelsius;
+</script>
+
+</body>
+</html>
+
+

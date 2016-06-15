@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <h1>What Can JavaScript Do?</h1>
+
+        <!-- dilimiter -->
+        <h2>JavaScript can change HTML content.</h2>
+
+        <button type="button"
+            onclick="document.getElementById('demo1').innerHTML = Date()">
+            Click Me!
+        </button>
+
+        <p id="demo1"></p>
+
+        <!-- dilimiter -->
+        <h2>JavaScript can change HTML attribute.</h2>
+
+        <button type="button"
+            onclick="changeHTMLAttr()">
+            Click Me!
+        </button>
+
+        <p>
+            <a id="demo2" href="http://www.google.com">Toggle between google and baidu!</a>
+        </p>
+
+        <script>
+        function changeHTMLAttr() {
+            var a = document.getElementById('demo2');
+            if (a.href.match("google")) {
+                a.href = "http://www.baidu.com";
+                a.innerHTML = "baidu";
+            } else {
+                a.href = "http://www.google.com";
+                a.innerHTML = "google";
+            }
+        }
+        </script>
+
+        <!-- dilimiter -->
+        <h2>JavaScript can change the style of an HTML element.</h2>
+
+        <button type="button"
+            onclick="changeHTMLStyle()">
+            Click Me!
+        </button>
+
+        <p id="demo3">demo text</p>
+
+        <script>
+        function changeHTMLStyle() {
+            var p = document.getElementById("demo3");
+            p.style.fontSize = "25px";
+            p.style.color = "red";
+        }
+        </script>
+
+        <!-- dilimiter -->
+        <h2>JavaScript Can Validate Input</h2>
+
+        <p>Please input a number between 1 and 10:</p>
+
+        <input id="numb">
+
+        <button type="button" onclick="validateInput()">Submit</button>
+
+        <p id="demo4"></p>
+
+        <script>
+        function validateInput() {
+            var x, text;
+
+            // Get the value of the input field with id="numb"
+            x = document.getElementById("numb").value;
+
+            // If x is Not a Number or less than one or greater than 10
+            if (isNaN(x) || x < 1 || x > 10) {
+                text = "Input not valid";
+            } else {
+                text = "Input OK";
+            }
+            document.getElementById("demo4").innerHTML = text;
+        }
+        </script>
+
+
+
+    </body>
+</html>
+
+

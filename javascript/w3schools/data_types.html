@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>JavaScript variables can hold many data types: numbers, strings, arrays, objects and more</h3>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+
+<script>
+// Number
+var length = 16;
+document.getElementById("demo1").innerHTML = "Number: " + length;
+// String
+var lastName = "Johnson";
+document.getElementById("demo2").innerHTML = "String: " + lastName;
+// Array
+var cars = ["Saab", "Volvo", "BMW"];
+document.getElementById("demo3").innerHTML = "Array: " + cars[0];
+// Object
+var person = {firstName:"John", lastName:"Doe"};
+document.getElementById("demo4").innerHTML = "Object: " + person.firstName;
+</script>
+
+<h3>The typeof operator returns the type of a variable or an expression.</h3>
+
+<p id="demo5"></p>
+
+<script>
+    document.getElementById("demo5").innerHTML =
+    "john => " +
+    typeof "john" + "<br>" +
+    "3.14 => " +
+    typeof 3.14 + "<br>" +
+    "false => " +
+    typeof false + "<br>" +
+    "[1,2,3,4] => " +
+    typeof [1,2,3,4] + "<br>" +
+    "{name:'john', age:34}=> " +
+    typeof {name:'john', age:34};
+</script>
+
+
+<h3>Difference Between Undefined and Null.</h3>
+
+<p id="demo6"></p>
+<p id="demo7"></p>
+<p id="demo8"></p>
+<p id="demo9"></p>
+
+<script>
+document.getElementById("demo6").innerHTML =
+    "typeof undefined => " +
+    typeof undefined;             // undefined
+document.getElementById("demo7").innerHTML =
+    "typeof null => " +
+    typeof null;                  // object
+document.getElementById("demo8").innerHTML =
+    "null === undefined => " +
+    null === undefined;           // false
+document.getElementById("demo9").innerHTML =
+    "null == undefined => " +
+    null == undefined;            // true
+</script>
+
+</body>
+</html>
+
