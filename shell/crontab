@@ -1,0 +1,3 @@
+# m h  dom mon dow   command
+# */1 * * * * date >> /home/xili/cron/date
+# 0 10 * * * date >> /home/xili/cron/check_process_email && python /home/xili/test_check_process.py >> /home/xili/cron/check_pro    cess_email && echo "\n\n" >> /home/xili/cron/check_process_email
