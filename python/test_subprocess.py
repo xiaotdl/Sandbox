@@ -33,24 +33,32 @@ class Result(object):
                "rc=%(rc)s, stdout=%(stdout)s, stderr=%(stderr)s" % {k: repr(self.__dict__[k]) for k in self.__dict__}
 
 
-def execute(cmd):
-    if isinstance(cmd, basestring):
-        cmd = cmd.split()
-    child = subprocess.Popen(
-        cmd,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
-    )
-    out, err = child.communicate()
-    rc = child.returncode
-    if err:
-        raise Exception("running command '%s' returns err:\n%s" % (cmd, err))
-    return Result(' '.join(cmd), rc, out, err)
+def execute(cmd, shell=False):
+    if not shell:
+        if isinstance(cmd, basestring):
+            cmd = cmd.split()
+        child = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+        out, err = child.communicate()
+        rc = child.returncode
+        if err:
+            raise Exception("running command '%s' returns err:\n%s" % (cmd, err))
+        return Result(' '.join(cmd), rc, out, err)
+    else:
+        if type(cmd) is list:
+            cmd = ' '.join(cmd)
+        out = subprocess.check_output(cmd, shell=True)
+        return Result(cmd, 'n/a', out, 'n/a')
 
 
 r = execute('echo 123')
 print r
 r = execute(['echo', '456'])
+print r
+r = execute("cal | grep 2016", shell=True)
 print r
 
 # >>>
