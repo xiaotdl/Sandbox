@@ -91,4 +91,7 @@ close $fh;
 # Pear1  Pear2  Pear3
 
 $tbody = $body->look_down(_tag => 'tbody');
-print Dumper($tbody);
+#print Dumper($tbody);
+my @descendants = $body->descendants;
+print $_->tag . "\n"
+    foreach @descendants;
