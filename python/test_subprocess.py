@@ -1,8 +1,8 @@
 import subprocess
-import time
 
 # == Example 1 ==
 # # wait till commands finished
+# import time
 # subprocess.call('echo parent[$$]: going to sleep for 100 secs', shell=True)
 
 # # fork a new process to execute
@@ -13,19 +13,52 @@ import time
 
 
 # == Example 2 ==
-# run a cmd
-cmd = ["ls", "-lh"]
-out, err = subprocess.Popen(
-               cmd,
-               stdout=subprocess.PIPE,
-               stderr=subprocess.PIPE
-           ).communicate()
-print out.strip()
-if err:
-    raise Exception(err)
+# run a cmd and get rc, stdout, stderr
+class Result(object):
 
-# == Example 3 ==
-# run a cmd
-cmd = "ls -lh"
-out = subprocess.check_output(cmd, shell=True)
-print out.strip()
+    def __init__(self, cmd, rc, stdout, stderr):
+        self.cmd= ' '.join(cmd)
+        self.rc = rc
+        self.stdout = stdout
+        self.stderr = stderr
+
+    def __str__(self):
+        cutoff = 128
+        if len(self.stdout) > cutoff:
+            self.stdout = self.stdout[:cutoff] + '...'
+        if len(self.stderr) > cutoff:
+            self.stderr = self.stderr[:cutoff] + '...'
+
+        return "Result: cmd=%(cmd)s -> " \
+               "rc=%(rc)s, stdout=%(stdout)s, stderr=%(stderr)s" % {k: repr(self.__dict__[k]) for k in self.__dict__}
+
+
+def execute(cmd):
+    if isinstance(cmd, basestring):
+        cmd = cmd.split()
+    child = subprocess.Popen(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
+    out, err = child.communicate()
+    rc = child.returncode
+    if err:
+        raise Exception("running command '%s' returns err:\n%s" % (cmd, err))
+    return Result(cmd, rc, out, err)
+
+
+r = execute('echo 123')
+print r
+r = execute(['echo', '456'])
+print r
+
+# >>>
+# Result: cmd='echo 123' -> rc=0, stdout='123\n', stderr=''
+# Result: cmd='echo 456' -> rc=0, stdout='456\n', stderr=''
+
+# # == Example 3 ==
+# # run a cmd
+# cmd = "ls -lh"
+# out = subprocess.check_output(cmd, shell=True)
+# print out.strip()
