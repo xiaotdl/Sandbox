@@ -17,7 +17,7 @@ import subprocess
 class Result(object):
 
     def __init__(self, cmd, rc, stdout, stderr):
-        self.cmd= ' '.join(cmd)
+        self.cmd= cmd
         self.rc = rc
         self.stdout = stdout
         self.stderr = stderr
@@ -45,7 +45,7 @@ def execute(cmd):
     rc = child.returncode
     if err:
         raise Exception("running command '%s' returns err:\n%s" % (cmd, err))
-    return Result(cmd, rc, out, err)
+    return Result(' '.join(cmd), rc, out, err)
 
 
 r = execute('echo 123')
