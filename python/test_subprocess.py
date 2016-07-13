@@ -61,4 +61,8 @@ print r
 # # run a cmd
 # cmd = "ls -lh"
 # out = subprocess.check_output(cmd, shell=True)
-# print out.strip()
+# print out
+# # run a cmd with pipes
+# cmd = "cal | grep 2016"
+# out = subprocess.check_output(cmd, shell=True)
+# print out
