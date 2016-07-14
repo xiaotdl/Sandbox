@@ -1,3 +1,7 @@
+# Ref:
+# The Hitchhiker's Guide to Python - Logging
+# http://docs.python-guide.org/en/latest/writing/logging/
+
 import logging
 import logging.config
 
