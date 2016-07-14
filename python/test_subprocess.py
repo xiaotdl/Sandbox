@@ -34,9 +34,11 @@ class Result(object):
 
 
 def execute(cmd, shell=False):
+    rc, out, err = 'n/a', 'n/a', 'n/a'
     if not shell:
         if isinstance(cmd, basestring):
             cmd = cmd.split()
+        print "[INFO] run: '%s' on <localhost>..." % ' '.join(cmd)
         child = subprocess.Popen(
             cmd,
             stdout=subprocess.PIPE,
@@ -44,12 +46,20 @@ def execute(cmd, shell=False):
         )
         out, err = child.communicate()
         rc = child.returncode
-        return Result(' '.join(cmd), rc, out, err)
+        r = Result(' '.join(cmd), rc, out, err)
     else:
         if type(cmd) is list:
             cmd = ' '.join(cmd)
-        out = subprocess.check_output(cmd, shell=True)
-        return Result(cmd, 'n/a', out, 'n/a')
+        print "[INFO] run: '%s' on <localhost>..." % cmd
+        try:
+            out = subprocess.check_output(cmd, shell=True)
+        except subprocess.CalledProcessError:
+            rc = -1
+            pass
+        r = Result(cmd, rc, out, err)
+    if r.rc != 'n/a' and r.rc != 0:
+        print "[WARNING] Non-zero return code!!! %s" % r
+    return r
 
 
 r = execute('echo 123')
