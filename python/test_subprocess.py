@@ -33,7 +33,7 @@ class Result(object):
                "rc=%(rc)s, stdout=%(stdout)s, stderr=%(stderr)s" % {k: repr(self.__dict__[k]) for k in self.__dict__}
 
 
-def execute(cmd, shell=False):
+def execute(cmd, shell=False, ignore_error=False):
     rc, out, err = 'n/a', 'n/a', 'n/a'
     if not shell:
         if isinstance(cmd, basestring):
@@ -57,7 +57,7 @@ def execute(cmd, shell=False):
             rc = -1
             pass
         r = Result(cmd, rc, out, err)
-    if r.rc != 'n/a' and r.rc != 0:
+    if r.rc != 'n/a' and r.rc != 0 and not ignore_error:
         print "[WARNING] Non-zero return code!!! %s" % r
     return r
 
@@ -70,7 +70,11 @@ print r
 r = execute("cal | grep 2016", shell=True)
 print r
 # use shell when cmd includes wildcard *
+r = execute('ls *.py')
+print r
 r = execute('ls *.py', shell=True)
+print r
+r = execute('ls *.py', ignore_error=True)
 print r
 
 # >>>
