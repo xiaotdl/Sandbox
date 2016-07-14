@@ -44,8 +44,6 @@ def execute(cmd, shell=False):
         )
         out, err = child.communicate()
         rc = child.returncode
-        if err:
-            raise Exception("running command '%s' returns err:\n%s" % (cmd, err))
         return Result(' '.join(cmd), rc, out, err)
     else:
         if type(cmd) is list:
