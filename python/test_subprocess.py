@@ -66,7 +66,11 @@ r = execute('echo 123')
 print r
 r = execute(['echo', '456'])
 print r
+# use shell when pipe is needed
 r = execute("cal | grep 2016", shell=True)
+print r
+# use shell when cmd includes wildcard *
+r = execute('ls *.py', shell=True)
 print r
 
 # >>>
