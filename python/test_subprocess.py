@@ -57,7 +57,9 @@ def execute(cmd, shell=False, ignore_error=False):
             rc = -1
             pass
         r = Result(cmd, rc, out, err)
-    if r.rc != 'n/a' and r.rc != 0 and not ignore_error:
+    if r.rc == 'n/a' or ignore_error:
+        pass
+    elif r.rc:
         print "[WARNING] Non-zero return code!!! %s" % r
     return r
 
