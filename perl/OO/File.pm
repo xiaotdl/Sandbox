@@ -11,3 +11,11 @@ sub new {
 
     return $self;
 }
+
+sub DESTROY {
+    local $?;
+    print 'DESTROYing...';
+    exit -1;
+}
+
+1;
