@@ -11,8 +11,8 @@ class Program:
 
     def run(self, task='task1'):
         print 'doing task: %s...' % task
-        func = getattr(self, task)
-        result = func()
+        f = getattr(self, task)
+        result = f()
         sys.exit(0)
 
     def task1(self):
