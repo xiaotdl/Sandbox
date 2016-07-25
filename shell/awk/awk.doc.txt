@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Ref:
+# Awk
+# http://www.grymoire.com/Unix/Awk.html
+
+# AWK is an excellent filter and report writer.
+# Many UNIX utilities generates rows and columns of information.
+# It is an excellent tool for processing these rows and columns.
+
+# AWK - the (very old) original from AT&T
+# NAWK - A newer, improved version from AT&T
+# GAWK - The Free Software foundation's version
+
+
+# Put executable script in $HOME/bin
+# $ cp awk_example1.sh $HOME/bin/awk_example1
+# $ chmod +x $HOME/bin/awk_example1
