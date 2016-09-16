@@ -17,3 +17,5 @@ java/.idea
 
 java/multithreading/out
 java/multithreading/.idea
+
+.DS_Store
