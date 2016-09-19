@@ -1,0 +1,6 @@
+alien invasion
+
+[Dependency]
+- [OS X] sudo brew install hg sdl sdl_image sdl_ttf
+- [OS X] sudo brew install sdl_mixer portmidi
+- sudo pip install pygame
