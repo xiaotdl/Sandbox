@@ -160,47 +160,78 @@ class Result(object):
 # shell returned 1
 
 
-# == Example 6 ==
-# use tempfile.TemporaryFile instead of subprocess.PIPE once stdout/stderr exceeds 64K.
-# otherwise the subprocess will be hanging.
-# Ref:
-# https://thraxil.org/users/anders/posts/2008/03/13/Subprocess-Hanging-PIPE-is-your-enemy/
+# # == Example 6 ==
+# # use tempfile.TemporaryFile instead of subprocess.PIPE once stdout/stderr exceeds 64K.
+# # otherwise the subprocess will be hanging.
+# # Ref:
+# # https://thraxil.org/users/anders/posts/2008/03/13/Subprocess-Hanging-PIPE-is-your-enemy/
+# import logging
+# import tempfile
+
+# def run(cmd, shell=True, large_buffer=False):
+#     logging.info("run: '%s' on <localhost>..." % cmd)
+
+#     # subprocess.PIPE is a fixed size (64K) buffer,
+#     # process will be hanging if stdout exceeds this limit.
+#     if large_buffer:
+#         stdout = tempfile.TemporaryFile()
+#         stderr = tempfile.TemporaryFile()
+#     else:
+#         stdout = subprocess.PIPE
+#         stderr = subprocess.PIPE
+
+#     child = subprocess.Popen(
+#         cmd,
+#         shell=shell,
+#         stdout=stdout,
+#         stderr=stderr,
+#         close_fds=False
+#     )
+
+#     child.wait()
+#     rc = child.returncode
+#     if large_buffer:
+#         stdout.seek(0)
+#         stderr.seek(0)
+#         out = stdout.read()
+#         err = stderr.read()
+#         stdout.close()
+#         stderr.close()
+#     else:
+#         out = child.stdout.read()
+#         err = child.stderr.read()
+
+
+#     r = Result(rc, out, err, cmd)
+#     logging.debug(str(r))
+#     if r.rc != 0:
+#         logging.warning("Non-zero return code!!! %s" % r)
+#         logging.debug(r.stdout)
+#         logging.debug(r.stderr)
+#     return r
+
+# # cmd = "for i in {1..10000}; do echo 'hello world\n'; done"
+# cmd = ["for i in {1..10000}; do echo 'hello world\n'; done"]
+# r = run(cmd)
+# print r
+# r = run(cmd, large_buffer=True)
+# print r
+
+# == Example 7 ==
 import logging
-import tempfile
 
-def run(cmd, shell=True, large_buffer=False):
+def run(cmd, shell=True):
     logging.info("run: '%s' on <localhost>..." % cmd)
-
-    # subprocess.PIPE is a fixed size (64K) buffer,
-    # process will be hanging if stdout exceeds this limit.
-    if large_buffer:
-        stdout = tempfile.TemporaryFile()
-        stderr = tempfile.TemporaryFile()
-    else:
-        stdout = subprocess.PIPE
-        stderr = subprocess.PIPE
 
     child = subprocess.Popen(
         cmd,
         shell=shell,
-        stdout=stdout,
-        stderr=stderr,
-        close_fds=False
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
     )
 
-    child.wait()
+    out, err = child.communicate()
     rc = child.returncode
-    if large_buffer:
-        stdout.seek(0)
-        stderr.seek(0)
-        out = stdout.read()
-        err = stderr.read()
-        stdout.close()
-        stderr.close()
-    else:
-        out = child.stdout.read()
-        err = child.stderr.read()
-
 
     r = Result(rc, out, err, cmd)
     logging.debug(str(r))
@@ -210,8 +241,6 @@ def run(cmd, shell=True, large_buffer=False):
         logging.debug(r.stderr)
     return r
 
-s = ' what up ' * 5
-r = run("echo 'large stdout and stderr, %s'" % s)
-print r
-r = run("echo 'large stdout and stderr, %s'" % s, large_buffer=True)
+cmd = "for i in {1..100000}; do echo 'hello world\n'; done"
+r = run(cmd)
 print r
