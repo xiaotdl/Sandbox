@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 import signal
@@ -5,13 +6,20 @@ import signal
 # common signals to kill a process
 # Ctrl + C => SIGINT
 # kill     => SIGTERM
-# kill 9   => SIGKILL   # kills process directly, which means process can't catch and handle
+# kill 9   => SIGKILL   # NOTE: SIGKILL kills process directly, which means process can't be caught and handled
 
-def handle_signal(singal_num, frame):
-    print "you pressed ctrl + c"
+def handle_sigint(singal_num, frame):
+    print "Caught SIGINT - you pressed ctrl + c"
     sys.exit(1)
 
-signal.signal(signal.SIGINT, handle_signal)
+def handle_sigterm(singal_num, frame):
+    print "Caught SIGTERM - progarm was killed"
+    sys.exit(1)
+
+signal.signal(signal.SIGINT, handle_sigint)
+signal.signal(signal.SIGTERM, handle_sigterm)
+
+# os.kill(os.getpid(), signal.SIGTERM)
 
 for i in range(1000):
     print i
