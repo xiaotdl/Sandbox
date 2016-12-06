@@ -17,6 +17,7 @@ use Data::TreeDumper;
 use Data::Dumper;
 
 $::RD_HINT = 1;  # show detailed analyses and hints on both errors and warnings.
+# $::RD_TRACE = 1; # debugging a grammar that isn't behaving as you expected it to.
 
 my $grammar = q {
 
@@ -61,7 +62,7 @@ not_expr:       m/(?: ! | not)/ix compare_expr
               | value
               | variable
 
-compare_expr:   binop_expr ('=' | '!=' | '<' | '>' | '<=' | '>=') binop_expr
+compare_expr:   binop_expr ('<=' | '>=' | '=' | '!=' | '<' | '>') binop_expr
                          {
                              my $op = $item[2];
                              if    ($op eq '=' ) {$return = Mysql::Op::Eq->new($item[1], $item[3])}
@@ -127,7 +128,7 @@ my $parser=Parse::RecDescent->new($grammar);
 my $context = {
     variables => {
         rows => [
-            {name => 'Tom',  sex => 'M',age => 11},
+            {name => 'Tom',  sex => 'M',age => 0},
             {name => 'Joe',  sex => 'M',age => 22},
             {name => 'Mary', sex => 'F',age => 33},
         ]
@@ -137,10 +138,11 @@ my $context = {
 # MySQL query e.g.
 # mysql> SELECT sum(age + 1 * 2 - 3) + 1 FROM table WHERE name = 'Tom' || name = 'Joe';
 # == WHERE parser ==
-$tree = $parser->expression("name = 'Tom' || name = 'Joe'");
+$tree = $parser->expression("age >= 0");
 print DumpTree($tree);
 
 my @rows = @{$context->{variables}->{rows}};
+my @selected_rows;
 for my $row (@rows) {
     my $row_context = {
         variables => $row,
@@ -150,7 +152,11 @@ for my $row (@rows) {
         if $validationError;
     my $selected = $tree->eval($row_context) ? 1 : 0;
     print "'$row->{name}' selected -> $selected\n";
+    push @selected_rows, $row
+        if $selected;
 }
+print Dumper(@selected_rows);
+print "----------------------------------------------\n";
 # >>>
 #     blessed in 'Mysql::Op::Or'
 #    |- left =  blessed in 'Mysql::Op::Eq'  [OH1]
@@ -169,7 +175,7 @@ for my $row (@rows) {
 
 
 # == SELECT parser ==
-$tree = $parser->expression("sum(age + 1 * 2 - 3) + 1 ");
+$tree = $parser->expression("sum(age + 1 * 2 - 3) + 1");
 print DumpTree($tree);
 
 my $validationError = $tree->validate($context);
