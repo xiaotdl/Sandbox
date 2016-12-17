@@ -68,8 +68,8 @@ class Bugzilla(object):
     def _login(self):
         url = 'https://{host}/{path}'.format(host=self.host, path='index.cgi')
         params = {
-            'Bugzilla_login': BUGZ_USER,
-            'Bugzilla_password': BUGZ_PASSWORD,
+            'Bugzilla_login': self.user,
+            'Bugzilla_password': self.password,
             'GoAheadAndLogIn': 'Log in',
         }
         r = self._do_request(url, params=params, response_file='index.html')
