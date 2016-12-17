@@ -52,7 +52,9 @@ def parse_bug_infomation(html):
     seaall = reg.findall(html)
     all_bug_details = []
     for i in range(len(seaall)):
-        all_bug_details.append(parse_bug_detail(seaall[i]))
+        r = parse_bug_detail(seaall[i])
+        if r:
+            all_bug_details.append(r)
     return all_bug_details
     #print seaall[5]
     #print all_bug_details[5]
@@ -185,6 +187,8 @@ def parse_bug_detail(bughtml):
     reg_column += ".*?class=\"bz_cf_type_column\"\>(?P<type>.*?)\s+\</td\>"
     reg = re.compile(reg_id + ".*?" + reg_column, re.DOTALL)
     bug_info = reg.search(bughtml)
+    if not bug_info:
+        return
     bug_detail = []
     bug_detail.append(bughtml[bug_info.start('id'):bug_info.end('id')])
     bug_detail.append(bughtml[bug_info.start('component'):bug_info.end('component')])
@@ -240,11 +244,11 @@ if __name__ == '__main__':
     bz = Bugzilla(BUGZ_HOST, BUGZ_USER, BUGZ_PASSWORD)
     bz.login()
     params = {
-        'level1manager': 'gavrilov',
+        'level1manager': 'syang',
         # 'emailassigned_to1': 1,
         # 'email1': "xiaotian.li@f5.com",
         # 'bug_status': 'New',
-        'product': 'FIT',
+        # 'product': 'FIT',
         'columnlist': 'alias,component,assigned_to_realname,bug_status,resolution,cf_assigneddate,cf_fixeddate,level1manager,opendate,cf_type'
     }
     bz.query(params)
