@@ -37,6 +37,7 @@ my $vars = {
     },
     pages => $pages,
     urls => $urls,
+    lines => "\t\t1\n\t\t2\n\t\t3\n",
 };
 
 my $tt = Template->new;

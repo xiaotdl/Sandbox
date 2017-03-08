@@ -16,5 +16,14 @@
      <li><a href="[% page.url %]">[% page.title %]</a>
 [% END %]
 
+<pre>
+    [% lines %]
+</pre>
+
+
+[% IF 1 == 1 %]
+    "NBA"
+[% END %]
+
 </body>
 
