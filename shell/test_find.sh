@@ -34,3 +34,6 @@
 
 # rm all '.pyc' files
 `find . -iname '*.pyc' -exec rm {} \;`
+
+# mv all files that has modification time less than a day.
+`find . -mtime -1 -print -maxdepth 1 -exec mv {} /tmp/tmos-security-asmdp-regression \;`
