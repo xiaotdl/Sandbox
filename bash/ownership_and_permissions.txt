@@ -1,0 +1,39 @@
+Ref: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/Step_by_Step_Guide/s1-navigating-ownership.html
+Table 4-3. File permissions settings, numerical values, and their meanings
+Setting       Numerical    Meaning
+-rw-------    (600)        Only the owner has read and write permissions.
+-rw-r--r--    (644)        Only the owner has read and write permissions; the group and others have read only.
+-rwx------    (700)        Only the owner has read, write, and execute permissions.
+-rwxr-xr-x    (755)        The owner has read, write, and execute permissions; the group and others have only read and execute.
+-rwx--x--x    (711)        The owner has read, write, and execute permissions; the group and others have only execute.
+-rw-rw-rw-    (666)        Everyone can read and write to the file. (Be careful with these permissions.)
+-rwxrwxrwx    (777)        Everyone can read, write, and execute. (Again, this permissions setting can be hazardous.)
+
+Table 4-4. Directory permissions settings, numerical values, and their meanings
+Setting    Numerical    Meaning
+drwx------    (700)    Only the user can read, write in this directory.
+drwxr-xr-x    (755)    Everyone can read the directory; users and groups have read and execute permissions.
+
+
+<file type> <owner> <group> <others>
+-|l|d       rwx     rwx     rwx
+
+
+Example:
+vagrant at xili-dev1(10.192.10.141) in ~/sandbox/rwx [0]
+🍺 stat -c "%a %n" *
+755 dir_root
+775 dir_user
+644 file_root
+664 file_user
+vagrant at xili-dev1(10.192.10.141) in ~/sandbox/rwx [0]
+🍺 ll
+total 16
+drwxrwxr-x 4 vagrant vagrant 4096 May 11 14:21 ./
+drwxrwxr-x 6 vagrant vagrant 4096 May 11 14:20 ../
+drwxr-xr-x 2 root    root    4096 May 11 14:21 dir_root/
+drwxrwxr-x 2 vagrant vagrant 4096 May 11 14:21 dir_user/
+-rw-r--r-- 1 root    root       0 May 11 14:21 file_root
+-rw-rw-r-- 1 vagrant vagrant    0 May 11 14:21 file_user
+
+
