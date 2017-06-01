@@ -1,4 +1,16 @@
+== run server ==
+Xiaotian at Mac(192.168.1.7) in ~/Github Repo/Sandbox/project/tutorial/py_django/mysite [0]
+🍺 python manage.py runserver
+
+== url ==
 app url: http://localhost:8000/polls/
 admin url: http://localhost:8000/admin/
 admin user/pwd: admin/Aa123456
 
+== django shell ==
+Xiaotian at Mac(192.168.1.7) in ~/Github Repo/Sandbox/project/tutorial/py_django/mysite [0]
+🍺 python manage.py shell
+
+== run test ==
+Xiaotian at Mac(192.168.1.7) in ~/Github Repo/Sandbox/project/tutorial/py_django/mysite [0]
+🍺 python manage.py test polls
