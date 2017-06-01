@@ -1,0 +1,4 @@
+app url: http://localhost:8000/polls/
+admin url: http://localhost:8000/admin/
+admin user/pwd: admin/Aa123456
+
