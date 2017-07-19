@@ -3,9 +3,12 @@
 use strict;
 use warnings;
 
-use Package;
+# Ref:
+# Variable Scoping in Perl: the basics
+# http://www.perlmonks.org/?node_id=66677
 
 # == Access global var ==
+use Package;
 print "$Package::our_var\n";
 print "$Package::my_var\n"; # gives compile error in stderr
 
@@ -24,8 +27,8 @@ print "$Package::my_var\n"; # gives compile error in stderr
 # Use of uninitialized value $Package::my_var in concatenation (.) or string at main.pl line 10.
 
 
-# == Acess package var ==
-foreach (1..99) {
+# == Acess package|file-level var ==
+foreach (1..9) {
     Package->new();
 }
 # Ref:
@@ -40,7 +43,14 @@ foreach (1..99) {
     no strict 'refs';
     print &{"Package::get_instance_cnt"} . "\n";
     # >>>
-    # 99
+    # 9
+}
+
+# package main is implicitly declared
+# main's sub is visible to other packages but not vice versa
+sub LOG {
+    my $msg = shift;
+    print "[INFO] $msg\n";
 }
 
 # == Access instance var ==
@@ -51,5 +61,6 @@ print $pkg->get_var() . "\n";
 # >>>
 # my_var
 # set_my_var
+
 
 1;

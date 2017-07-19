@@ -4,14 +4,14 @@ use strict;
 use warnings;
 
 
-# == global variable ==
+# == global variable among packages  ==
 # can be accessed within other package once they import this package
 # e.g.
 # use Package;
 # print $Package::our_var;
 our $our_var = 'our_var';
 
-# == package variable ==
+# == package|file-level variable ==
 # can only be accessed within this package
 # other package can only access this through getter method
 my $my_var = 'my_var';
@@ -27,6 +27,7 @@ sub new {
     };
     bless $self, $class;
     $instance_cnt++;
+    main::LOG("creating Package instance...");
     return $self;
 }
 
