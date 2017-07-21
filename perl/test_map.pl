@@ -17,3 +17,10 @@ print Dumper(\@squares);
 print Dumper(\@squares);
 @squares = map { $_ * $_ } grep { $_ > 5 } @numbers; # same as above
 print Dumper(\@squares);
+
+my @a = (1, 2, 3);
+print Dumper([
+    map {
+        [$_]
+    } @a
+]);

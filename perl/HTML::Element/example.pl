@@ -36,6 +36,7 @@ use Data::Dumper;
 # push_content()
 $body = HTML::Element->new('body');
 $body->push_content(
+	['h2', 'example'],
     ['table',
         {
             width => '100%',
@@ -57,7 +58,7 @@ $body->push_content(
     ],
 );
 
-#print $table->as_HTML;
+print $body->as_HTML;
 # >>> formated
 # <table>
 #     <thead>
