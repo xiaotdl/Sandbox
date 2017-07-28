@@ -109,7 +109,62 @@
 # == Selecting Items from Array ==
 # arr = [1, 2, 3, 4, 5, 6]
 # arr.select { |a| a > 3 }      #=> [4, 5, 6]
+# arr.select! { |a| a > 3 }     # changed in place
 # arr.reject { |a| a < 3 }      #=> [3, 4, 5, 6]
+# arr.reject! { |a| a < 3 }     # changed in place
 # arr.drop_while { |a| a < 3 }  #=> [3, 4, 5, 6]
-
-
+# arr.keep_if { |a| a > 3 }     #=> [4, 5, 6]    # same as select
+# arr.delete_if { |a| a < 3 }   #=> [3, 4, 5, 6] # same as reject
+#
+#
+# ====================
+# Public Class Methods
+# ====================
+#
+# == [](*args) ==
+# Returns a new array with the given objects.
+#
+# Array.[]( 1, 'a', /^A/ ) #=> [1, "a", /^A/]
+# Array[1, 'a', /^A/]      #=> [1, "a", /^A/]
+# [1, 'a', /^A/]           #=> [1, "a", /^A/]
+#
+# new(array)
+# new(size=0, default=nil)
+# new(size) { |index| block }
+#
+#
+# =======================
+# Public Instance Methods
+# =======================
+#
+# == & ==
+# arr & other_arr => new_arr
+# [1, 1, 3] & [1, 2, 3] #=> [1, 3]
+#
+# == * ==
+# arr * int => new_arr
+# [1, 2, 3] * 3    #=> [1,2,3,1,2,3]
+# arr * str => new_str
+# [1, 2, 3] * ","  #=> "1,2,3" # same as arr.join(",")
+#
+# == + ==
+# arr + other_arr => new_arr
+# [1, 2, 3] + [4, 5] #=> [1,2,3,4,5]
+# x += y is same as x = x + y
+#
+# == - ==
+# arr - other_arr => new_arr
+# [1,2,3,3,4,5] - [1,2,4] => [3,3,5]
+#
+# == << ==
+# Append
+# arr << obj => arr
+# [1,2] << "c" << "d" << [3,4] #=> [ 1, 2, "c", "d", [ 3, 4  ]  ]
+#
+# == collect ==
+# collect { |item| block } → new_ary
+# collect → Enumerator
+# a = [ "a", "b", "c", "d" ]
+# a.collect { |x| x + "!" } #=> ["a!", "b!", "c!", "d!"]
+#
+# ...
