@@ -1,0 +1,24 @@
+Ref:
+http://guides.rubygems.org/make-your-own-gem
+
+$ gem build hola.gemspec
+#=>
+  Successfully built RubyGem
+  Name: hola
+  Version: 0.0.0
+  File: hola-0.0.0.gem
+
+$ sudo gem install ./hola-0.0.0.gem
+Password:
+Successfully installed hola-0.0.0
+Parsing documentation for hola-0.0.0
+Installing ri documentation for hola-0.0.0
+1 gem installed
+
+$ irb
+#=>
+irb(main):001:0> require 'hola'
+=> true
+irb(main):002:0> Hola.hi
+Hello world!
+=> nil
