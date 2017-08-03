@@ -52,3 +52,9 @@
 #
 # == include?(key) ==
 # alias has_key? include?
+#
+# == each ==
+# h = { "a" => 100, "b" => 200  }
+# h.each do |k, v|
+#   puts "#{k} => #{v}"
+# end
