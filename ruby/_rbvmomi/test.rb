@@ -17,6 +17,11 @@ dc = vim.serviceInstance.find_datacenter(DATACENTER) || fail("datacenter not fou
 compute = dc.find_compute_resource(COMPUTE)
 host = compute.host.select {|h| h.name.eql?(CLUSTER_HOST)}[0]
 puts host
+puts host.name
+# #=>
+# HostSystem("host-6085")
+# 10.192.12.51
+
 # vm = dc.find_vm('my_vm') || fail('VM not found')
 # vm.PowerOnVM_Task.wait_for_completion
 
@@ -62,12 +67,13 @@ result = vim.propertyCollector.RetrievePropertiesEx(
   :options => { }
 )
 
-#binding.pry; # RUBY BREAKPOINT
 result.objects.each do |o|
-    puts o.obj.name
     if (o.obj.name.eql?(DHCP_PORT_GROUP))
-        binding.pry; # RUBY BREAKPOINT
-      puts o
+      puts o.obj
+      puts o.obj.name
     end
 end
+# #=>
+# DistributedVirtualPortgroup("dvportgroup-6163")
+# DHCP-AutoTest-Vlan-2130
 
