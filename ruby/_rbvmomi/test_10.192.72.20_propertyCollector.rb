@@ -1,5 +1,14 @@
 require 'rbvmomi'
 require 'pry'
+require 'awesome_print'
+
+def to_short_s(s, limit=100)
+    if (s.to_s.size() > limit)
+        s.to_s[0..limit] + "..."
+    else
+        s.to_s
+    end
+end
 
 HOST = '10.192.72.20'
 USER = 'root'
@@ -21,74 +30,62 @@ cm = host.configManager
 ns = cm.networkSystem
 
 propertyCollector = vim.propertyCollector
-
 # TODO Retreive distrubuted port groups, to allow distributed
 # port group to be selected when cloning.  See
 # Action::Clone.prepare_network_card_backing_info.
 
-#filterSpec = VIM.PropertyFilterSpec(
-#  :objectSet => [{
-#    :obj => host,
-#    :skip => true,
-#    :selectSet => [
-#      VIM.TraversalSpec(
-#        :type => 'HostSystem',
-#        :path => 'configManager.networkSystem',
-#        :skip => false,
-#      )
-#    ]
-#  }],
-#  :propSet => [{
-#    :type => 'HostNetworkSystem',
-#    :pathSet => %w(networkInfo.vswitch networkInfo.portgroup),
-#  }]
-#)
-
-# #== retrieve rootFolder's datacenters
+# #== retrieve host network info ==
 # filterSpec = VIM.PropertyFilterSpec(
 #   :objectSet => [{
-#     :obj => vim.serviceInstance.content.rootFolder,
-#     #:skip => true,
+#     :obj => host,
+#     :skip => true,
 #     :selectSet => [
 #       VIM.TraversalSpec(
-#         :type => 'Folder',
-#         :path => 'childEntity',
+#         :type => 'HostSystem',
+#         :path => 'configManager.networkSystem',
 #         :skip => false,
 #       )
 #     ]
 #   }],
 #   :propSet => [{
-#     :type => 'Folder',
-#     :pathSet => %w(name parent childEntity),
+#     :type => 'HostNetworkSystem',
+#     :pathSet => %w(networkInfo.vswitch networkInfo.portgroup),
 #   }]
 # )
 
-rootFolder = vim.serviceInstance.content.rootFolder;
+# #== retrieve rootFolder's childEntity(datacenters) ==
+#filterSpec = VIM.PropertyFilterSpec(
+#  :objectSet => [{
+#    :obj => vim.serviceInstance.content.rootFolder,
+#    #:skip => true,
+#    :selectSet => [
+#      VIM.TraversalSpec(
+#        :type => 'Folder',
+#        :path => 'childEntity',
+#        :skip => false,
+#      )
+#    ]
+#  }],
+#  :propSet => [{
+#    :type => 'Folder',
+#    :all => true,
+#    #:pathSet => %w(name parent childEntity datastore),
+#  }]
+#)
+
+#r = propertyCollector.RetrievePropertiesEx(
+#  :specSet => [filterSpec],
+#  :options => { }
+##)
+
+dvportgroup = dc.network.find {|network| network.name.eql?("DHCP-AutoTest-Vlan-2130")}
 filterSpec = VIM.PropertyFilterSpec(
-  :objectSet => [{
-    :obj => rootFolder,
-    #:skip => true,
-    :selectSet => [
-      VIM.TraversalSpec(
-        :type => 'Folder',
-        :path => 'childEntity',
-        :skip => false,
-      )
-    ]
-  }],
-  :propSet => [{
-    :type => 'Folder',
-    :pathSet => %w(name parent childEntity),
-  }]
+  :objectSet=>[{:obj=>dvportgroup}],
+  :propSet=>[{:type=>"DistributedVirtualPortgroup", :all=>true}]
 )
 
-r = propertyCollector.RetrievePropertiesEx(
-  :specSet => [filterSpec],
-  :options => { }
-)
-binding.pry; # RUBY BREAKPOINT
-puts r;
-
-#rootFolder.inventory_flat();
+r = propertyCollector.RetrieveProperties(:specSet => [filterSpec])
+puts dvportgroup
+puts r[0].propSet.map{|dynamicProp| "  #{dynamicProp.name} => "+to_short_s(dynamicProp.val)}
 
 puts 'eof';
