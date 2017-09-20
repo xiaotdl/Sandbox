@@ -1,4 +1,5 @@
 #!/usr/bin/expect
+# Ref: http://www.thegeekstuff.com/2010/10/expect-examples
 
 # 🍺 ssh root@10.192.219.152
 # Password:
