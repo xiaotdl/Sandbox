@@ -1,0 +1,16 @@
+== How to deploy ==
+create a virtualenv:
+    virtualenv venv
+activate virtualenv
+    source venv/bin/activate
+Install packages
+    pip install gunicorn flask
+test that it works
+    gunicorn --bind 0.0.0.0:5000 wsgi
+configure nginx
+    sudo cp nginx.conf /etc/nginx/sites-enabled/flask_rest_svr.conf
+    nginx -t sudo systemctl restart nginx
+enable flask app to be served with gunicorn:
+    sudo cp src/flask_rest_svr.service /etc/systemd/system/flask_rest_svr.service
+    sudo systemctl start flask_rest_svr
+    sudo systemctl enable flask_rest_svr # enable on boot
