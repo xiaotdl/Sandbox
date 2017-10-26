@@ -244,3 +244,16 @@ def run(cmd, shell=True):
 cmd = "for i in {1..100000}; do echo 'hello world\n'; done"
 r = run(cmd)
 print r
+
+# >>> Same as
+# import subprocess
+# def run(cmd):
+#     ps = subprocess.Popen(cmd, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+#     (out,err) = ps.communicate();
+#     print ("cmd: %s" % ' '.join(cmd))
+#     print ("rc: %d" % ps.returncode)
+#     print ("stdout: %s" % out)
+#     print ("stderr: %s" % err)
+# run(["ls","123"])
+# run(["sudo", "whoami"])
+# <<<
