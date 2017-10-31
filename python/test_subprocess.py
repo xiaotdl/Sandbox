@@ -245,6 +245,8 @@ cmd = "for i in {1..100000}; do echo 'hello world\n'; done"
 r = run(cmd)
 print r
 
+# Ref:
+# https://crashcourse.housegordon.org/python-subprocess.html
 # >>> Same as
 # import subprocess
 # def run(cmd):
