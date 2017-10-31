@@ -1,3 +1,6 @@
+Ref:
+https://pyformat.info/
+         
 print('%10.2f s' % 154.520035)
 print('%10.2f s' % 24169.204950)
 
