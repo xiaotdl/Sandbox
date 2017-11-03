@@ -10,7 +10,7 @@ use warnings;
         my ($pkg, $file, $lineno) = caller;
         {
             no strict 'refs';
-            *{"${pkg}::f"} = sub {print "this is a installed sub"};
+            *{"${pkg}::f"} = sub {print "this is a installed sub"}; # install a coderef closure to the caller pkg as a sub
         }
     }
 
