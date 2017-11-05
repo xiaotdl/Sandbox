@@ -20,6 +20,7 @@ sub f2 {
 }
 
 sub f1 {
+    print "callerPkg: " . caller . "\n";
     &f2;
 }
 
