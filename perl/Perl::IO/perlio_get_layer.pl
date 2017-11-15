@@ -7,7 +7,7 @@ use Data::Dumper;
 
 use PerlIO;
 
-open (my $fh, "test_perlio.pl")
+open (my $fh, "perlio_get_layer.pl")
     or die "Couldn't open file!";
 
 # The layers are returned in the order an open() or binmode() call would use them.
