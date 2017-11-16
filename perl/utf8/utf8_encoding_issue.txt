@@ -1,0 +1,75 @@
+utf8_encoding_issue
+
+Reproduced the utf8 issue with following test script
+
+$ cat test.pl
+use strict;
+use warnings;
+
+use FindBin;
+use lib ("$FindBin::Bin/../lib");
+use CommonInc;
+
+use Capture::Tiny ':all';
+
+my ($stdout, $exit);
+
+# adding utf8 layer, data treated as utf8 chars, throws utf8 decoding error
+binmode(STDOUT,":utf8");
+print join(' ', PerlIO::get_layers(STDOUT)) . "\n";
+# >>>
+# unix perlio utf8
+($stdout, $exit) = capture_merged {
+    system('cat ltm');
+};
+# >>>
+# utf8 "\xC0" does not map to Unicode at /home/vagrant/p4/tmos-tier2/TrafficShield/autotest/tests/bin/../lib/Capture/Tiny.pm line 287, <$fh> line 2.
+
+
+# by default, data treated as raw bytes, no decoding layer, no error
+binmode(STDOUT,":raw");
+print join(' ', PerlIO::get_layers(STDOUT)) . "\n";
+# >>>
+# unix perlio
+($stdout, $exit) = capture_merged {
+    system('cat ltm');
+};
+# >>>
+# <no output, $stdout captures non-encoded raw bytes>
+
+
+== Check utf8 with isutf8 ==
+$ isutf8 ltm
+ltm: line 2, char 1, byte offset 88: invalid UTF-8 code
+
+== Check utf8 with Python3 ==
+$ python3 -c "open('ltm', 'r', encoding='utf-8').read()"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.4/codecs.py", line 319, in decode
+    (result, consumed) = self._buffer_decode(data, self.errors, final)
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xc0 in position 170: invalid start byte
+
+== Check utf8 with perl ==
+$ cat test.pl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use Data::Dumper;
+use Encode;
+
+open my $fh, '<', "ltm"
+    or die "Can't open file for reading: $!";
+#print Dumper(PerlIO::get_layers($fh));
+while (my $line = <$fh>) {
+    print $line;
+    #print unpack("H*", $line) . "\n";
+    eval { Encode::decode("UTF-8", $line, Encode::FB_CROAK) };
+    die $@ if $@;
+}
+
+$ perl test.pl
+Nov 15 14:21:32 bigip info tmm1[28194]: Rule /Common/iRule3 <FLOW_INIT>: OPTIONS: 1
+Nov 15 14:21:32 bigip info tmm[28194]: Rule /Common/iRule3 <FLOW_INIT>: OPTIONS: {148 ????}
+utf8 "\xC0" does not map to Unicode at /usr/lib/x86_64-linux-gnu/perl/5.20/Encode.pm line 175, <$fh> line 2.
