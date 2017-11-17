@@ -20,6 +20,8 @@ $ scp bexi/rsync-static root@10.192.197.22:/bin/rsync
 $ ssh root@10.192.197.22 'chmod +x /bin/rsync'
 
 # Copy VM Template between ESX hosts
-~ # rsync -avzh --sparse --progress vmfs/volumes/ISCSI-Vol01/fit-t-bigiq-5.3.0/ root@10.192.197.22:/vmfs/volumes/ISCSI-Vol0/fit-t-bigiq-5.3.0.sparse
+ESX ~ # rsync -avzh --sparse --progress vmfs/volumes/ISCSI-Vol01/fit-t-bigiq-5.3.0/ root@10.192.197.22:/vmfs/volumes/ISCSI-Vol0/fit-t-bigiq-5.3.0.sparse
 
-
+ESX ~ # lsof | grep fit-t-bigiq-5.3.0
+ESX ~ # ps -u rsync
+ESX ~ # kill <rsync_pid>
