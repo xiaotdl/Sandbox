@@ -13,7 +13,7 @@ rsync -avzhe ssh --progress /home/files/ root@remoteip:/path/to/files/
 
 
 # Copy VM Template between ESX hosts
-~ # rsync -avzh --progress vmfs/volumes/ISCSI-Vol01/fit-t-bigiq-5.3.0/ root@10.192.197.22:/vmfs/volumes/ISCSI-Vol0/fit-t-bigiq-5.3.0.sparse
+~ # rsync -avzh --sparse --progress vmfs/volumes/ISCSI-Vol01/fit-t-bigiq-5.3.0/ root@10.192.197.22:/vmfs/volumes/ISCSI-Vol0/fit-t-bigiq-5.3.0.sparse
 
 # Download rsync static binary on ESX hosts
 https://wiki.contribs.org/Backup_of_ESXi_Virtual_Machines_using_Affa
