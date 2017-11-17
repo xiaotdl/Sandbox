@@ -1,0 +1,26 @@
+Nov 15 14:21:32 bigip info tmm1[28194]: Rule /Common/iRule3 <FLOW_INIT>: OPTIONS: 1
+Nov 15 14:21:32 bigip info tmm[28194]: Rule /Common/iRule3 <FLOW_INIT>: OPTIONS: {148 À€À€}
+Nov 15 14:21:33 bigip info tmm[28194]: Rule /Common/iRule3 <FLOW_INIT>: OPTIONS: {148 À€À€} 1 1
+Nov 15 14:21:34 bigip info tmm1[28194]: Rule /Common/iRule3 <FLOW_INIT>: OPTIONS: 1 1 1
+Nov 15 14:21:34 bigip info tmm1[28194]: Rule /Common/iRule3 <FLOW_INIT>: OPTIONS: {148 À€À€} {68 {	Â”D50MÃ½Eg}} 1 1 1
+Nov 15 14:22:02 bigip notice pccd[9009]: 015d0000:5: Resuming log processing at this invocation; held 3 messages.
+Nov 15 14:22:02 bigip notice pccd[9009]: 015d0000:5: Serializing new blob (pktclass1).
+Nov 15 14:22:02 bigip notice pccd[9009]: 015d0000:5: (HA) Blob 1 ctime 5a0b885b/1510705243, blob 2 ctime 5a0cbddf/1510784479.
+Nov 15 14:22:02 bigip notice pccd[9009]: 015d0000:5: (HA) Use saved Blob 2.
+Nov 15 14:22:02 bigip notice pccd[9009]: 015d0000:5: calling incremental_serialize from active blob id:2 
+Nov 15 14:22:02 bigip notice pccd[9009]: 015d0000:5: Incremental Serialization completed after 0 seconds. Blob is 0kB.
+Nov 15 14:22:02 bigip notice pccd[9009]: 015d0000:5: Per-invocation log rate exceeded; throttling.
+Nov 15 14:22:02 bigip notice tmm1[28194]: 015e0002:5: [pg:0 pu:1] Acquired lock on new blob: pktclass1
+Nov 15 14:22:02 bigip notice tmm[28194]: 015e0002:5: [pg:0 pu:0] Acquired lock on new blob: pktclass1
+Nov 15 14:22:02 bigip notice tmm1[28194]: 015e0002:5: [pg:0 pu:1] Loaded blob: pktclass1
+Nov 15 14:22:02 bigip notice tmm1[28194]: 015e0002:5: [pg:0 pu:1] Released lock on old blob: pktclass2
+Nov 15 14:22:02 bigip notice tmm[28194]: 015e0002:5: [pg:0 pu:0] Loaded blob: pktclass1
+Nov 15 14:22:02 bigip notice tmm1[28194]: 015e0002:5: [pg:0 pu:1] Activated blob: pktclass1
+Nov 15 14:22:02 bigip notice tmm[28194]: 015e0002:5: [pg:0 pu:0] Released lock on old blob: pktclass2
+Nov 15 14:22:02 bigip notice tmm[28194]: 015e0002:5: [pg:0 pu:0] Activated blob: pktclass1
+Nov 15 14:50:02 bigip notice tmm1[28194]: 01010029:5: Clock advanced by 349 ticks
+Nov 15 14:50:02 bigip notice tmm[28194]: 01010029:5: Clock advanced by 670 ticks
+Nov 15 15:01:02 bigip notice tmm[28194]: 01010029:5: Clock advanced by 416 ticks
+Nov 15 15:01:02 bigip notice tmm1[28194]: 01010029:5: Clock advanced by 640 ticks
+Nov 15 15:35:02 bigip notice tmm[28194]: 01010029:5: Clock advanced by 346 ticks
+Nov 15 15:50:02 bigip notice tmm[28194]: 01010029:5: Clock advanced by 328 ticks
