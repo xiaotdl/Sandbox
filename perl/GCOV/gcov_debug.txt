@@ -1,0 +1,275 @@
+Table of Content:
+- geninfo workflow
+- AFM dwbld
+- ASM bd
+
+== geninfo workflow ==
+
+sub gen_info($gc_dir):
+    @file_list = scan data_dir/gc_dir for *.gcda files...
+    $common_prefix = get_common_prefix(1, @file_list);
+    # Scanning /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm for .gcda files ...
+    # Found 76 data files in /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm
+
+    foreach $file (@file_list):
+        process_dafile($file, $common_prefix);
+
+sub process_dafile($file, $dir):
+    # $file = '/tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov/DynSessUrl.gcda'
+    # $dir  = '/tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd'
+    # Processing resp_params_parser/Debug64_gcov/regexp_param_parser.gcda
+
+    $da_filename = $file;  # /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov/DynSessUrl.gcda
+    ($da_dir,              # /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov
+     $da_basename          # DynSessUrl
+    ) = split_filename($da_filename);
+
+    $source_dir = $da_dir; # /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov
+    $base_dir = $base_directory
+                    ? $base_directory # /sources-hook/bigip/project/tmos-tier2/src.1125.0/TrafficShield/secore/bd
+                    : $source_dir;
+
+    $bb_basename = "${da_basename}.gcno"; # DynSessUrl.gcno
+    $bb_filename = "${da_dir}/${bb_basename}"; # /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov/DynSessUrl.gcno
+
+    ($instr,
+    $graph
+    ) = read_gcno($bb_filename);
+    # instr     : filename -> line data
+    # line data : [ line1, line2, ... ]
+    #  DB<35> x 2 $instr
+    # 0  HASH(0x2808150)
+    #    '/usr/include/pthread.h' => ARRAY(0x281b300)
+    #    '/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/gthr-default.h' => ARRAY(0x25fcec8)
+    #    'DynSessUrl.cpp' => ARRAY(0x2821ca8)
+    # graph         : file name -> function data
+    # function data : function name -> line data
+    # line data     : [ line1, line2, ... ]
+    #  DB<36> x 2 $graph
+    # 0  HASH(0x274da08)
+    #   '/usr/include/pthread.h' => HASH(0x2819948)
+    #   '/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h' => HASH(0x274f330)
+    #   'DynSessUrl.cpp' => HASH(0x28237f8)
+
+    # As we read link files for object files, if the real object_dir is different from da_dir,
+    # we will link all da files into the object_dir
+    $object_dir = dirname($bb_filename); # /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov
+    if ($object_dir ne $da_dir)
+        system("ln -s $da_filename $object_dir/${da_basename}.gcda"); # save object file into @tmp_links
+
+    # Change to directory containing data files and apply GCOV
+    chdir($base_dir);
+    system("$gcov_tool $da_filename -o $object_dir @gcov_options")
+    # $ gcov /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov/DynSessUrl.gcda -o /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov -b -p
+    # *.gcov files will be dumped in cwd, which is $base_dir.
+    # *.gcov files use '#' as dir delimiter
+    # e.g.
+    # $ ls /sources-hook/bigip/project/tmos-tier2/src.1125.0/TrafficShield/secore/bd
+    # #usr#include#string.h.gcov
+    # DynSessUrl.cpp.gcov
+    #
+    # The .gcov files contain the : separated fields along with program
+    # source code.  The format is
+    #       <execution_count>:<line_number>:<source line text>
+    # Ref: http://man7.org/linux/man-pages/man1/gcov.1.html
+
+    foreach (@tmp_links) unlink($_); # clean up the data file links we created
+
+    # Collect data from resulting .gcov files and create .info file
+    @gcov_list = get_filenames('.', '\.gcov$');
+
+    # Accumulate the results and write into one file
+    if ($output_filename)
+        open(INFO_HANDLE, ">>", $output_filename) or die "$@";
+
+    # Traverse all generated *.gcov files and combine them into a single .ingo file
+    foreach $gcov_file (@gcov_list):
+        ($source,   # DynSessUrl.cpp
+        $object     # undef
+        ) = read_gcov_header($gcov_file);
+
+        $source = solve_relative_path($base_dir, $source);
+            # $source = "$base_dir/$source";
+            # $source = '/sources-hook/bigip/project/tmos-tier2/src.1125.0/TrafficShield/secore/bd/DynSessUrl.cpp'
+
+        if ($adjust_src_pattern)
+            $source =~ s/$adjust_src_pattern/$adjust_src_replace/g;
+
+        @matches = match_filename($source, keys(%{$instr}));
+        if (scalar(@matches) == 1)
+            $source_filename = $matches[0];
+
+        # Write absolute path of source file
+        printf(INFO_HANDLE "SF:%s\n", $source_filename);
+
+        # Read in contents of gcov file
+        @result = read_gcov_file($gcov_file);
+
+        # Write coverage info(function, brancn, line) into output file
+        printf(INFO_HANDLE "FNDA/BRDA/DA:%s\n", @result);
+
+        # Remove .gcov file after processing
+        unlink($gcov_file);
+
+    close(INFO_HANDLE);
+    # Change back to initial directory
+    chdir($cwd);
+
+
+== AFM dwbld ==
+
+$ sudo ./cli.py --bigip-mgmtip 10.192.10.206 --module afm --daemons dwbld --outdir /home/vagrant/public_html/10.192.10.206/ --mode aftertest
+
+sudo lcov --quiet --ignore-error gcov,source --capture --gcov-tool /usr/bin/gcov-4.8 --directory /tmp/code_coverage_tmpdir/10.192.10.206/gc/afm/dwbld --base-directory /sources-hook/bigip/project/tmos-tier2/src.1125.0/tm_daemon/dwbld --output-file /tmp/code_coverage_tmpdir/10.192.10.206/tracefile/test/coverage.info
+
+lcov invokes geninfo...
+
+== debug == start
+
+sudo perl -d /usr/bin/geninfo /tmp/code_coverage_tmpdir/10.192.10.206/gc/afm/dwbld --output-filename /tmp/code_coverage_tmpdir/10.192.10.206/tracefile/test/coverage.info --base-directory /sources-hook/bigip/project/tmos-tier2/src.1125.0/tm_daemon/dwbld --gcov-tool /usr/bin/gcov-4.8 --ignore-errors gcov,source
+
+973 if ($file =~ /DwblSerializer/) {
+974 $DB::single = 1; # PERL BREAKPOINT
+975 }
+
+1104 if ($file =~ /DwblSerializer/ && $gcov_file =~ /DwblSerializer/) {
+1105 $DB::single = 1; # PERL BREAKPOINT
+1106 }
+1107 ($source, $object) = read_gcov_header($gcov_file);
+
+
+
+DB<2> x $file
+0 '/tmp/code_coverage_tmpdir/10.192.10.206/gc/afm/dwbld/cov_obj/blob/DwblSerializer.gcda'
+DB<6> x $bb_filename
+0 '/tmp/code_coverage_tmpdir/10.192.10.206/gc/afm/dwbld/cov_obj/blob/DwblSerializer.gcno'
+DB<4> x $object_dir
+0 '/tmp/code_coverage_tmpdir/10.192.10.206/gc/afm/dwbld/cov_obj/blob'
+DB<4> x $da_dir
+0 '/tmp/code_coverage_tmpdir/10.192.10.206/gc/afm/dwbld/cov_obj/blob'
+
+
+chdir($base_dir)
+DB<1> x $base_dir
+0 '/sources-hook/bigip/project/tmos-tier2/src.1125.0/tm_daemon/dwbld'
+
+
+
+http://man7.org/linux/man-pages/man1/gcov.1.html
+run gcov command ...
+
+
+ls $base_dir
+blob#DwblSerializer.cpp.gcov
+
+
+DB<13> x $gcov_file
+0 'blob#DwblSerializer.cpp.gcov'
+1107: ($source, $object) = read_gcov_header($gcov_file);
+DB<14> x $source
+0 'blob/DwblSerializer.cpp'
+
+
+1118: $source = solve_relative_path($base_dir, $source);
+DB<17> x $source
+0 '/sources-hook/bigip/project/tmos-tier2/src.1125.0/tm_daemon/dwbld/blob/DwblSerializer.cpp'
+
+
+1139 @matches = match_filename($source, keys(%{$instr}));
+DB<23> x @matches
+0 '/sources-hook/bigip/project/tmos-tier2/src.1125.0/tm_daemon/dwbld/blob/DwblSerializer.cpp'
+1171: if (scalar(@matches) == 1)
+1172 {
+1173 # Just one match
+1174==> $source_filename = $matches[0];
+DB<30> x $source_filename
+0 '/sources-hook/bigip/project/tmos-tier2/src.1125.0/tm_daemon/dwbld/blob/DwblSerializer.cpp'
+
+
+main::process_dafile(/usr/bin/geninfo:1194):
+1194: printf(INFO_HANDLE "SF:%s\n", $source_filename);
+
+== debug == end
+
+
+sudo lcov --remove /tmp/code_coverage_tmpdir/10.192.10.206/tracefile/test/coverage.info '/opt/gcc/4.8.2/include/c++/4.8.2*' 'boost_1_55/boost*' 'cave*' 'cppcommon*' 'f5daemon*' 'leveldb*' 'mcp*' 'pktclass*' 'rest*' 'tmstat*' --output-file /tmp/code_coverage_tmpdir/10.192.10.206/tracefile/test/coverage_filtered.info
+
+sudo genhtml --quiet --ignore-errors source --output-directory /home/vagrant/public_html/10.192.10.206/code_coverage/dwbld /tmp/code_coverage_tmpdir/10.192.10.206/tracefile/test/coverage_filtered.info
+
+http://10.192.10.141/~vagrant/10.192.10.206/code_coverage/dwbld/index.html
+
+
+
+== ASM bd ==
+
+$ sudo ./cli.py --bigip-mgmtip 10.192.10.136 --module asm --daemons bd --outdir /home/vagrant/public_html/10.192.10.136/ --mode aftertest
+
+sudo lcov --quiet --ignore-error gcov,source --capture --directory /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm --base-directory /sources-hook/bigip/project/tmos-tier2/src.1125.0/TrafficShield/secore/bd --output-file /tmp/code_coverage_tmpdir/10.192.10.136/tracefile/test/coverage.info
+
+== debug == start
+
+$ sudo perl -d /usr/bin/geninfo /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm --output-filename /tmp/code_coverage_tmpdir/10.192.10.136/tracefile/test/coverage.info --base-directory /sources-hook/bigip/project/tmos-tier2/src.1125.0/TrafficShield/secore/bd --ignore-errors gcov,source
+
+DB<1> x $file
+0 '/tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov/DynSessUrl.gcda'
+DB<2> x $bb_filename
+0 '/tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov/DynSessUrl.gcno'
+
+DB<5> x $object_dir
+0 '/tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov'
+DB<6> x $da_dir
+0 '/tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov'
+
+
+
+main::process_dafile(/usr/bin/geninfo:1016):
+1016: chdir($base_dir);
+DB<7> x $base_dir
+0 '/sources-hook/bigip/project/tmos-tier2/src.1125.0/TrafficShield/secore/bd'
+
+
+
+main::process_dafile(/usr/bin/geninfo:1027):
+1027: $gcov_error = system_no_output(1, $gcov_tool, $da_filename,
+1028: "-o", $object_dir, @gcov_options);
+
+DB<9> x join(' ', @_)
+0 'gcov /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov/DynSessUrl.gcda -o /tmp/code_coverage_tmpdir/10.192.10.136/gc/asm/asm/bd/resp_params_parser/Debug64_gcov -b -p'
+
+
+
+ls $base_dir
+DynSessUrl.cpp.gcov
+
+
+
+DB<12> x $gcov_file
+0 'DynSessUrl.cpp.gcov'
+
+1107: ($source, $object) = read_gcov_header($gcov_file);
+
+DB<13> x $source
+0 'DynSessUrl.cpp'
+
+
+
+1118: $source = solve_relative_path($base_dir, $source);
+DB<14> x $source
+0 '/sources-hook/bigip/project/tmos-tier2/src.1125.0/TrafficShield/secore/bd/DynSessUrl.cpp'
+
+
+
+1139: @matches = match_filename($source, keys(%{$instr}));
+DB<16> x 2 $instr
+0 HASH(0x16bc098)
+'/sources-hook/bigip/project/tmos-tier2/src.1125.0/TrafficShield/secore/bd/DynSessUrl.cpp' => ARRAY(0x15ddc10)
+
+
+
+...
+
+== debug == end
+
+sudo lcov --remove /tmp/code_coverage_tmpdir/10.192.10.136/tracefile/test/coverage.info '*/f5_build/devfs_x86_64/usr/include/*' --output-file /tmp/code_coverage_tmpdir/10.192.10.136/tracefile/test/coverage_filtered.info
+
+sudo genhtml --quiet --ignore-errors source --output-directory /home/vagrant/public_html/10.192.10.136/code_coverage/bd /tmp/code_coverage_tmpdir/10.192.10.136/tracefile/test/coverage_filtered.info
