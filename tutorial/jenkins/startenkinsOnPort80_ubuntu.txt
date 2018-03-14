@@ -1,0 +1,18 @@
+https://stackoverflow.com/questions/9330367/how-to-configure-jenkins-to-run-on-port-80
+
+Install authbing:
+
+$ sudo apt-get install authbind
+$ sudo touch /etc/authbind/byport/80
+$ sudo chmod 500 /etc/authbind/byport/80
+$ sudo chown jenkins /etc/authbind/byport/80
+
+
+For newer Jenkins installations (1.598) on newer Ubuntu installations (14.04) edit /etc/init.d/jenkins and add authbind before $JAVA
+
+$ exec daemon --name=jenkins --inherit --output=$JENKINS_LOG/jenkins.log \
+--user=$USER -- authbind $JAVA_HOME/bin/java $JAVA_OPTS \
+-jar $JENKINS_ROOT/jenkins.war $JENKINS_ARGS \
+--preferredClassLoader=java.net.URLClassLoader
+
+$ sudo reboot
