@@ -1,3 +1,5 @@
+$ apt-cache search <pkg_pattern>
+
 $ apt list --installed
 ...
 
