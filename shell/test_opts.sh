@@ -1,8 +1,13 @@
 # Ref:
 # https://github.com/docker/docker-install/blob/master/install.sh
 
+set -x
+
+PI=3.14
+
 opt_ansible=0
 opt_terraform=0
+opt_echo_var=0
 while [ $# -gt 0 ]; do
         case "$1" in
                 --ansible)
@@ -11,6 +16,11 @@ while [ $# -gt 0 ]; do
                         ;;
                 --terraform)
                         opt_terraform=1
+                        ;;
+                --echo-var)
+                        opt_echo_var=1
+                        VAR="$2"
+                        shift
                         ;;
                 --*)
                         echo "Illegal option $1"
@@ -33,4 +43,14 @@ if [ $opt_terraform -eq 1 ]; then
     echo "--ansible enabled"
 fi
 
+if [ $opt_terraform -eq 1 ]; then
+    echo "--ansible enabled"
+fi
+
+if [ $opt_echo_var -eq 1 ]; then
+    eval VAR=\$$VAR
+    echo $VAR
+fi
+
 # :!bash test_opts.sh --ansible inventory
+# :!bash test_opts.sh --echo-var PI
