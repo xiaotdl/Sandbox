@@ -28,6 +28,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
 
 # Application definition
 
@@ -40,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'haystack'
 ]
 
 MIDDLEWARE = [
@@ -128,3 +132,12 @@ EMAIL_HOST_USER = 'xiaotian.li.robot@gmail.com'
 EMAIL_HOST_PASSWORD = 'robot123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/blog'
+    },
+}
+
