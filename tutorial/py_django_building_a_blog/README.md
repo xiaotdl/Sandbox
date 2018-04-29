@@ -16,3 +16,4 @@ http://127.0.0.1:8000/blog/tag/django/
 http://127.0.0.1:8000/admin/
 http://127.0.0.1:8000/sitemap.xml
 
+![](py_django_blog.png)
