@@ -22,7 +22,7 @@ def getAvgMinMax(l):
 mma_base = getAvgMinMax(base)
 mma_stock = getAvgMinMax(stock)
 mma_signon = getAvgMinMax(signon)
-mma_total = getAvgMinMax([base[i]*1.15 + stock[i]/4 + signon[i]/4 for i in range(len(stats))])
+mma_total = getAvgMinMax([(base[i]*1.15 + stock[i]/4.0 + signon[i]/4.0) for i in range(len(stats))])
 
 print "sample size: " + str(len(stats))
 print "category: [avg, min, max]"
