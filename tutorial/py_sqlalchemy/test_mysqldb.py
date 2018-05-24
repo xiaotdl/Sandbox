@@ -1,4 +1,10 @@
 #!/usr/bin/python
+"""
+On Ubuntu16.04
+# apt-get install build-essential python-dev libapache2-mod-wsgi-py3 libmysqlclient-dev
+# pip install MYSQL-python
+
+"""
 
 import MySQLdb
 
