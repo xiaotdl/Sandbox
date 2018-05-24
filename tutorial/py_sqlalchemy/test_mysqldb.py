@@ -21,6 +21,16 @@ cursor.execute("SELECT * from task;")
 # 4. fetch data
 print cursor.fetchall()
 
+# sql = """CREATE/INSERT/UPDATE/DELETE"""
+# try:
+#    # Execute the SQL command
+#    cursor.execute(sql)
+#    # Commit your changes in the database
+#    db.commit()
+# except:
+#    # Rollback in case there is any error
+#    db.rollback()
+
 # 5. disconnect from server
 db.close()
 
