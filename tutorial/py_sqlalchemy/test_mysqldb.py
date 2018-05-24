@@ -1,5 +1,6 @@
 #!/usr/bin/python
 """
+Ref: https://www.tutorialspoint.com/python/python_database_access.htm
 On Ubuntu16.04
 # apt-get install build-essential python-dev libapache2-mod-wsgi-py3 libmysqlclient-dev
 # pip install MYSQL-python
