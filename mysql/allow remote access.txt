@@ -12,7 +12,8 @@ mysql> GRANT ALL PRIVILEGES ON *.* TO 'xili'@'%' WITH GRANT OPTION;
 mysql> SELECT user, host FROM mysql.user;
 
 3. comment/remove these lines
-$ sudo vim /etc/mysql/my.cnf
+ubuntu14.04 $ sudo vim /etc/mysql/my.cnf
+ubuntu16.04 $ sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
 # bind-address: IP address you want to connect to.
 # skip-networking: Don’t listen for TCP/IP connections at all. All interaction with mysqld must be made via Unix sockets. This option is highly recommended for systems where only local requests are allowed.
 
