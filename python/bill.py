@@ -12,7 +12,8 @@ ATNT = 'AT&T'
 GARDENER = 'Tony Ngvyen'
 SC_UTILITY = 'Santa Clara Utility'
 SUPERMARKET = '99 Ranch|Costco|Safeway|Target|Walmart'
-STORE = 'Amazon'
+STORE = 'Online|Amazon'
+AMAZON = 'Amazon'
 
 
 def yearly_bill():
@@ -22,6 +23,8 @@ def yearly_bill():
         ['home_insurance#1793', 'house', 270, FARMERS],
 
         ['car_registration#camry', 'car', 300, GOV],
+
+        ['amazon_prime', 'membership', 50, AMAZON],
     ]
 
 def monthly_bill():
