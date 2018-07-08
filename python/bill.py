@@ -35,7 +35,7 @@ def monthly_bill():
         ['internet', 'utility', 80, COMCAST],
         ['power&water&refuse', 'utility', 150, SC_UTILITY],
         ['gas', 'utility', 20, PGNE],
-        ['internet', 'service', 40, GARDENER],
+        ['lawn&gardening', 'service', 40, GARDENER],
 
         ['car_insurance#camry', 'car', int(539/6), FARMERS],
         ['gas&fuel#camry', 'car', 100, GAS_STATION],
