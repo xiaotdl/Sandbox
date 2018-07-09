@@ -14,6 +14,8 @@ SC_UTILITY = 'Santa Clara Utility'
 SUPERMARKET = '99 Ranch|Costco|Safeway|Target|Walmart'
 STORE = 'Online|Amazon'
 AMAZON = 'Amazon'
+NETFLIX = 'Netflix'
+MOVIEPASS = 'MoviePass'
 
 
 def yearly_bill():
@@ -21,6 +23,8 @@ def yearly_bill():
         # name, type, amount, payto
         ['property_tax#1793', 'house', 5539+6419, GOV],
         ['home_insurance#1793', 'house', 270, FARMERS],
+
+        ['gardening', 'service', 200, GARDENER], # tree trimming
 
         ['car_registration#camry', 'car', 300, GOV],
 
@@ -35,13 +39,17 @@ def monthly_bill():
         ['internet', 'utility', 80, COMCAST],
         ['power&water&refuse', 'utility', 150, SC_UTILITY],
         ['gas', 'utility', 20, PGNE],
-        ['lawn&gardening', 'service', 40, GARDENER],
+        ['lawn', 'service', 40, GARDENER],
 
         ['car_insurance#camry', 'car', int(539/6), FARMERS],
         ['gas&fuel#camry', 'car', 100, GAS_STATION],
 
         ['phone(Xiaotian)', 'phone', 35, ATNT],
         ['phone(Wendi)', 'phone', 35, ATNT],
+
+        ['netflix', 'entertainment', 10, NETFLIX],
+        ['moviepass(Xiaotian)', 'entertainment', 8, MOVIEPASS],
+        ['moviepass(Wendi)', 'entertainment', 8, MOVIEPASS],
     ]
 
 def monthly_living_expense():
