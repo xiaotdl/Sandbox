@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 NA = 0
 UNKNOWN = 'N/A'
 
