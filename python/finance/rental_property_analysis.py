@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 """
+This script is running numbers and calculate cash flow stats.
+
 TODO:
     - tax benefits(property tax/interest deductible, property depreciation)
     - loan paydown, property equity growth
