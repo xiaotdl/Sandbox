@@ -1,3 +1,11 @@
+"""
+TODO:
+    - tax benefits(property tax/interest deductible, property depreciation)
+    - property appreciation
+    - projection of rent growth
+"""
+
+
 MONS_PER_YR = 12
 
 
