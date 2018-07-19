@@ -1,6 +1,8 @@
 address = "example address"
 link = "example link"
-description = "example description"
+description = """
+example description
+"""
 
 # == invest/out-of-pocket ==
 purchase_price = 1000000 # USER_INPUT
