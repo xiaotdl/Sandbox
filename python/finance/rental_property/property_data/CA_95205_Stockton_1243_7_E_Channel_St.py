@@ -1,9 +1,12 @@
-address = "example address"
-link = "example link"
-description = "example description"
+address = "1243 7 E Channel St, Stockton, CA 95205"
+link = "https://www.redfin.com/CA/Stockton/1243-Channel-St-95205/home/19796557"
+description = \
+"""
+Great investment property with cash flow!
+"""
 
 # == invest/out-of-pocket ==
-purchase_price = 1000000 # USER_INPUT
+purchase_price = 270000 # USER_INPUT
 
 downpay_percent = 20.00/100 # DEFAULT: 20.00%
 
@@ -16,7 +19,7 @@ est_mortgage_loan_apr = 4.50/100 # DEFAULT: 4.50%
 
 
 # == tax/out-of-pocket ==
-property_tax_rate = 1.50/100 # DEFAULT: 1.50%
+property_tax_rate = 1.23/100 # DEFAULT: 1.50%
 
 
 # == expense/out-of-pocket ==
@@ -28,11 +31,9 @@ est_annual_repair_reserve_expense = 1.00/100 * purchase_price # DEFAULT: 1.00% *
 
 
 # == income/into-pocket ==
-est_vacancy_percent = 5.00/100 # DEFAULT: 5.00%
+est_vacancy_percent = 8.00/100 # DEFAULT: 8.00%
 
-est_monthly_rent = 2400 # USER_INPUT
+est_monthly_rent = 2000 # USER_INPUT
 
 # == service/out-of-pocket ==
-est_annual_property_manager_service_fee_rate = 8.00/100 # DEFAULT: 8.00%
-
-est_annual_lawn_service_fee = 50 * 12 # DEFAULT: 600
+est_annual_property_manager_service_fee_rate = 10.00/100 # DEFAULT: 0.00%

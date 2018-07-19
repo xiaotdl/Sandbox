@@ -1,9 +1,9 @@
-address = "example address"
-link = "example link"
+address = "1278 Warburton Ave, SANTA CLARA, CA 95050"
+link = "https://www.redfin.com/CA/Santa-Clara/1278-Warburton-Ave-95050/home/23048020"
 description = "example description"
 
 # == invest/out-of-pocket ==
-purchase_price = 1000000 # USER_INPUT
+purchase_price = 400000 # USER_INPUT
 
 downpay_percent = 20.00/100 # DEFAULT: 20.00%
 
@@ -28,11 +28,9 @@ est_annual_repair_reserve_expense = 1.00/100 * purchase_price # DEFAULT: 1.00% *
 
 
 # == income/into-pocket ==
-est_vacancy_percent = 5.00/100 # DEFAULT: 5.00%
+est_vacancy_percent = 8.00/100 # DEFAULT: 8.00%
 
 est_monthly_rent = 2400 # USER_INPUT
 
 # == service/out-of-pocket ==
-est_annual_property_manager_service_fee_rate = 8.00/100 # DEFAULT: 8.00%
-
-est_annual_lawn_service_fee = 50 * 12 # DEFAULT: 600
+est_annual_property_manager_service_fee_rate = 0.00/100 # DEFAULT: 0.00%
