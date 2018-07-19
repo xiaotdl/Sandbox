@@ -33,6 +33,6 @@ est_vacancy_percent = 5.00/100 # DEFAULT: 5.00%
 est_monthly_rent = 2400 # USER_INPUT
 
 # == service/out-of-pocket ==
-est_annual_property_manager_service_fee_rate = 8.00/100 # DEFAULT: 8.00%
+est_annual_property_manager_service_fee_rate = 6.00/100 # DEFAULT: 6.00%
 
 est_annual_lawn_service_fee = 50 * 12 # DEFAULT: 600
