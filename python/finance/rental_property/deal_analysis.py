@@ -5,6 +5,7 @@ This script is running numbers and calculate cash flow stats.
 REF: https://www.biggerpockets.com/renewsblog/2010/06/30/introduction-to-real-estate-analysis-investing/
 """
 from __future__ import division
+import os
 import re
 import sys
 import math
@@ -15,6 +16,11 @@ if len(sys.argv) >= 2:
     data_file = sys.argv[1]
 else:
     data_file = "data/example.yml"
+
+OUTPUT_DIR = 'result'
+WRITE_TO_OUTPUT_DIR = False
+if len(sys.argv) >= 3 and sys.argv[2]:
+    WRITE_TO_OUTPUT_DIR = True
 
 DATA = None
 print "importing data from %s" % data_file
@@ -31,8 +37,8 @@ def roundup(f):
 def rounddown(f):
     return int(f)
 
-def show(klass, debug=False):
-    print "== %s ==" % getattr(klass, "_%s__name" % klass.__name__)
+def show(klass, debug=False, stream=sys.stdout):
+    stream.write("== %s ==\n" % getattr(klass, "_%s__name" % klass.__name__))
     if klass.__dict__.get("_%s__attrs_order" % klass.__name__) and debug == False:
         attrs = getattr(klass, "_%s__attrs_order" % klass.__name__)
     else:
@@ -44,8 +50,8 @@ def show(klass, debug=False):
                 if not debug:
                     attr = re.sub(r"^_", "", attr)
                     attr = re.sub(r"_FMT$", "", attr)
-                print "%s: %s" % (attr, value)
-    print
+                stream.write("%s: %s\n" % (attr, value))
+    stream.write("\n")
 
 def calculate_monthly_mortgage_payment(loan, years, apr):
     """ref: https://www.mtgprofessor.com/formulas.htm"""
@@ -329,14 +335,23 @@ class Summary(object):
 
 
 def main():
-    show(Property)
-    show(Purchase)
-    show(Financing)
-    show(Income)
-    show(Expenses)
-    show(Misc)
-    show(Metrics)
-    show(Summary)
+    stream = sys.stdout
+    if WRITE_TO_OUTPUT_DIR:
+        outfilename = os.path.splitext(os.path.basename(data_file))[0] + '.txt'
+        stream = open(os.path.join(OUTPUT_DIR, outfilename), 'w')
+
+    show(Property, stream=stream)
+    show(Purchase, stream=stream)
+    show(Financing, stream=stream)
+    show(Income, stream=stream)
+    show(Expenses, stream=stream)
+    show(Misc, stream=stream)
+    show(Metrics, stream=stream)
+    show(Summary, stream=stream)
+
+    if WRITE_TO_OUTPUT_DIR:
+        stream.close()
+
     sys.exit(0)
 
 
