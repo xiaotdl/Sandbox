@@ -298,26 +298,31 @@ class Summary(object):
     __attrs_order = [
         'PURCHASE_PRICE',
         'TOTAL_COST',
-        'ANNUAL_EXPENSES',
-        'ANNUAL_GROSS_INCOME',
-        'NOI',
-        'CAP_RATE', 
         'DOWNPAY',
+
+        'ANNUAL_GROSS_INCOME',
+        'ANNUAL_EXPENSES',
+        'NOI',
+        'ANNUAL_MORTGAGE_PAYMENT',
         'ANNUAL_CASH_FLOW',
+
+        'CAP_RATE', 
         'CASH_ROI',
         'TOTAL_ROI',
     ]
 
     PURCHASE_PRICE = Purchase.PURCHASE_PRICE
     TOTAL_COST = Purchase._TOTAL_COST
-    ANNUAL_EXPENSES = '-%s' % Expenses._TOTAL_ANNUAL_EXPENSES
+    DOWNPAY = Financing._TOTAL_DOWNPAY_AMOUNT
+
     ANNUAL_GROSS_INCOME = '+%s' % Income._ANNUAL_GROSS_INCOME
+    ANNUAL_EXPENSES = '-%s' % Expenses._TOTAL_ANNUAL_EXPENSES
     NOI = Metrics._NOI
+    ANNUAL_MORTGAGE_PAYMENT = '-%s' % Financing._ANNUAL_MORTGAGE_LOAN_PAYMENT
+    ANNUAL_CASH_FLOW = Metrics._CASH_FLOW
 
     CAP_RATE = Metrics._CAP_RATE_FMT
 
-    DOWNPAY = Financing._TOTAL_DOWNPAY_AMOUNT
-    ANNUAL_CASH_FLOW = Metrics._CASH_FLOW
     CASH_ROI = Metrics._CASH_ROI_FMT
 
     TOTAL_ROI = Metrics._TOTAL_ROI_FMT
