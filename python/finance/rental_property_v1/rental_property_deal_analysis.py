@@ -2,6 +2,8 @@
 """
 This script is running numbers and calculate cash flow stats.
 
+REF: https://www.biggerpockets.com/renewsblog/2010/06/30/introduction-to-real-estate-analysis-investing/
+
 TODO:
     - tax benefits(property tax/interest deductible, property depreciation)
     - loan paydown, property equity growth
@@ -21,6 +23,7 @@ else:
     print "Usage:"
     print "    python %s property_data/example.py" % sys.argv[0]
     print
+
 
 
 MONS_PER_YR = 12

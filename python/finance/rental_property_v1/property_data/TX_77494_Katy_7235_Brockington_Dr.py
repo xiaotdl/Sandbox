@@ -5,7 +5,7 @@ MUST SEE!!!! Amazing 4 bedroom 2 bathroom, Family room with beautiful tile, grea
 """
 
 # == invest/out-of-pocket ==
-purchase_price = 200000 # USER_INPUT
+purchase_price = 215000 # USER_INPUT
 
 downpay_percent = 20.00/100 # DEFAULT: 20.00%
 
@@ -35,10 +35,10 @@ est_annual_repair_reserve_expense = 50 * 12
 est_vacancy_percent = 0.00/100 # DEFAULT: 5.00%
 
 # est_monthly_rent = 1700 # USER_INPUT
-est_monthly_rent = 1700 # USER_INPUT
+est_monthly_rent = 1800 # USER_INPUT
 
 # == service/out-of-pocket ==
-est_annual_property_manager_service_fee_rate = 6.00/100 # DEFAULT: 6.00%
+est_annual_property_manager_service_fee_rate = 8.33/100 # DEFAULT: 6.00%
 
 # est_annual_lawn_service_fee = 30 * 12 # DEFAULT: 600
 est_annual_lawn_service_fee = 0
