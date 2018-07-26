@@ -13,16 +13,16 @@ LOG.addHandler(logging.StreamHandler(sys.stdout))
 API_SERVER = "10.192.10.198"
 API_SERVER_URI = "http://%s" % API_SERVER
 
-BIGIP_MGMT_IP = '10.192.10.243'
+lb_MGMT_IP = '10.192.10.243'
 
 
-def do_task(bigip_mgmt_ip, mode):
+def do_task(lb_mgmt_ip, mode):
     payload = {
         'name': 'test-code-coverage-task',
         'user': 'test',
         'priority': 10,
         'data': {
-            'bigip-mgmt-ip': bigip_mgmt_ip,
+            'lb-mgmt-ip': lb_mgmt_ip,
             'module': 'afm',
             'daemons': 'autodosd',
             'mode': mode
@@ -63,15 +63,15 @@ def wait_task(selflink, interval=1, timeout=60, timeout_msg="Timeout!"):
 
 def main():
     print sys.argv
-    bigip_mgmt_ip = BIGIP_MGMT_IP
+    lb_mgmt_ip = lb_MGMT_IP
     if len(sys.argv) >= 2:
-        bigip_mgmt_ip = sys.argv[1]
+        lb_mgmt_ip = sys.argv[1]
 
     mode = 'check'
     if len(sys.argv) >= 3:
         mode = sys.argv[2]
 
-    (success, resultlink) = do_task(bigip_mgmt_ip, mode)
+    (success, resultlink) = do_task(lb_mgmt_ip, mode)
     if not success:
         return 1
 

@@ -6,7 +6,7 @@
 
 
 ## Feature Requirements
-- User provides BIGIP access information and modules/daemons to be profiled.
+- User provides lb access information and modules/daemons to be profiled.
 - User interacts with the Code Coverage API server.
 - User gets Code Coverage Report.
 
@@ -48,7 +48,7 @@ FK| user_id: int
 code_coverage_task
 --+--
 PF| id: int
-    bigip_mgmt_ip: varchar
+    lb_mgmt_ip: varchar
     module: varchar
     daemons: varchar
     mode: varchar
@@ -68,7 +68,7 @@ Strech:
 POST /api/task/user
 {
 	"name": "xili",
-	"email": "xili@f5.com"
+	"email": "xili@company.com"
 }
 
 2. request service - code-coverage start
@@ -78,7 +78,7 @@ POST /api/task/code-coverage
 	"user": "xili",
 	"priority": 10,
 	"data": {
-		"bigip-mgmt-ip": bigip_mgmt_ip,
+		"lb-mgmt-ip": lb_mgmt_ip,
 		"module": "afm",
 		"daemons": "autodosd",
 		"mode": "start"
@@ -109,7 +109,7 @@ POST /api/task/code-coverage
 	"user": "xili",
 	"priority": 10,
 	"data": {
-		"bigip-mgmt-ip": bigip_mgmt_ip,
+		"lb-mgmt-ip": lb_mgmt_ip,
 		"module": "afm",
 		"daemons": "autodosd",
 		"mode": "end"

@@ -2,7 +2,7 @@
 - [Admin] support delete user through API
 
 - [Code Coverage] integrate cl2tests service
-    - merge web service from Perforce //depot/project/automation/fit/cl2tests/main into GitLab https://gitswarm.f5net.com/secauto/api-service 
+    - merge web service from Perforce //depot/project/automation/fit/cl2tests/main into GitLab https://gitswarm.companynet.com/secauto/api-service 
         - implementation choices:
             - extend cc worker synchronously within a task
             - or decouple into seperate indexing subtask and chained it with cc task (celery chaining)

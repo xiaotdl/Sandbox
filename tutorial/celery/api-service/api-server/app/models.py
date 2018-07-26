@@ -134,12 +134,12 @@ class TestTask(Task):
 
 class CodeCoverageTask(Task):
     id = db.Column(db.ForeignKey('task.id'), primary_key=True)
-    bigip_mgmt_ip = db.Column(db.String(128))
+    lb_mgmt_ip = db.Column(db.String(128))
     module = db.Column(db.String(64))
     daemons = db.Column(db.String(128))
     mode = db.Column(db.String(64))
 
-    required_entities = ['bigip-mgmt-ip', 'module', 'mode']
+    required_entities = ['lb-mgmt-ip', 'module', 'mode']
 
     __mapper_args__ = {
         'polymorphic_identity': 'code_coverage_task',
@@ -151,7 +151,7 @@ class CodeCoverageTask(Task):
     def to_dict(self):
         d = super(CodeCoverageTask, self).to_dict()
         d.update({
-            'bigip_mgmt_ip': self.bigip_mgmt_ip,
+            'lb_mgmt_ip': self.lb_mgmt_ip,
             'module': self.module,
             'daemons': self.daemons,
             'mode': self.mode,

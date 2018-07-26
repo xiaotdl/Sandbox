@@ -5,9 +5,9 @@ from worker.app.util import run, cmd_info, CommandErrorException
 
 
 @celery.task(bind=True)
-def code_coverage_task(self, task_id, bigip_mgmt_ip, module, daemons, mode):
+def code_coverage_task(self, task_id, lb_mgmt_ip, module, daemons, mode):
     print "Invoking code_coverage_task(%s, %s, %s, %s, %s, %s)" \
-            % (self, task_id, bigip_mgmt_ip, module, daemons, mode)
+            % (self, task_id, lb_mgmt_ip, module, daemons, mode)
     self.update_state(state='IN_PROGRESS')
 
     db.update_task_status(task_id, 'STARTED')
@@ -18,7 +18,7 @@ def code_coverage_task(self, task_id, bigip_mgmt_ip, module, daemons, mode):
 
     # tmpdir = '%s/task-%s' % (Config.CODE_COVERAGE_TMPDIR, task_id)
     # shared among start task and end task
-    tmpdir = '%s/bigip-%s' % (Config.CODE_COVERAGE_TMPDIR, bigip_mgmt_ip)
+    tmpdir = '%s/lb-%s' % (Config.CODE_COVERAGE_TMPDIR, lb_mgmt_ip)
     sources_copy_path = '%s/sources-cp' % tmpdir
     outdir = '%s/task-%s' % (Config.CODE_COVERAGE_OUTDIR, task_id)
     # rel_outdir = outdir[len(Config.WORKER_WEB_SERVER_ROOT_FOLDER):]
@@ -39,7 +39,7 @@ def code_coverage_task(self, task_id, bigip_mgmt_ip, module, daemons, mode):
         return (
             'sudo python cli.py'
             + ' --sources-copy-path %s' % sources_copy_path
-            + ' --bigip-mgmtip %s' % bigip_mgmt_ip
+            + ' --lb-mgmtip %s' % lb_mgmt_ip
             + ' --module %s' % module
             + (' --daemons %s' % daemons if daemons else '')
             + ' --outdir %s' % outdir

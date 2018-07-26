@@ -23,8 +23,8 @@ def index():
     host = 'http://{HOST}'.format(HOST=app.config['PUBLIC_IP'])
     if app.config['PORT'] != 80:
         host += ':{PORT}'.format(PORT=app.config['PORT'])
-    return ("Refer to repo: {0}".format(link("https://gitswarm.f5net.com/secauto/api-service")) # noqa
-          + "Refer to api doc: {0}".format(link("https://secauto.pages.gitswarm.f5net.com/api-service-api-doc-page")) # noqa
+    return ("Refer to repo: {0}".format(link("https://gitswarm.companynet.com/secauto/api-service")) # noqa
+          + "Refer to api doc: {0}".format(link("https://secauto.pages.gitswarm.companynet.com/api-service-api-doc-page")) # noqa
           + "<br>==user==</br>" # noqa
           + link(host+URI_API+'/user') # noqa
           + link(host+URI_API+'/user/:user_id') # noqa
@@ -156,7 +156,7 @@ def task_test():
         # persist to db
         user = User.get_user_by_name(name=user_name)
         if not user:
-            email = payload.get('email', '%s@f5.com' % user_name)
+            email = payload.get('email', '%s@company.com' % user_name)
             user = User(name=user_name, email=email)
         user.last_login = datetime.now()
 
@@ -251,7 +251,7 @@ def task_code_coverage():
         user_name = payload['user']
         priority = payload.get('priority', 0)
         data = payload['data']
-        bigip_mgmt_ip = data['bigip-mgmt-ip']
+        lb_mgmt_ip = data['lb-mgmt-ip']
         module = data['module']
         daemons = data.get('daemons', '')
         mode = data['mode']
@@ -259,7 +259,7 @@ def task_code_coverage():
         # persist to db
         user = User.get_user_by_name(name=user_name)
         if not user:
-            email = payload.get('email', '%s@f5.com' % user_name)
+            email = payload.get('email', '%s@company.com' % user_name)
             user = User(name=user_name, email=email)
         user.last_login = datetime.now()
 
@@ -269,7 +269,7 @@ def task_code_coverage():
             name=task_name,
             user=user,
             priority=priority,
-            bigip_mgmt_ip=bigip_mgmt_ip,
+            lb_mgmt_ip=lb_mgmt_ip,
             module=module,
             daemons=daemons,
             mode=mode
@@ -288,7 +288,7 @@ def task_code_coverage():
 
         # schedule task on worker
         future_result = code_coverage_task.apply_async(
-            (task.id, bigip_mgmt_ip, module, daemons, mode),
+            (task.id, lb_mgmt_ip, module, daemons, mode),
             queue='code-coverage'
         )
 
