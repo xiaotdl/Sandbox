@@ -1,0 +1,34 @@
+Render Website:
+https://www.websequencediagrams.com/
+
+Client->APIServer(Flask): POST /tasks
+note right of Client
+{
+    "name": "<name>",
+    "user": "<user>",
+    "priority": "<priority>",
+    "type": "code-coverage",
+    "data": {...}
+}
+end note
+
+APIServer(Flask)->Client: 202 Accepted
+
+APIServer(Flask)<->Database(MySQL):
+
+APIServer(Flask)->Producer(Celery Client):
+
+Producer(Celery Client)->Broker(RabbitMQ):
+
+Broker(RabbitMQ)->Consumer(Celery Worker):
+
+Consumer(Celery Worker)->Datastore(Redis):
+
+Consumer(Celery Worker)->Consumer(Celery Worker): Run Code Coverage program
+
+
+
+loop Polling till task FINISHED
+    Client->APIServer(Flask): GET /tasks/<task_id>
+    APIServer(Flask)->Datastore(Redis):
+end
