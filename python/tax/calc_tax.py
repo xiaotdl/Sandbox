@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 """
-REF: Federal Income Tax
-https://taxfoundation.org/2018-tax-brackets/
-
-REF: CA State Income Tax
-https://taxfoundation.org/state-individual-income-tax-rates-brackets-2018/
+Python script to calculate tax for married couple filing jointly.
 """
 import sys
 
@@ -15,10 +11,15 @@ def debug(msg):
     if DEBUG:
         print msg
 
-# married individuals filing joint return
+# REF: Federal Income Tax
+# https://taxfoundation.org/2018-tax-brackets/
+STD_FEDERAL_COUPLE_DEDUCTION = 24000
 FED_TAX_BRACKETS = [0, 19050, 77400, 165000, 315000, 400000, 600000, sys.maxint]
 FED_TAX_RATES    = [0, 0.12,  0.22,  0.24,   0.32,   0.35,   0.37,   1]
 
+# REF: CA State Income Tax
+# https://taxfoundation.org/state-individual-income-tax-rates-brackets-2018/
+STD_STATE_COUPLE_DEDUCTION = 8472
 STATE_TAX_BRACKETS = [0,    16446, 38990, 61538, 85433, 107960, 551476, 661768, 1000000, 1074996, sys.maxint]
 STATE_TAX_RATES    = [0.01, 0.02,  0.04,  0.06,  0.08,  0.093,  0.103,  0.113,  0.123,   0.133,   1]
 
@@ -45,15 +46,13 @@ def main():
     # <====
 
     # == federal tax ==>
-    std_federal_couple_deduction = 24000
-    effective_federal_income = income - std_federal_couple_deduction
+    effective_federal_income = income - STD_FEDERAL_COUPLE_DEDUCTION
     federal_tax = calc_tax(effective_federal_income, FED_TAX_BRACKETS, FED_TAX_RATES)
     effective_federal_tax_rate = float(federal_tax) / float(effective_federal_income)
     # <====
 
     # == CA state tax ==>
-    std_state_couple_deduction = 8472
-    effective_state_income = income - federal_tax - std_state_couple_deduction
+    effective_state_income = income - federal_tax - STD_STATE_COUPLE_DEDUCTION
     state_tax = calc_tax(effective_state_income, STATE_TAX_BRACKETS, STATE_TAX_RATES)
     effective_state_tax_rate = float(state_tax) / float(effective_state_income)
     # <====
