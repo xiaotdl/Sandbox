@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 """
 Python script to calculate tax for married couple filing jointly.
+
+To compare with:
+    https://smartasset.com/taxes/income-taxes
 """
 import sys
 
