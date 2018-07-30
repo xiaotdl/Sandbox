@@ -18,6 +18,14 @@ STORE = 'Online|Amazon'
 AMAZON = 'Amazon'
 NETFLIX = 'Netflix'
 MOVIEPASS = 'MoviePass'
+NEST = 'Nest'
+
+def _yearly(table):
+    return [[row[0], row[1], 12*row[2], row[3]] for row in table]
+
+
+def _percentage(table, total):
+    return [[row[0], row[1], float("%.2f"%(float(row[2])/float(total)*100)), row[3]] for row in table]
 
 
 def yearly_bill():
@@ -31,6 +39,8 @@ def yearly_bill():
         ['car_registration#camry', 'car', 300, GOV],
 
         ['amazon_prime', 'membership', 50, AMAZON],
+
+        ['nest_indoor_cam', 'membership', 50, NEST],
     ]
 
 def monthly_bill():
@@ -49,7 +59,8 @@ def monthly_bill():
         ['phone(Xiaotian)', 'phone', 35, ATNT],
         ['phone(Wendi)', 'phone', 35, ATNT],
 
-        ['netflix', 'entertainment', 10, NETFLIX],
+        # ['netflix', 'entertainment', 10, NETFLIX],
+
         ['moviepass(Xiaotian)', 'entertainment', 8, MOVIEPASS],
         ['moviepass(Wendi)', 'entertainment', 8, MOVIEPASS],
     ]
@@ -59,13 +70,13 @@ def monthly_living_expense():
         # name, type, amount, payto
         # ['', 'groceries', NA, SUPERMARKET],
         # ['', 'restaurant', NA, RESTAURANT],
-        ['', 'food&dining', 1300, UNKNOWN],
-        ['', 'shopping', 500, STORE],
-        ['', 'entertainment', 200, UNKNOWN],
+        ['food&dining', 'food&dining', 1300, UNKNOWN],
+        ['shopping', 'shopping', 500, STORE],
+        ['entertainment', 'entertainment', 200, UNKNOWN],
     ]
 
-def show(table):
-    table.insert(0, ['name', 'type', 'amount($)', 'payto'])
+def show(table, header=['name', 'type', 'amount($)', 'payto']):
+    table.insert(0, header)
     max_col_lens = [0 for x in range(len(table[0]))]
     for c in range(len(table[0])):
         for r in range(len(table)):
@@ -79,6 +90,10 @@ def show(table):
             padding = (max_col_lens[j] - 2 - len(str(table[i][j]))) * ' '
             if isinstance(table[i][j], int):
                 line.append(' ' + padding + str(table[i][j]) + ' ')
+            elif isinstance(table[i][j], float):
+                formatted_float = "%.2f" % table[i][j]
+                padding = (max_col_lens[j] - 2 - len(formatted_float)) * ' '
+                line.append(' ' + padding + formatted_float + ' ')
             else:
                 line.append(' ' + str(table[i][j]) + padding + ' ')
         print '|' + '|'.join(line) + '|'
@@ -112,6 +127,13 @@ def main():
 
     yearly_total = 12 * monthly_total
     print 'yearly total:', yearly_total
+
+    show(
+        _percentage(
+            yearly_bill() + _yearly(monthly_bill()) + _yearly(monthly_living_expense()),
+            yearly_total),
+        header=['name', 'type', 'percentage(%)', 'payto'])
+    print
 
 
 
