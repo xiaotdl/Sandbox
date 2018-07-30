@@ -19,13 +19,15 @@ AMAZON = 'Amazon'
 NETFLIX = 'Netflix'
 MOVIEPASS = 'MoviePass'
 NEST = 'Nest'
+CHILD_GYM = 'Child Gym'
+
 
 def _yearly(table):
     return [[row[0], row[1], 12*row[2], row[3]] for row in table]
 
 
 def _percentage(table, total):
-    return [[row[0], row[1], float("%.2f"%(float(row[2])/float(total)*100)), row[3]] for row in table]
+    return [[row[0], row[1], row[2], float("%.2f"%(float(row[2])/float(total)*100)), row[3]] for row in table]
 
 
 def yearly_bill():
@@ -63,6 +65,8 @@ def monthly_bill():
 
         ['moviepass(Xiaotian)', 'entertainment', 8, MOVIEPASS],
         ['moviepass(Wendi)', 'entertainment', 8, MOVIEPASS],
+
+        ['gym(Chloe)', 'education', 80, CHILD_GYM],
     ]
 
 def monthly_living_expense():
@@ -132,7 +136,7 @@ def main():
         _percentage(
             yearly_bill() + _yearly(monthly_bill()) + _yearly(monthly_living_expense()),
             yearly_total),
-        header=['name', 'type', 'percentage(%)', 'payto'])
+        header=['name', 'type', 'amount($)', 'percentage(%)', 'payto'])
     print
 
 
