@@ -50,21 +50,21 @@ def monthly_bill():
         # name, type, amount, payto
         ['house_loan#1793', 'house', 3208, MERIWEST],
 
-        ['internet', 'utility', 80, COMCAST],
+        ['internet', 'utility', 50, ATNT],
         ['power&water&refuse', 'utility', 150, SC_UTILITY],
         ['gas', 'utility', 20, PGNE],
         ['lawn', 'service', 40, GARDENER],
 
         ['car_insurance#camry', 'car', int(539/6), FARMERS],
-        ['gas&fuel#camry', 'car', 100, GAS_STATION],
+        ['gas&fuel#camry', 'car', 120, GAS_STATION],
 
         ['phone(Xiaotian)', 'phone', 35, ATNT],
         ['phone(Wendi)', 'phone', 35, ATNT],
 
         # ['netflix', 'entertainment', 10, NETFLIX],
 
-        ['moviepass(Xiaotian)', 'entertainment', 8, MOVIEPASS],
-        ['moviepass(Wendi)', 'entertainment', 8, MOVIEPASS],
+        # ['moviepass(Xiaotian)', 'entertainment', 8, MOVIEPASS],
+        # ['moviepass(Wendi)', 'entertainment', 8, MOVIEPASS],
 
         ['gym(Chloe)', 'education', 80, CHILD_GYM],
     ]
