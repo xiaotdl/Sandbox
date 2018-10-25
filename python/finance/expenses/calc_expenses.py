@@ -5,13 +5,17 @@ UNKNOWN = 'N/A'
 
 # PAYEE
 GOV = 'Government'
+HOA = 'HOA'
 MERIWEST = 'Meriwest Credit Union'
+CHASE = 'JPMorgan Chase Bank'
 FARMERS = 'Farmers Insurance'
+BASS = 'Bass Insurance'
 GAS_STATION = 'Chevron|Shell'
 COMCAST = 'Comcast'
 PGNE = 'PG&E'
 ATNT = 'AT&T'
-GARDENER = 'Tony Ngvyen'
+GARDENER1 = 'Tony Ngvyen'
+GARDENER2 = 'TBD'
 SC_UTILITY = 'Santa Clara Utility'
 SUPERMARKET = '99 Ranch|Costco|Safeway|Target|Walmart'
 STORE = 'Online|Amazon'
@@ -19,7 +23,8 @@ AMAZON = 'Amazon'
 NETFLIX = 'Netflix'
 MOVIEPASS = 'MoviePass'
 NEST = 'Nest'
-CHILD_GYM = 'Child Gym'
+KINDERGARTEN = 'BB Tree Kindergarten'
+BABY_GYM = 'Baby Gym'
 
 
 def _yearly(table):
@@ -27,18 +32,27 @@ def _yearly(table):
 
 
 def _percentage(table, total):
-    return [[row[0], row[1], row[2], float("%.2f"%(float(row[2])/float(total)*100)), row[3]] for row in table]
+    return [[row[0], row[1], row[2]/12, row[2], float("%.2f"%(float(row[2])/float(total)*100)), row[3]] for row in table]
 
 
 def yearly_bill():
     return [
         # name, type, amount, payto
-        ['property_tax#1793', 'house', 5539+6419, GOV],
-        ['home_insurance#1793', 'house', 270, FARMERS],
+        ['property_tax@jackson', 'house', 5539+6419, GOV],
+        ['home_insurance@jackson', 'house', 270, FARMERS],
+        ['gardening@jackson', 'service', 200, GARDENER1], # tree trimming
 
-        ['gardening', 'service', 200, GARDENER], # tree trimming
+        ['property_tax@cactus_rose', 'house', 5100, GOV],
+        ['hoa@cactus_rose', 'house', 400, HOA],
+        ['home_insurance@cactus_rose', 'house', 1147, BASS],
+        ['gardening@cactus_rose', 'service', 200, GARDENER2], # tree trimming
 
-        ['car_registration#camry', 'car', 300, GOV],
+        ['property_tax@lake_hollow', 'house', 4800, GOV],
+        ['hoa@lake_hollow', 'house', 400, HOA],
+        ['home_insurance@lake_hollow', 'house', 1106, FARMERS],
+        ['gardening@lake_hollow', 'service', 200, GARDENER2], # tree trimming
+
+        ['car_registration@camry', 'car', 300, GOV],
 
         ['amazon_prime', 'membership', 50, AMAZON],
 
@@ -48,15 +62,26 @@ def yearly_bill():
 def monthly_bill():
     return [
         # name, type, amount, payto
-        ['house_loan#1793', 'house', 3208, MERIWEST],
+        ['house_loan@jackson', 'house', 3208, MERIWEST],
+        ['internet@jackson', 'utility', 50, ATNT],
+        ['power&water&refuse@jackson', 'utility', 150, SC_UTILITY],
+        ['gas@jackson', 'utility', 20, PGNE],
+        ['lawn@jackson', 'service', 40, GARDENER1],
 
-        ['internet', 'utility', 50, ATNT],
-        ['power&water&refuse', 'utility', 150, SC_UTILITY],
-        ['gas', 'utility', 20, PGNE],
-        ['lawn', 'service', 40, GARDENER],
+        ['house_loan@cactus_rose', 'house', 685, CHASE],
+        ['internet@cactus_rose', 'utility', NA, ATNT],
+        ['power&water&refuse@cactus_rose', 'utility', NA, SC_UTILITY],
+        ['gas@cactus_rose', 'utility', NA, PGNE],
+        ['lawn@cactus_rose', 'service', 45 * 2, GARDENER2], # bi-weekly
 
-        ['car_insurance#camry', 'car', int(539/6), FARMERS],
-        ['gas&fuel#camry', 'car', 120, GAS_STATION],
+        ['house_loan@lake_hollow', 'house', 645, CHASE],
+        ['internet@lake_hollow', 'utility', NA, ATNT],
+        ['power&water&refuse@lake_hollow', 'utility', NA, SC_UTILITY],
+        ['gas@lake_hollow', 'utility', NA, PGNE],
+        ['lawn@lake_hollow', 'service', 45 * 2, GARDENER2], # bi-weekly
+
+        ['car_insurance@camry', 'car', int(539/6), FARMERS],
+        ['car_gas@camry', 'car', 120, GAS_STATION],
 
         ['phone(Xiaotian)', 'phone', 35, ATNT],
         ['phone(Wendi)', 'phone', 35, ATNT],
@@ -66,7 +91,8 @@ def monthly_bill():
         # ['moviepass(Xiaotian)', 'entertainment', 8, MOVIEPASS],
         # ['moviepass(Wendi)', 'entertainment', 8, MOVIEPASS],
 
-        ['gym(Chloe)', 'education', 80, CHILD_GYM],
+        ['kindergarten(Chloe)', 'education', 1600, KINDERGARTEN],
+        ['gym(Chloe)', 'education', 80, BABY_GYM],
     ]
 
 def monthly_living_expense():
@@ -136,7 +162,7 @@ def main():
         _percentage(
             yearly_bill() + _yearly(monthly_bill()) + _yearly(monthly_living_expense()),
             yearly_total),
-        header=['name', 'type', 'amount($)', 'percentage(%)', 'payto'])
+        header=['name', 'type', 'amount($/mon)', 'amount($/yr)','percentage(%)', 'payto'])
     print
 
 
