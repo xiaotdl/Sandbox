@@ -1,0 +1,35 @@
+How to run a program with shared lib?
+
+1) Add following line to .bashrc:
+```
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+```
+
+
+2) Create a Makefile:
+```
+# Makefile for Writing Make Files Example
+
+# *****************************************************
+# Variables to control Makefile operation
+
+CXX = g++
+CXXFLAGS = -Wall -g -std=c++11
+
+LIB_PATH = /usr/local/lib
+USER_LIB = -L $(LIB_PATH) -l glog
+
+# ****************************************************
+# Executable:
+
+main: main.o
+    $(CXX) $(CXXFLAGS) -o main main.o $(USER_LIB)
+
+# Targets:
+
+main.o: main.cpp
+    $(CXX) $(CXXFLAGS) -c main.cpp
+```
+
+3) Compile and run the program:
+$ make && ./main
