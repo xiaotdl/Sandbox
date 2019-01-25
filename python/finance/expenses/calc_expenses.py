@@ -43,7 +43,7 @@ def _tag(table):
     tag2amount = collections.defaultdict(int)
     for r in table:
         name = r[0]
-        amount = r[2] 
+        amount = r[2]
         if "@" in name:
             tag = name.split("@")[1]
             tag2amount[tag] += amount
