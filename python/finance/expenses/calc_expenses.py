@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import collections
 
 NA = 0
 UNKNOWN = 'N/A'
@@ -17,12 +18,14 @@ ATNT = 'AT&T'
 GARDENER1 = 'Tony Ngvyen'
 GARDENER2 = 'TBD'
 SC_UTILITY = 'Santa Clara Utility'
+COUNTY_UTILITY = 'County Utility'
 SUPERMARKET = '99 Ranch|Costco|Safeway|Target|Walmart'
 STORE = 'Online|Amazon'
 AMAZON = 'Amazon'
 NETFLIX = 'Netflix'
 MOVIEPASS = 'MoviePass'
 NEST = 'Nest'
+LANDLORD = 'Landlord'
 KINDERGARTEN = 'BB Tree Kindergarten'
 BABY_GYM = 'Baby Gym'
 
@@ -34,12 +37,31 @@ def _yearly(table):
 def _percentage(table, total):
     return [[row[0], row[1], row[2]/12, row[2], float("%.2f"%(float(row[2])/float(total)*100)), row[3]] for row in table]
 
+# convert [[name, type, amount, payto]]
+# into    [[tag, amount($/mon), amount($/yr)]]
+def _tag(table):
+    tag2amount = collections.defaultdict(int)
+    for r in table:
+        name = r[0]
+        amount = r[2] 
+        if "@" in name:
+            tag = name.split("@")[1]
+            tag2amount[tag] += amount
+        else:
+            raise "Please tag the name!"
+
+    output_table = []
+    for tag, amount in tag2amount.items():
+        output_table.append([tag, int(amount/12), amount])
+    output_table.sort(key=lambda r: r[2], reverse=True) # sort by yr amount, in decreasing order
+    return output_table
+
 
 def yearly_bill():
     return [
         # name, type, amount, payto
         ['property_tax@jackson', 'house', 5539+6419, GOV],
-        ['home_insurance@jackson', 'house', 270, FARMERS],
+        ['home_insurance@jackson', 'house', 781, FARMERS],
         ['gardening@jackson', 'service', 200, GARDENER1], # tree trimming
 
         ['property_tax@cactus_rose', 'house', 5100, GOV],
@@ -54,45 +76,55 @@ def yearly_bill():
 
         ['car_registration@camry', 'car', 300, GOV],
 
-        ['amazon_prime', 'membership', 50, AMAZON],
+        # ['amazon_prime', 'membership', 50, AMAZON],
 
-        ['nest_indoor_cam', 'membership', 50, NEST],
+        # ['nest_indoor_cam', 'membership', 50, NEST],
     ]
 
 def monthly_bill():
     return [
         # name, type, amount, payto
         ['house_loan@jackson', 'house', 3208, MERIWEST],
-        ['internet@jackson', 'utility', 50, ATNT],
-        ['power&water&refuse@jackson', 'utility', 150, SC_UTILITY],
-        ['gas@jackson', 'utility', 20, PGNE],
+        # ['internet@jackson', 'utility', 50, ATNT],
+        # ['water&refuse@jackson', 'utility', 150, SC_UTILITY],
+        # ['electricity@jackson', 'utility', 50, SC_UTILITY],
+        # ['gas@jackson', 'utility', 20, PGNE],
         ['lawn@jackson', 'service', 40, GARDENER1],
 
+        ['house_rent@lido', 'house', 2500, LANDLORD],
+        ['internet@lido', 'utility', 45, COMCAST],
+        # ['power&water&refuse@lido', 'utility', 150, COUNTY_UTILITY],
+        ['electricity@lido', 'utility', 50, COUNTY_UTILITY],
+        ['gas@lido', 'utility', 20, PGNE],
+        # ['lawn@lido', 'service', 40, GARDENER1],
+
         ['house_loan@cactus_rose', 'house', 685, CHASE],
-        ['internet@cactus_rose', 'utility', NA, ATNT],
-        ['power&water&refuse@cactus_rose', 'utility', NA, SC_UTILITY],
-        ['gas@cactus_rose', 'utility', NA, PGNE],
-        ['lawn@cactus_rose', 'service', 45 * 2, GARDENER2], # bi-weekly
+        ['internet@cactus_rose', 'utility', 50, ATNT],
+        ['water&refuse@cactus_rose', 'utility', 100, COUNTY_UTILITY],
+        ['electricity@cactus_rose', 'utility', 100, COUNTY_UTILITY],
+        ['gas@cactus_rose', 'utility', 50, PGNE],
+        ['lawn@cactus_rose', 'service', 35, GARDENER2], # bi-weekly
 
         ['house_loan@lake_hollow', 'house', 645, CHASE],
-        ['internet@lake_hollow', 'utility', NA, ATNT],
-        ['power&water&refuse@lake_hollow', 'utility', NA, SC_UTILITY],
-        ['gas@lake_hollow', 'utility', NA, PGNE],
-        ['lawn@lake_hollow', 'service', 45 * 2, GARDENER2], # bi-weekly
+        ['internet@lake_hollow', 'utility', 50, ATNT],
+        ['water&refuse@lake_hollow', 'utility', 100, COUNTY_UTILITY],
+        ['electricity@lake_hollow', 'utility', 100, COUNTY_UTILITY],
+        ['gas@lake_hollow', 'utility', 50, PGNE],
+        ['lawn@lake_hollow', 'service', 35, GARDENER2], # bi-weekly
 
         ['car_insurance@camry', 'car', int(539/6), FARMERS],
-        ['car_gas@camry', 'car', 120, GAS_STATION],
+        ['car_gas@camry', 'car', 150, GAS_STATION],
 
-        ['phone(Xiaotian)', 'phone', 35, ATNT],
-        ['phone(Wendi)', 'phone', 35, ATNT],
+        ['phone@xiaotian', 'phone', 35, ATNT],
+        ['phone@wendi', 'phone', 35, ATNT],
 
         # ['netflix', 'entertainment', 10, NETFLIX],
 
         # ['moviepass(Xiaotian)', 'entertainment', 8, MOVIEPASS],
         # ['moviepass(Wendi)', 'entertainment', 8, MOVIEPASS],
 
-        ['kindergarten(Chloe)', 'education', 1600, KINDERGARTEN],
-        ['gym(Chloe)', 'education', 80, BABY_GYM],
+        ['kindergarten@chloe', 'education', 1600, KINDERGARTEN],
+        # ['gym(Chloe)', 'education', 80, BABY_GYM],
     ]
 
 def monthly_living_expense():
@@ -100,9 +132,9 @@ def monthly_living_expense():
         # name, type, amount, payto
         # ['', 'groceries', NA, SUPERMARKET],
         # ['', 'restaurant', NA, RESTAURANT],
-        ['food&dining', 'food&dining', 1300, UNKNOWN],
-        ['shopping', 'shopping', 500, STORE],
-        ['entertainment', 'entertainment', 200, UNKNOWN],
+        ['food&dining@family', 'food&dining', 1300, UNKNOWN],
+        ['shopping@family', 'shopping', 500, STORE],
+        ['entertainment@family', 'entertainment', 200, UNKNOWN],
     ]
 
 def show(table, header=['name', 'type', 'amount($)', 'payto']):
@@ -158,11 +190,20 @@ def main():
     yearly_total = 12 * monthly_total
     print 'yearly total:', yearly_total
 
+    print 'expense items:'
     show(
         _percentage(
             yearly_bill() + _yearly(monthly_bill()) + _yearly(monthly_living_expense()),
             yearly_total),
         header=['name', 'type', 'amount($/mon)', 'amount($/yr)','percentage(%)', 'payto'])
+    print
+
+    print 'expense items group by tag:'
+    show(
+        _tag(
+            yearly_bill() + _yearly(monthly_bill()) + _yearly(monthly_living_expense())
+        ),
+        header=['tag', 'amount($/mon)', 'amount($/yr)'])
     print
 
 
