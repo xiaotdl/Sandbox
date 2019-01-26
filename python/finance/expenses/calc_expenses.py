@@ -38,8 +38,8 @@ def _percentage(table, total):
     return [[row[0], row[1], row[2]/12, row[2], float("%.2f"%(float(row[2])/float(total)*100)), row[3]] for row in table]
 
 # convert [[name, type, amount, payto]]
-# into    [[tag, amount($/mon), amount($/yr)]]
-def _tag(table):
+# into    [[tag, amount($/mon), amount($/yr), percentage(%)]]
+def _tag(table, total):
     tag2amount = collections.defaultdict(int)
     for r in table:
         name = r[0]
@@ -52,7 +52,7 @@ def _tag(table):
 
     output_table = []
     for tag, amount in tag2amount.items():
-        output_table.append([tag, int(amount/12), amount])
+        output_table.append([tag, int(amount/12), amount, float("%.2f"%(float(amount)/float(total)*100))])
     output_table.sort(key=lambda r: r[2], reverse=True) # sort by yr amount, in decreasing order
     return output_table
 
@@ -102,14 +102,14 @@ def monthly_bill():
         ['internet@cactus_rose', 'utility', 50, ATNT],
         ['water&refuse@cactus_rose', 'utility', 100, COUNTY_UTILITY],
         ['electricity@cactus_rose', 'utility', 100, COUNTY_UTILITY],
-        ['gas@cactus_rose', 'utility', 50, PGNE],
+        ['gas@cactus_rose', 'utility', 70, PGNE],
         ['lawn@cactus_rose', 'service', 35, GARDENER2], # bi-weekly
 
         ['house_loan@lake_hollow', 'house', 645, CHASE],
         ['internet@lake_hollow', 'utility', 50, ATNT],
         ['water&refuse@lake_hollow', 'utility', 100, COUNTY_UTILITY],
         ['electricity@lake_hollow', 'utility', 100, COUNTY_UTILITY],
-        ['gas@lake_hollow', 'utility', 50, PGNE],
+        ['gas@lake_hollow', 'utility', 60, PGNE],
         ['lawn@lake_hollow', 'service', 35, GARDENER2], # bi-weekly
 
         ['car_insurance@camry', 'car', int(539/6), FARMERS],
@@ -195,15 +195,15 @@ def main():
         _percentage(
             yearly_bill() + _yearly(monthly_bill()) + _yearly(monthly_living_expense()),
             yearly_total),
-        header=['name', 'type', 'amount($/mon)', 'amount($/yr)','percentage(%)', 'payto'])
+        header=['name', 'type', 'amount($/mon)', 'amount($/yr)', 'percentage(%)', 'payto'])
     print
 
     print 'expense items group by tag:'
     show(
         _tag(
-            yearly_bill() + _yearly(monthly_bill()) + _yearly(monthly_living_expense())
-        ),
-        header=['tag', 'amount($/mon)', 'amount($/yr)'])
+            yearly_bill() + _yearly(monthly_bill()) + _yearly(monthly_living_expense()),
+            yearly_total),
+        header=['tag', 'amount($/mon)', 'amount($/yr)', 'percentage(%)'])
     print
 
 
