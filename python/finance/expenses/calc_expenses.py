@@ -28,6 +28,7 @@ NEST = 'Nest'
 LANDLORD = 'Landlord'
 KINDERGARTEN = 'BB Tree Kindergarten'
 BABY_GYM = 'Baby Gym'
+BMW_DEALER = "BMW Dealer"
 
 
 def _yearly(table):
@@ -74,7 +75,10 @@ def yearly_bill():
         ['home_insurance@lake_hollow', 'house', 1106, FARMERS],
         ['gardening@lake_hollow', 'service', 200, GARDENER2], # tree trimming
 
-        ['car_registration@camry', 'car', 300, GOV],
+        # ['car_registration@camry', 'car', 300, GOV],
+        ['car_registration@bmwX5', 'car', 650, GOV],
+        ['car_maintainance@bmwX5', 'car', 500+1000, BMW_DEALER],
+        ['car_guarantee@bmwX5', 'car', int(5000/4), BMW_DEALER],
 
         # ['amazon_prime', 'membership', 50, AMAZON],
 
@@ -112,8 +116,10 @@ def monthly_bill():
         ['gas@lake_hollow', 'utility', 60, PGNE],
         ['lawn@lake_hollow', 'service', 35, GARDENER2], # bi-weekly
 
-        ['car_insurance@camry', 'car', int(539/6), FARMERS],
-        ['car_gas@camry', 'car', 150, GAS_STATION],
+        # ['car_insurance@camry', 'car', int(539/6), FARMERS],
+        # ['car_gas@camry', 'car', 150, GAS_STATION],
+        ['car_insurance@bmwX5', 'car', int(851/6), FARMERS],
+        ['car_gas@bmwX5', 'car', 180, GAS_STATION],
 
         ['phone@xiaotian', 'phone', 35, ATNT],
         ['phone@wendi', 'phone', 35, ATNT],
