@@ -28,6 +28,7 @@ NEST = 'Nest'
 LANDLORD = 'Landlord'
 KINDERGARTEN = 'BB Tree Kindergarten'
 BABY_GYM = 'Baby Gym'
+CITY_SPORTS = 'City Sports'
 
 
 def _yearly(table):
@@ -48,7 +49,7 @@ def _tag(table, total):
             tag = name.split("@")[1]
             tag2amount[tag] += amount
         else:
-            raise "Please tag the name!"
+            raise Exception("Please tag the name!")
 
     output_table = []
     for tag, amount in tag2amount.items():
@@ -76,14 +77,17 @@ def yearly_bill():
 
         ['car_registration@camry', 'car', 300, GOV],
 
+        ['city_sports@family', 'fitness', 50, CITY_SPORTS],
         # ['amazon_prime', 'membership', 50, AMAZON],
 
-        # ['nest_indoor_cam', 'membership', 50, NEST],
+        ['nest_indoor_cam@family', 'membership', 50, NEST],
     ]
 
 def monthly_bill():
     return [
         # name, type, amount, payto
+
+        ## house
         ['house_loan@jackson', 'house', 3208, MERIWEST],
         # ['internet@jackson', 'utility', 50, ATNT],
         # ['water&refuse@jackson', 'utility', 150, SC_UTILITY],
@@ -91,6 +95,7 @@ def monthly_bill():
         # ['gas@jackson', 'utility', 20, PGNE],
         ['lawn@jackson', 'service', 40, GARDENER1],
 
+        ## rent
         ['house_rent@lido', 'house', 2500, LANDLORD],
         ['internet@lido', 'utility', 45, COMCAST],
         # ['power&water&refuse@lido', 'utility', 150, COUNTY_UTILITY],
@@ -98,6 +103,7 @@ def monthly_bill():
         ['gas@lido', 'utility', 20, PGNE],
         # ['lawn@lido', 'service', 40, GARDENER1],
 
+        ## house
         ['house_loan@cactus_rose', 'house', 685, CHASE],
         ['internet@cactus_rose', 'utility', 50, ATNT],
         ['water&refuse@cactus_rose', 'utility', 100, COUNTY_UTILITY],
@@ -105,6 +111,7 @@ def monthly_bill():
         ['gas@cactus_rose', 'utility', 70, PGNE],
         ['lawn@cactus_rose', 'service', 35, GARDENER2], # bi-weekly
 
+        ## house
         ['house_loan@lake_hollow', 'house', 645, CHASE],
         ['internet@lake_hollow', 'utility', 50, ATNT],
         ['water&refuse@lake_hollow', 'utility', 100, COUNTY_UTILITY],
@@ -112,18 +119,24 @@ def monthly_bill():
         ['gas@lake_hollow', 'utility', 60, PGNE],
         ['lawn@lake_hollow', 'service', 35, GARDENER2], # bi-weekly
 
+        ## car
         ['car_insurance@camry', 'car', int(539/6), FARMERS],
         ['car_gas@camry', 'car', 150, GAS_STATION],
 
+        ## phone
         ['phone@xiaotian', 'phone', 35, ATNT],
         ['phone@wendi', 'phone', 35, ATNT],
+
+        ## entertainment
+        ['city_sports@family', 'fitness', 45 + 20 + 10, CITY_SPORTS],
 
         # ['netflix', 'entertainment', 10, NETFLIX],
 
         # ['moviepass(Xiaotian)', 'entertainment', 8, MOVIEPASS],
         # ['moviepass(Wendi)', 'entertainment', 8, MOVIEPASS],
 
-        ['kindergarten@chloe', 'education', 1600, KINDERGARTEN],
+        ## dependent
+        ['kindergarten@chloe', 'education', 1300, KINDERGARTEN],
         # ['gym(Chloe)', 'education', 80, BABY_GYM],
     ]
 

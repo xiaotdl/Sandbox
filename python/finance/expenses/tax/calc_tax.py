@@ -43,7 +43,7 @@ def calc_tax(income, TAX_BRACKETS, TAX_RATES):
 
 def main():
     # == user input ==>
-    income = 200000
+    income = 280000
     if len(sys.argv) >= 2:
         income = int(sys.argv[1])
     # <====
