@@ -28,11 +28,8 @@ NEST = 'Nest'
 LANDLORD = 'Landlord'
 KINDERGARTEN = 'BB Tree Kindergarten'
 BABY_GYM = 'Baby Gym'
-<<<<<<< HEAD
 CITY_SPORTS = 'City Sports'
-=======
 BMW_DEALER = "BMW Dealer"
->>>>>>> 5cbc5b5c2f520028b53d919cad68bc500a0bba39
 
 
 def _yearly(table):
@@ -126,16 +123,10 @@ def monthly_bill():
         ['gas@lake_hollow', 'utility', 60, PGNE],
         ['lawn@lake_hollow', 'service', 35, GARDENER2], # bi-weekly
 
-<<<<<<< HEAD
-        ## car
-        ['car_insurance@camry', 'car', int(539/6), FARMERS],
-        ['car_gas@camry', 'car', 150, GAS_STATION],
-=======
         # ['car_insurance@camry', 'car', int(539/6), FARMERS],
         # ['car_gas@camry', 'car', 150, GAS_STATION],
         ['car_insurance@bmwX5', 'car', int(851/6), FARMERS],
         ['car_gas@bmwX5', 'car', 180, GAS_STATION],
->>>>>>> 5cbc5b5c2f520028b53d919cad68bc500a0bba39
 
         ## phone
         ['phone@xiaotian', 'phone', 35, ATNT],
