@@ -15,9 +15,14 @@ void printBits(NUM num) {
   ((data) = ((data) & (~GETMASK((index), (size)))) | \
        (((uint64_t)value) << (index)))
 
+void set_bits_32 (uint32_t* data, uint8_t offset, uint8_t n) {
+  if (n == 0) return;
+  uint32_t mask = 0xFFFFFFFF >> (32-n);
+  *data |= (mask << offset);
+}
+
 // To Run: !g++ -std=c++14 -Wall % && ./a.out
-int main() {
-  printBits(1ULL);
+int main() { printBits(1ULL);
   cout << endl;
 
   printBits(-58);
@@ -38,6 +43,14 @@ int main() {
   uint64_t num = 3ULL;
   WRITETO(num, 0, 0, 4);
   printBits(num);
+
+  {
+    cout << "111" << endl;
+    uint32_t* data = static_cast<uint32_t*>(calloc(1, sizeof(uint32_t)));
+    set_bits_32(&data[0], 0, 2);
+    printBits(data[0]);
+    free(data);
+  }
 
   cout << "EOP" << endl;
 }
