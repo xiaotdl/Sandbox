@@ -116,6 +116,20 @@ int main() {
     // unique_ptr<BigData> bdUptr = make_unique<BigData>(); 
     auto bdUptr = make_unique<BigData>();  // same as above
   }
+  {
+    // int main(int argc, char* argv[]);
+    // is equivalent to:
+    // int main(int argc, char** argv);
+    //
+    // argv is a pointer to an array of char*
+    //
+    // the index operator [] is just another way of performing pointer arithmetic
+    // foo[i]
+    // is equivalent to:
+    // *(foo + i)
+    //
+    // T**: It might be a matrix (an array of arrays) or an array of strings (a char array), etc.
+  }
   cout << "EOP" << endl;
 }
 
