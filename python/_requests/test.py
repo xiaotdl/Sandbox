@@ -1,10 +1,16 @@
+"""
+reference: https://2.python-requests.org//en/master/
+
+an example to use python requests library to:
+  1. send a http request
+  2. receives a http response and do some work with it
+
+To execute:
+$ python3.6 test.py
+"""
+
 import requests
 
-# reference: https://2.python-requests.org//en/master/
-
-# an example to use python requests library to:
-#   1. send a http request
-#   2. receives a http response and do some work with it
 
 URL = "https://jsonplaceholder.typicode.com/todos/1"
 # >>>
